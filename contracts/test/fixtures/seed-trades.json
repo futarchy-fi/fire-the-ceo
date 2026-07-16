@@ -1,0 +1,20 @@
+[
+  {
+    "ticker": "ACME",
+    "kind": 0,
+    "longSide": true,
+    "shares": 100000000000000000000
+  },
+  {
+    "ticker": "WAYN",
+    "kind": 1,
+    "longSide": false,
+    "shares": 75000000000000000000
+  },
+  {
+    "ticker": "STRK",
+    "kind": 2,
+    "longSide": true,
+    "shares": 50000000000000000000
+  }
+]

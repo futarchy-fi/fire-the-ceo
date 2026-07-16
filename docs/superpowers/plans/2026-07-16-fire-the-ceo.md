@@ -193,8 +193,8 @@ function claim(uint256 companyId) external returns (uint256 amount);  // now > r
   `contracts/script/ListCompanies.s.sol` (reads `data/listings.json` via `vm.readFile`/`vm.parseJson`: array of {ticker,name,ceo,spotCents,initExitProbWad}; lists each with global horizon/settle/b constants; idempotent: skips tickers already listed by scanning `companies`),
   `contracts/script/SeedTrades.s.sol` (reads `data/seed-trades.json`: {ticker, kind, longSide, shares}; faucet+buys from the broadcast key),
   `contracts/script/Resolve.s.sol` (env-driven single resolve for the TEST rehearsal).
-- [ ] **Step 1:** Local rehearsal: `anvil` fork-less; run Deploy + a 3-company listings fixture + seeds against `--fork-url http://localhost:8545`; assert board via `cast call getAllPrices`.
-- [ ] **Step 2:** Commit `feat(contracts): deploy/list/seed/resolve scripts`.
+- [x] **Step 1:** Local rehearsal: `anvil` fork-less; run Deploy + a 3-company listings fixture + seeds against `--fork-url http://localhost:8545`; assert board via `cast call getAllPrices`.
+- [x] **Step 2:** Commit `feat(contracts): deploy/list/seed/resolve scripts`.
 
 ## Phase B — Sepolia deployment (Claude-side)
 

@@ -1,0 +1,23 @@
+[
+  {
+    "ticker": "ACME",
+    "name": "Acme Corporation",
+    "ceo": "Ada Lovelace",
+    "spotCents": 40000,
+    "initExitProbWad": 50000000000000000
+  },
+  {
+    "ticker": "WAYN",
+    "name": "Wayne Enterprises",
+    "ceo": "Lucius Fox",
+    "spotCents": 20000,
+    "initExitProbWad": 950000000000000000
+  },
+  {
+    "ticker": "STRK",
+    "name": "Stark Industries",
+    "ceo": "Pepper Potts",
+    "spotCents": 10000,
+    "initExitProbWad": 40000000000000000
+  }
+]

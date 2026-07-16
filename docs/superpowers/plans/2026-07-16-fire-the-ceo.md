@@ -154,8 +154,8 @@ function sell(uint256 companyId, MarketKind kind, bool longSide, uint256 shares,
 // sell: require held shares; proceeds = uint(-buyCost(..., -dq)) - DUST (floor at 0); require >= minProceeds; escrow += proceeds; NO transfer out.
 ```
 
-- [ ] **Step 1:** Tests: `test_BuyMovesPriceUpAndChargesQuote`, `test_BuyRevertsOverMaxCost`, `test_SellEscrowsNoTransfer` (trader pUSD balance unchanged by sell; escrow increases), `test_SellMoreThanHeldReverts`, `test_BuyAfterHorizonReverts` (vm.warp), `test_RoundTripCostsAtLeastTwoDust` (buy then sell same shares → paidIn − escrow ≥ 2*DUST), `test_ShareCapEnforced` (buy pushing q past 1e27 reverts `ShareCapExceeded()`), `test_TradeEventEmitted`.
-- [ ] **Steps 2-5:** fail → implement → pass → commit `feat(contracts): trading with called-off-bet escrow`.
+- [x] **Step 1:** Tests: `test_BuyMovesPriceUpAndChargesQuote`, `test_BuyRevertsOverMaxCost`, `test_SellEscrowsNoTransfer` (trader pUSD balance unchanged by sell; escrow increases), `test_SellMoreThanHeldReverts`, `test_BuyAfterHorizonReverts` (vm.warp), `test_RoundTripCostsAtLeastTwoDust` (buy then sell same shares → paidIn − escrow ≥ 2*DUST), `test_ShareCapEnforced` (buy pushing q past 1e27 reverts `ShareCapExceeded()`), `test_TradeEventEmitted`.
+- [x] **Steps 2-5:** fail → implement → pass → commit `feat(contracts): trading with called-off-bet escrow`.
 
 ### Task A5: Resolution, dispute, claim
 

@@ -1,6 +1,6 @@
 import { Link, Route, Routes } from 'react-router-dom'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
-import { BoardSmoke } from './pages/BoardSmoke.tsx'
+import { BoardPage } from './pages/BoardPage.tsx'
 
 function Placeholder({ title }: { title: string }) {
   return (
@@ -24,7 +24,7 @@ export default function App() {
         <ConnectButton accountStatus="address" chainStatus="icon" showBalance={false} />
       </header>
       <Routes>
-        <Route path="/" element={<BoardSmoke />} />
+        <Route path="/" element={<BoardPage />} />
         <Route path="/company/:ticker" element={<Placeholder title="Company filing" />} />
         <Route path="/about" element={<Placeholder title="About the proceeding" />} />
         <Route path="*" element={<Placeholder title="Filing not found" />} />

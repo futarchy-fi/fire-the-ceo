@@ -230,16 +230,16 @@ export function useBoard(): { rows: BoardRow[]|null; error?: Error }   // getAll
 export function useHistory(): HistorySnapshot[]|null                    // fetch('/data/history.json')
 export function fireSignal(rows: HistorySnapshot[], id:number): 'FIRE'|'KEEP'|'WATCH'  // Hanson rule: premium>0 in >=90% of snapshots over trailing 7d (WATCH if <20 snapshots)
 ```
-- [ ] Scaffold, wire RainbowKit (Sepolia only), implement useBoard against deployed contract, render raw table smoke page. `bun run build` passes. Commit.
+- [x] Scaffold, wire RainbowKit (Sepolia only), implement useBoard against deployed contract, render raw table smoke page. `bun run build` passes. Commit.
 
 ### Task C2: The Board (`/`)
-- [ ] `BoardTable`: rank, company+CEO(tenure), P(exit), E[P|out], E[P|stay], premium% (signed, colored), `SignalBadge` (FIRE/KEEP/WATCH), 7d `PremiumSparkline` (from history), mcap. Sort by any column (default premium desc); text filter. Loading skeleton; error state with RPC retry. Commit.
+- [x] `BoardTable`: rank, company+CEO(tenure), P(exit), E[P|out], E[P|stay], premium% (signed, colored), `SignalBadge` (FIRE/KEEP/WATCH), 7d `PremiumSparkline` (from history), mcap. Sort by any column (default premium desc); text filter. Loading skeleton; error state with RPC retry. Commit.
 
 ### Task C3: Company page (`/company/:ticker`)
-- [ ] Three `MarketCard`s (OUT/STAY scalars showing implied E[P] + band; EXIT prob), premium history line chart, `TradePanel` (kind/side/shares → live `quoteBuy/quoteSell` debounced, slippage 1%, approve-then-trade flow, trading-closed state), `PositionsCard` (per-market sharesL/S, paidIn, escrow; claim button when claimable), resolution criteria + subsidy figure ("This market is subsidized with X pUSD via LMSR"), CEO context note + source link. Commit.
+- [x] Three `MarketCard`s (OUT/STAY scalars showing implied E[P] + band; EXIT prob), premium history line chart, `TradePanel` (kind/side/shares → live `quoteBuy/quoteSell` debounced, slippage 1%, approve-then-trade flow, trading-closed state), `PositionsCard` (per-market sharesL/S, paidIn, escrow; claim button when claimable), resolution criteria + subsidy figure ("This market is subsidized with X pUSD via LMSR"), CEO context note + source link. Commit.
 
 ### Task C4: About + faucet + first-run
-- [ ] `/about`: Hanson's vision w/ citations (use URLs from sweep report §hanson-vision), called-off-bet explainer, decision rule verbatim, insider policy, seed-trade disclosure table, testnet disclaimer. `FaucetBanner`: detect no-pUSD wallet → guided add-Sepolia + faucet() + approve flow. Commit.
+- [x] `/about`: Hanson's vision w/ citations (use URLs from sweep report §hanson-vision), called-off-bet explainer, decision rule verbatim, insider policy, seed-trade disclosure table, testnet disclaimer. `FaucetBanner`: detect no-pUSD wallet → guided add-Sepolia + faucet() + approve flow. Commit.
 
 ### Task C5 (Claude-side): Design pass
 - [ ] Invoke `frontend-design` + `dataviz` skills; apply the "boardroom terminal" direction from the spec across all pages; validate palette; dark+light. Commit.

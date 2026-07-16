@@ -1,0 +1,921 @@
+{
+ "NVDA": {
+  "name": "NVIDIA Corporation",
+  "ceo": "Jensen Huang",
+  "ceoSince": "1993",
+  "sector": "Information Technology",
+  "mcapB": 5150,
+  "note": "Founder-CEO since 1993; world's most valuable company on AI/Rubin-platform boom",
+  "sourceUrl": "https://nvidianews.nvidia.com/news/nvidia-ceo-jensen-huang-and-global-technology-leaders-to-showcase-age-of-ai-at-gtc-2026"
+ },
+ "AAPL": {
+  "name": "Apple Inc.",
+  "ceo": "Tim Cook",
+  "ceoSince": "2011",
+  "sector": "Information Technology",
+  "mcapB": 4810,
+  "note": "Sitting CEO; Apple announced Apr 20, 2026 that John Ternus becomes CEO Sept 1, 2026, with Cook moving to executive chairman",
+  "sourceUrl": "https://www.apple.com/newsroom/2026/04/tim-cook-to-become-apple-executive-chairman-john-ternus-to-become-apple-ceo/",
+  "prior_rationale": "Ternus transition announced Apr 2026, effective Sep 1 2026 (before horizon)"
+ },
+ "GOOGL": {
+  "name": "Alphabet Inc.",
+  "ceo": "Sundar Pichai",
+  "ceoSince": "2015",
+  "sector": "Communication Services",
+  "mcapB": 4530,
+  "note": "Google CEO since 2015, Alphabet CEO since Dec 2019; 2026 pay package tied to Waymo/Wing moonshots",
+  "sourceUrl": "https://blog.google/company-news/inside-google/message-ceo/alphabet-earnings-q1-2026/"
+ },
+ "MSFT": {
+  "name": "Microsoft Corporation",
+  "ceo": "Satya Nadella",
+  "ceoSince": "2014",
+  "sector": "Information Technology",
+  "mcapB": 2940,
+  "note": "CEO since 2014 and chairman since 2021; repositioning Microsoft/OpenAI alliance amid intensified AI competition",
+  "sourceUrl": "https://fortune.com/2026/06/02/microsoft-moves-to-remain-ais-center-of-gravity/"
+ },
+ "AMZN": {
+  "name": "Amazon.com, Inc.",
+  "ceo": "Andy Jassy",
+  "ceoSince": "2021",
+  "sector": "Consumer Discretionary",
+  "mcapB": 2740,
+  "note": "Succeeded founder Jeff Bezos in 2021; defending a $200B 2026 AI capex program",
+  "sourceUrl": "https://www.cnbc.com/2026/04/09/amazon-ceo-andy-jassy-ai-spending.html"
+ },
+ "AVGO": {
+  "name": "Broadcom Inc.",
+  "ceo": "Hock Tan",
+  "ceoSince": "2006",
+  "sector": "Information Technology",
+  "mcapB": 1880,
+  "note": "CEO since 2006 (Avago); custom AI chip boom (incl. Anthropic partnership), targets >$100B AI chip revenue in 2027",
+  "sourceUrl": "https://www.fool.com/investing/2026/03/20/broadcom-ceo-hock-tan-just-delivered-incredible-ne/"
+ },
+ "SPCX": {
+  "name": "Space Exploration Technologies Corp.",
+  "ceo": "Elon Musk",
+  "ceoSince": "2002",
+  "sector": "Industrials",
+  "mcapB": 1780,
+  "note": "Founder-CEO; largest-ever IPO June 12, 2026 (Nasdaq: SPCX, ~$1.77T valuation); Musk keeps ~82% voting power via Class B shares and stock has slipped back to the $135 IPO price",
+  "sourceUrl": "https://www.cnbc.com/2026/05/20/spacex-ipo-live-updates.html"
+ },
+ "META": {
+  "name": "Meta Platforms, Inc.",
+  "ceo": "Mark Zuckerberg",
+  "ceoSince": "2004",
+  "sector": "Communication Services",
+  "mcapB": 1730,
+  "note": "Founder-CEO with dual-class voting control; betting on Meta Superintelligence Labs and possible cloud business",
+  "sourceUrl": "https://www.cnbc.com/2026/05/27/mark-zuckerberg-says-meta-starting-cloud-business-on-the-table.html"
+ },
+ "TSLA": {
+  "name": "Tesla, Inc.",
+  "ceo": "Elon Musk",
+  "ceoSince": "2008",
+  "sector": "Consumer Discretionary",
+  "mcapB": 1480,
+  "note": "CEO since 2008; now also CEO of newly public SpaceX, keeping attention-split concerns alive as Tesla pivots to AI/robotics/energy",
+  "sourceUrl": "https://www.marketscreener.com/news/tesla-ceo-elon-musk-says-2026-will-be-very-big-capex-year-ce7e5bded880f526",
+  "prior_rationale": "dual-CEO attention split post-SpaceX IPO"
+ },
+ "BRK.B": {
+  "name": "Berkshire Hathaway Inc.",
+  "ceo": "Greg Abel",
+  "ceoSince": "2026",
+  "sector": "Financials",
+  "mcapB": 1050,
+  "note": "Recent succession: Abel became President and CEO Jan 1, 2026, ending Warren Buffett's 60-year run; Buffett remains chairman",
+  "sourceUrl": "https://www.fool.com/investing/2026/01/02/with-warren-buffett-no-longer-ceo-at-berkshire-hat/"
+ },
+ "LLY": {
+  "name": "Eli Lilly and Company",
+  "ceo": "David A. Ricks",
+  "ceoSince": "2017",
+  "sector": "Health Care",
+  "mcapB": 1030,
+  "note": "Chair and CEO since 2017; steered Lilly to ~$1T market cap on GLP-1/obesity franchise, oral orforglipron launching 2026",
+  "sourceUrl": "https://www.cnbc.com/video/2026/02/04/eli-lilly-ceo-david-ricks-on-q4-results-were-the-market-leader-in-both-diabetes-and-obesity-now.html"
+ },
+ "MU": {
+  "name": "Micron Technology, Inc.",
+  "ceo": "Sanjay Mehrotra",
+  "ceoSince": "2017",
+  "sector": "Information Technology",
+  "mcapB": 1020,
+  "note": "CEO since 2017; stock up ~9x in a year on AI memory/HBM boom, crossed $1T market cap, $250B US fab expansion announced July 2026",
+  "sourceUrl": "https://www.forbes.com/sites/aliciapark/2026/05/27/micron-ceo-sanjay-mehrotra-becomes-a-billionaire-amid-trillion-dollar-memory-chipmaker-boom/"
+ },
+ "JPM": {
+  "name": "JPMorgan Chase & Co.",
+  "ceo": "Jamie Dimon",
+  "ceoSince": "2006",
+  "sector": "Financials",
+  "mcapB": 922.16,
+  "note": "CEO since 2006; succession race narrowed June 2026 to co-presidents Doug Petno and Troy Rohrbaugh after Marianne Lake's exit \u2014 Dimon expects ~3 more years",
+  "sourceUrl": "https://www.cnbc.com/2026/06/25/jpmorgan-chase-co-presidents-lake-exits.html",
+  "prior_rationale": "succession race narrowed June 2026; Dimon signals ~3 more years"
+ },
+ "WMT": {
+  "name": "Walmart Inc.",
+  "ceo": "John Furner",
+  "ceoSince": "2026",
+  "sector": "Consumer Staples",
+  "mcapB": 895.52,
+  "note": "Recent succession: Furner (32-year Walmart veteran, ex-Walmart US CEO) took over Feb 1, 2026 as Doug McMillon retired",
+  "sourceUrl": "https://corporate.walmart.com/news/2025/11/14/walmart-announces-john-furner-as-president-and-chief-executive-o0/press-center"
+ },
+ "AMD": {
+  "name": "Advanced Micro Devices, Inc.",
+  "ceo": "Lisa Su",
+  "ceoSince": "2014",
+  "sector": "Information Technology",
+  "mcapB": 862.82,
+  "note": "Chair and CEO since 2014; ~40x stock turnaround, keynoted CES 2026 on AI roadmap",
+  "sourceUrl": "https://www.ces.tech/press-releases/dr-lisa-su-chair-and-ceo-of-amd-to-keynote-ces-2026-on-how-ai-is-changing-the-world"
+ },
+ "V": {
+  "name": "Visa Inc.",
+  "ceo": "Ryan McInerney",
+  "ceoSince": "2023",
+  "sector": "Financials",
+  "mcapB": 669.05,
+  "note": "CEO since Feb 2023 (succeeded Al Kelly); elected US-China Business Council board chair June 2026",
+  "sourceUrl": "https://www.uschina.org/news-releases/uscbc-elects-visa-ceo-ryan-mcinerney-as-board-chair-and-welcomes-new-board-members/"
+ },
+ "XOM": {
+  "name": "Exxon Mobil Corporation",
+  "ceo": "Darren Woods",
+  "ceoSince": "2017",
+  "sector": "Energy",
+  "mcapB": 598.92,
+  "note": "Chairman and CEO since Jan 2017; navigating Iran-war oil price spikes and public friction with Trump over Venezuela",
+  "sourceUrl": "https://fortune.com/2026/01/13/exxon-mobil-ceo-darren-woods-trump-venezuela-oil-stood-up-angered/"
+ },
+ "JNJ": {
+  "name": "Johnson & Johnson",
+  "ceo": "Joaquin Duato",
+  "ceoSince": "2022",
+  "sector": "Health Care",
+  "mcapB": 594.63,
+  "note": "CEO since Jan 2022, chairman since 2023; on track for first-ever $100B revenue year in 2026",
+  "sourceUrl": "https://fortune.com/2026/05/09/america-biopharmaceutical-innovation-advantage-health/"
+ },
+ "INTC": {
+  "name": "Intel Corporation",
+  "ceo": "Lip-Bu Tan",
+  "ceoSince": "2025",
+  "sector": "Information Technology",
+  "mcapB": 517.63,
+  "note": "Recent succession: ex-Cadence chief appointed March 18, 2025 after Gelsinger's ouster, driving foundry-led turnaround; Craig Barratt elected independent board chair May 2026",
+  "sourceUrl": "https://newsroom.intel.com/corporate/intel-appoints-lip-bu-tan-chief-executive-officer"
+ },
+ "MA": {
+  "name": "Mastercard Incorporated",
+  "ceo": "Michael Miebach",
+  "ceoSince": "2021",
+  "sector": "Financials",
+  "mcapB": 472.9,
+  "note": "CEO since Jan 2021 (succeeded Ajay Banga); reshuffled leadership June 2026, promoting Ling Hai to CFO",
+  "sourceUrl": "https://www.cnbc.com/video/2026/05/26/watch-cnbcs-full-interview-with-mastercard-ceo-michael-miebach.html"
+ },
+ "AMAT": {
+  "name": "Applied Materials, Inc.",
+  "ceo": "Gary E. Dickerson",
+  "ceoSince": "2013",
+  "sector": "Information Technology",
+  "mcapB": 460,
+  "note": "Long-tenured CEO (since Sept 2013); no succession announced; calls this 'the greatest time ever' for semis (May 2026)",
+  "sourceUrl": "https://www.cnbc.com/2026/05/28/this-is-the-greatest-time-ever-for-semiconductors-says-ceo-of-key-equipment-supplier.html",
+  "prior_rationale": "CEO since 2013, no succession plan announced"
+ },
+ "CSCO": {
+  "name": "Cisco Systems, Inc.",
+  "ceo": "Chuck Robbins",
+  "ceoSince": "2015",
+  "sector": "Information Technology",
+  "mcapB": 440.5,
+  "note": "Chair & CEO 11+ years; steered shift from hardware to software/subscriptions; active as of June 2026",
+  "sourceUrl": "https://fortune.com/2026/06/03/cisco-ceo-chuck-robbins-fastest-messenger-on-team-hires-people-same-urgency-desire-to-move/"
+ },
+ "BAC": {
+  "name": "Bank of America Corporation",
+  "ceo": "Brian Moynihan",
+  "ceoSince": "2010",
+  "sector": "Financials",
+  "mcapB": 432.2,
+  "note": "Longest-tenured big-bank CEO; Feb 2026 co-president reshuffle (Athanasia, DeMare, Borthwick) set up succession race, but he plans to stay for years",
+  "sourceUrl": "https://newsroom.bankofamerica.com/content/newsroom/stories/2026/03/a-letter-to-shareholders-from-chair-and-ceo--brian-moynihan.html",
+  "prior_rationale": "Feb 2026 co-president reshuffle set up succession race"
+ },
+ "ABBV": {
+  "name": "AbbVie Inc.",
+  "ceo": "Robert A. Michael",
+  "ceoSince": "2024",
+  "sector": "Health Care",
+  "mcapB": 431.3,
+  "note": "Recent succession: took over from Richard Gonzalez July 2024, added chairman July 2025",
+  "sourceUrl": "https://news.abbvie.com/2025-02-14-AbbVie-Appoints-CEO-Robert-A-Michael-as-Chairman-of-the-Board-of-Directors"
+ },
+ "CAT": {
+  "name": "Caterpillar Inc.",
+  "ceo": "Joseph E. Creed",
+  "ceoSince": "2025",
+  "sector": "Industrials",
+  "mcapB": 421.1,
+  "note": "Recent succession: 28-year CAT veteran, CEO May 1 2025 succeeding Jim Umpleby, elected board chairman April 2026",
+  "sourceUrl": "https://www.caterpillar.com/en/company/governance/officers/joseph-e-creed.html"
+ },
+ "LRCX": {
+  "name": "Lam Research Corporation",
+  "ceo": "Timothy M. Archer",
+  "ceoSince": "2018",
+  "sector": "Information Technology",
+  "mcapB": 419.5,
+  "note": "CEO since Jan 2018; Feb 2026 leadership shuffle was COO-level (Varadarajan in, Lord retired) \u2014 Archer unchanged",
+  "sourceUrl": "https://newsroom.lamresearch.com/2026-02-03-Lam-Research-Announces-Leadership-Transitions-to-Increase-Company-Velocity-for-the-AI-era"
+ },
+ "COST": {
+  "name": "Costco Wholesale Corporation",
+  "ceo": "Ron Vachris",
+  "ceoSince": "2024",
+  "sector": "Consumer Staples",
+  "mcapB": 406.5,
+  "note": "Succeeded Craig Jelinek Jan 2024; rose from forklift driver, no college degree; still CEO as of June 2026",
+  "sourceUrl": "https://fortune.com/2026/05/28/costco-ceo-ron-vachris-artifical-intelligence-not-stealing-jobs-tech-improving-work-retail-giant-success/"
+ },
+ "ORCL": {
+  "name": "Oracle Corporation",
+  "ceo": "Clay Magouyrk and Mike Sicilia (co-CEOs)",
+  "ceoSince": "2025",
+  "sector": "Information Technology",
+  "mcapB": 381.6,
+  "note": "Co-CEOs since Sept 2025; Safra Catz moved to executive vice chair, Larry Ellison remains chairman/CTO; stock well off its 2025 AI-frenzy highs",
+  "sourceUrl": "https://www.cnbc.com/2025/09/22/oracle-names-co-ceos.html",
+  "prior_rationale": "new co-CEO structure (either departing counts)",
+  "condition_note": "departure condition met if EITHER named co-CEO ceases to hold the office"
+ },
+ "UNH": {
+  "name": "UnitedHealth Group Incorporated",
+  "ceo": "Stephen J. Hemsley",
+  "ceoSince": "2025",
+  "sector": "Health Care",
+  "mcapB": 380.1,
+  "note": "Boomerang CEO: returned May 2025 after Andrew Witty stepped down (prior CEO 2006-2017); also board chair; testified to Congress Jan 2026",
+  "sourceUrl": "https://www.unitedhealthgroup.com/newsroom/2025/2025-05-13-uhg-announces-leadership-transition.html",
+  "prior_rationale": "boomerang CEO age 73+, interim flavor"
+ },
+ "GE": {
+  "name": "GE Aerospace",
+  "ceo": "H. Lawrence (Larry) Culp, Jr.",
+  "ceoSince": "2018",
+  "sector": "Industrials",
+  "mcapB": 376,
+  "note": "GE CEO since Oct 2018; has led GE Aerospace as standalone since April 2024 spin; employment agreement extended through end-2027",
+  "sourceUrl": "https://www.geaerospace.com/company/about-us/leadership"
+ },
+ "CVX": {
+  "name": "Chevron Corporation",
+  "ceo": "Michael K. (Mike) Wirth",
+  "ceoSince": "2018",
+  "sector": "Energy",
+  "mcapB": 359.1,
+  "note": "Chairman & CEO since Feb 2018; board waived age-65 retirement rule; succession talks underway but no successor named as of mid-2026",
+  "sourceUrl": "https://www.chevron.com/who-we-are/leadership/michael-wirth",
+  "prior_rationale": "age-65 waiver; succession talks underway"
+ },
+ "MS": {
+  "name": "Morgan Stanley",
+  "ceo": "Ted Pick",
+  "ceoSince": "2024",
+  "sector": "Financials",
+  "mcapB": 360.5,
+  "note": "Succeeded James Gorman Jan 2024, added chairman Jan 2025; delivered record Q1 2026 results",
+  "sourceUrl": "https://www.morganstanley.com/insights/articles/ted-pick-q1-2026-earnings-bloomberg"
+ },
+ "KO": {
+  "name": "The Coca-Cola Company",
+  "ceo": "Henrique Braun",
+  "ceoSince": "2026",
+  "sector": "Consumer Staples",
+  "mcapB": 354.7,
+  "note": "Very recent succession: former COO became CEO March 31 2026, succeeding James Quincey (now executive chairman)",
+  "sourceUrl": "https://investors.coca-colacompany.com/news-events/press-releases/detail/1147/the-coca-cola-company-announces-ceo-succession-plan-chief-operating-officer-henrique-braun-to-succeed-james-quincey-as-ceo-in-2026"
+ },
+ "PG": {
+  "name": "The Procter & Gamble Company",
+  "ceo": "Shailesh Jejurikar",
+  "ceoSince": "2026",
+  "sector": "Consumer Staples",
+  "mcapB": 344.8,
+  "note": "Recent succession: former COO became CEO Jan 1 2026, succeeding Jon Moeller (now executive chairman); P&G lifer since 1989",
+  "sourceUrl": "https://www.pginvestor.com/news/news-details/2025/Shailesh-Jejurikar-Elected-PG-President-and-Chief-Executive-Officer/default.aspx"
+ },
+ "HD": {
+  "name": "The Home Depot, Inc.",
+  "ceo": "Ted Decker",
+  "ceoSince": "2022",
+  "sector": "Consumer Discretionary",
+  "mcapB": 340.5,
+  "note": "Chair, president & CEO since March 2022 (chairman since Oct 2022); no succession announced",
+  "sourceUrl": "https://corporate.homedepot.com/bio/ted-decker-chair-president-chief-executive-officer"
+ },
+ "GS": {
+  "name": "The Goldman Sachs Group, Inc.",
+  "ceo": "David M. Solomon",
+  "ceoSince": "2018",
+  "sector": "Financials",
+  "mcapB": 353.2,
+  "note": "Chairman & CEO since Oct 2018 (chairman 2019); earlier activist/board noise has faded after strong 2025",
+  "sourceUrl": "https://www.goldmansachs.com/insights/goldman-sachs-exchanges/goldman-sachs-chairman-and-ceo-david-solomon-on-ai-m-and-a-and-markets"
+ },
+ "PLTR": {
+  "name": "Palantir Technologies Inc.",
+  "ceo": "Alexander C. (Alex) Karp",
+  "ceoSince": "2004",
+  "sector": "Information Technology",
+  "mcapB": 320.7,
+  "note": "Founder-CEO (co-founded 2003, CEO since 2004); stock down ~27% in 2026 despite ~85% YoY revenue growth; outspoken vs OpenAI/Anthropic",
+  "sourceUrl": "https://www.forbes.com/sites/tylerroush/2026/07/01/palantir-billionaire-alex-karp-calls-ai-industry-effing-insane-in-heated-interview/"
+ },
+ "NFLX": {
+  "name": "Netflix, Inc.",
+  "ceo": "Ted Sarandos and Greg Peters (co-CEOs)",
+  "ceoSince": "2023",
+  "sector": "Communication Services",
+  "mcapB": 310.3,
+  "note": "Co-CEO structure since Jan 2023 (Sarandos co-CEO since 2020); founder Reed Hastings left the board June 2026; share price reflects 2025 10-for-1 split",
+  "sourceUrl": "https://variety.com/2026/tv/news/netflix-ceo-salary-ted-sarandos-greg-peters-1236724061/",
+  "prior_rationale": "co-CEO structure (either departing counts)",
+  "condition_note": "departure condition met if EITHER named co-CEO ceases to hold the office"
+ },
+ "MRK": {
+  "name": "Merck & Co., Inc.",
+  "ceo": "Robert M. Davis",
+  "ceoSince": "2021",
+  "sector": "Health Care",
+  "mcapB": 305.3,
+  "note": "Chairman & CEO (CEO July 2021, chairman Dec 2022); navigating Keytruda patent-cliff narrative",
+  "sourceUrl": "https://www.merck.com/leadership/robert-m-davis/"
+ },
+ "KLAC": {
+  "name": "KLA Corporation",
+  "ceo": "Richard P. (Rick) Wallace",
+  "ceoSince": "2006",
+  "sector": "Information Technology",
+  "mcapB": 293.3,
+  "note": "One of the longest-tenured semicap CEOs (since Jan 2006); no successor announced as of mid-2026",
+  "sourceUrl": "https://ir.kla.com/company-information/management-team",
+  "prior_rationale": "CEO since 2006"
+ },
+ "PANW": {
+  "name": "Palo Alto Networks, Inc.",
+  "ceo": "Nikesh Arora",
+  "ceoSince": "2018",
+  "sector": "Information Technology",
+  "mcapB": 288.5,
+  "note": "Chairman & CEO since June 2018 (ex-Google/SoftBank); active in July 2026 press (CNBC interview July 9, 2026)",
+  "sourceUrl": "https://www.paloaltonetworks.com/about-us/management"
+ },
+ "GEV": {
+  "name": "GE Vernova Inc.",
+  "ceo": "Scott Strazik",
+  "ceoSince": "2024",
+  "sector": "Industrials",
+  "mcapB": 283.6,
+  "note": "CEO since the April 2024 spin-off from GE; led GE's energy businesses before separation",
+  "sourceUrl": "https://www.gevernova.com/company/leadership/scott-strazik"
+ },
+ "PM": {
+  "name": "Philip Morris International Inc.",
+  "ceo": "Jacek Olczak",
+  "ceoSince": "2021",
+  "sector": "Consumer Staples",
+  "mcapB": 281.9,
+  "note": "CEO since May 2021; title redesignated 'Group CEO PMI' effective Jan 1, 2026 in an org restructure",
+  "sourceUrl": "https://www.pmi.com/who-we-are/our-leadership-team"
+ },
+ "TXN": {
+  "name": "Texas Instruments Incorporated",
+  "ceo": "Haviv Ilan",
+  "ceoSince": "2023",
+  "sector": "Information Technology",
+  "mcapB": 274.1,
+  "note": "President & CEO since 2023; added chairman Jan 2026 after Rich Templeton retired end of 2025",
+  "sourceUrl": "https://investor.ti.com/news-releases/news-release-details/ti-names-president-and-ceo-haviv-ilan-chairman-board"
+ },
+ "DELL": {
+  "name": "Dell Technologies Inc.",
+  "ceo": "Michael Dell",
+  "ceoSince": "2007",
+  "sector": "Information Technology",
+  "mcapB": 266.7,
+  "note": "Founder-CEO (founded 1984; CEO again since 2007); confirmed Chairman & CEO in FY2026 proxy",
+  "sourceUrl": "https://www.sec.gov/Archives/edgar/data/0001571996/000119312526226734/d132444ddef14a.htm"
+ },
+ "WFC": {
+  "name": "Wells Fargo & Company",
+  "ceo": "Charlie Scharf",
+  "ceoSince": "2019",
+  "sector": "Financials",
+  "mcapB": 265,
+  "note": "CEO since Oct 2019, added chairman Oct 2025; led bank out of Fed asset cap (lifted 2025)",
+  "sourceUrl": "https://www.wellsfargo.com/about/corporate/governance/scharf/"
+ },
+ "RTX": {
+  "name": "RTX Corporation",
+  "ceo": "Christopher T. Calio",
+  "ceoSince": "2024",
+  "sector": "Industrials",
+  "mcapB": 263.8,
+  "note": "President & CEO since May 2024 (succeeded Greg Hayes), elected chairman April 2025",
+  "sourceUrl": "https://www.rtx.com/news/news-center/2026/02/04/rtx-chairman-and-ceo-to-present-at-citis-2026-global-industrial-tech-and-mobilit"
+ },
+ "AXP": {
+  "name": "American Express Company",
+  "ceo": "Stephen Squeri",
+  "ceoSince": "2018",
+  "sector": "Financials",
+  "mcapB": 244.6,
+  "note": "Chairman & CEO since Feb 2018; age 67, says no plans to retire, no successor named (May 2026)",
+  "sourceUrl": "https://fortune.com/2026/05/06/how-amex-ceo-stephen-squeri-winning-over-younger-customers/",
+  "prior_rationale": "CEO age 67, no successor named"
+ },
+ "SNDK": {
+  "name": "Sandisk Corporation",
+  "ceo": "David Goeckeler",
+  "ceoSince": "2025",
+  "sector": "Information Technology",
+  "mcapB": 239.2,
+  "note": "Chairman & CEO since Feb 2025 spin-off from Western Digital (was WDC CEO); stock up hugely on AI NAND demand",
+  "sourceUrl": "https://investor.sandisk.com/management/david-goeckeler"
+ },
+ "C": {
+  "name": "Citigroup Inc.",
+  "ceo": "Jane Fraser",
+  "ceoSince": "2021",
+  "sector": "Financials",
+  "mcapB": 226.3,
+  "note": "CEO since March 2021, elected board chair Oct 2025; multi-year turnaround credited, #1 on Fortune MPW 2026",
+  "sourceUrl": "https://www.citigroup.com/global/about-us/leadership/jane-fraser"
+ },
+ "ANET": {
+  "name": "Arista Networks, Inc.",
+  "ceo": "Jayshree Ullal",
+  "ceoSince": "2008",
+  "sector": "Information Technology",
+  "mcapB": 216.5,
+  "note": "Chairperson & CEO since 2008 (pre-IPO); one of the longest-tenured big-cap tech CEOs, still active July 2026",
+  "sourceUrl": "https://www.arista.com/en/company/management-team"
+ },
+ "CRWD": {
+  "name": "CrowdStrike Holdings, Inc.",
+  "ceo": "George Kurtz",
+  "ceoSince": "2011",
+  "sector": "Information Technology",
+  "mcapB": 210.6,
+  "note": "Co-founder & CEO since founding in 2011; retained role through and after the July 2024 outage",
+  "sourceUrl": "https://www.crowdstrike.com/en-us/about-us/executive-team/george-kurtz/"
+ },
+ "TMUS": {
+  "name": "T-Mobile US, Inc.",
+  "ceo": "Srini Gopalan",
+  "ceoSince": "2025",
+  "sector": "Communication Services",
+  "mcapB": 203,
+  "note": "Recent succession: became CEO Nov 1, 2025, succeeding Mike Sievert (now vice chairman); ex-Deutsche Telekom Germany CEO",
+  "sourceUrl": "https://www.t-mobile.com/news/business/srini-gopalan-new-ceo"
+ },
+ "TMO": {
+  "name": "Thermo Fisher Scientific Inc.",
+  "ceo": "Marc N. Casper",
+  "ceoSince": "2009",
+  "sector": "Health Care",
+  "mcapB": 198.9,
+  "note": "Chairman & CEO; CEO since 2009, ceded the President title in early 2026 (remains Chairman & CEO per 2026 proxy)",
+  "sourceUrl": "https://www.sec.gov/Archives/edgar/data/97745/000119312526144585/d66426ddef14a.htm",
+  "prior_rationale": "ceded President title early 2026 \u2014 classic succession precursor"
+ },
+ "IBM": {
+  "name": "International Business Machines Corporation",
+  "ceo": "Arvind Krishna",
+  "ceoSince": "2020",
+  "sector": "Information Technology",
+  "mcapB": 198.5,
+  "note": "CEO since April 2020, chairman since 2021; opened IBM Think 2026, pushing $10B+ quantum investment",
+  "sourceUrl": "https://newsroom.ibm.com/2026-05-04-media-alert-ibm-ceo-arvind-krishna-to-open-ibm-think-2026,-outlining-how-ai-and-quantum-will-define-the-enterprise"
+ },
+ "AMGN": {
+  "name": "Amgen Inc.",
+  "ceo": "Robert A. Bradway",
+  "ceoSince": "2012",
+  "sector": "Health Care",
+  "mcapB": 193.4,
+  "note": "Chairman & CEO; CEO since 2012, chairman since 2013; signed 2025 shareholder letter March 2026, big MariTide capex",
+  "sourceUrl": "https://www.amgen.com/stories/2026/03/2025-letter-to-shareholders"
+ },
+ "APH": {
+  "name": "Amphenol Corporation",
+  "ceo": "R. Adam Norwitt",
+  "ceoSince": "2009",
+  "sector": "Information Technology",
+  "mcapB": 193.2,
+  "note": "CEO since 2009; added chairman at the May 2026 annual meeting as long-time chairman Martin Loeffler retired",
+  "sourceUrl": "https://investors.amphenol.com/news-and-events/news-details/2026/Amphenol-Announces-Board-Succession-Plan/default.aspx"
+ },
+ "ADI": {
+  "name": "Analog Devices, Inc.",
+  "ceo": "Vincent Roche",
+  "ceoSince": "2013",
+  "sector": "Information Technology",
+  "mcapB": 190.4,
+  "note": "CEO since May 2013, board chair since 2022; touting record FY2026 results and AI infrastructure demand",
+  "sourceUrl": "https://investor.analog.com/board-directors/vincent-roche/"
+ },
+ "MCD": {
+  "name": "McDonald's Corporation",
+  "ceo": "Chris Kempczinski",
+  "ceoSince": "2019",
+  "sector": "Consumer Discretionary",
+  "mcapB": 188.3,
+  "note": "CEO since Nov 2019 (post-Easterbrook), chairman since 2024; driving ~50,000-restaurant goal by 2027",
+  "sourceUrl": "https://corporate.mcdonalds.com/corpmcd/our-company/who-we-are/our-leadership.html"
+ },
+ "QCOM": {
+  "name": "QUALCOMM Incorporated",
+  "ceo": "Cristiano Amon",
+  "ceoSince": "2021",
+  "sector": "Information Technology",
+  "mcapB": 187.6,
+  "note": "President & CEO since June 2021; diversifying beyond smartphones into auto/edge-AI, keynoted COMPUTEX 2026",
+  "sourceUrl": "https://fortune.com/2026/05/10/titans-and-disruptors-of-industry-qualcomm-ceo-cristiano-amon-ai-wearable-glasses-chips-6g/"
+ },
+ "NEE": {
+  "name": "NextEra Energy, Inc.",
+  "ceo": "John W. Ketchum",
+  "ceoSince": "2022",
+  "sector": "Utilities",
+  "mcapB": 185.8,
+  "note": "Chairman/CEO since March 2022; announced $67B merger with Dominion Energy in May 2026 and will lead the combined company",
+  "sourceUrl": "https://fortune.com/2026/05/18/nextera-dominion-67-billion-acquisition-ai-data-centers-largest-utility/"
+ },
+ "MRVL": {
+  "name": "Marvell Technology, Inc.",
+  "ceo": "Matt Murphy",
+  "ceoSince": "2016",
+  "sector": "Information Technology",
+  "mcapB": 180.6,
+  "note": "Chairman & CEO since July 2016; delivered COMPUTEX 2026 keynote on AI connectivity",
+  "sourceUrl": "https://www.prnewswire.com/news-releases/matt-murphy-marvell-chairman-and-ceo-to-keynote-at-computex-2026-302718395.html"
+ },
+ "PEP": {
+  "name": "PepsiCo, Inc.",
+  "ceo": "Ramon Laguarta",
+  "ceoSince": "2018",
+  "sector": "Consumer Staples",
+  "mcapB": 184.8,
+  "note": "Chairman/CEO since 2018; no announced successor as of July 2026 despite activist pressure (Elliott stake, 2025); joined IBM board March 2026",
+  "sourceUrl": "https://pulse2.com/ibm-adds-pepsico-ceo-ramon-laguarta-to-board/",
+  "prior_rationale": "Elliott activist stake since 2025"
+ },
+ "VZ": {
+  "name": "Verizon Communications Inc.",
+  "ceo": "Dan Schulman",
+  "ceoSince": "2025",
+  "sector": "Communication Services",
+  "mcapB": 178.8,
+  "note": "Recent succession: ex-PayPal CEO and Verizon board member replaced Hans Vestberg in October 2025; Vestberg is special advisor through October 2026",
+  "sourceUrl": "https://www.verizon.com/about/news/verizon-announces-ceo-transition"
+ },
+ "SCHW": {
+  "name": "The Charles Schwab Corporation",
+  "ceo": "Rick Wurster",
+  "ceoSince": "2025",
+  "sector": "Financials",
+  "mcapB": 178.8,
+  "note": "Recent succession: promoted from president, succeeded Walt Bettinger as CEO effective January 1, 2025",
+  "sourceUrl": "https://www.aboutschwab.com/rick-wurster"
+ },
+ "BLK": {
+  "name": "BlackRock, Inc.",
+  "ceo": "Larry Fink",
+  "ceoSince": "1988",
+  "sector": "Financials",
+  "mcapB": 177.8,
+  "note": "Co-founder-CEO since 1988; says he is not leaving soon while succession bench has thinned (Wiedman and Ramji departed)",
+  "sourceUrl": "https://finance.yahoo.com/news/larry-fink-im-not-planning-to-leave-blackrock-anytime-soon-172244979.html",
+  "prior_rationale": "succession bench thinned"
+ },
+ "WDC": {
+  "name": "Western Digital Corporation",
+  "ceo": "Irving Tan",
+  "ceoSince": "2025",
+  "sector": "Information Technology",
+  "mcapB": 177.1,
+  "note": "CEO since February 2025 after the SanDisk flash spinoff; stock up sharply on AI-driven HDD demand, capacity 'pretty much sold out' for 2026",
+  "sourceUrl": "https://fintool.com/app/research/companies/WDC/people/irving-tan"
+ },
+ "BA": {
+  "name": "The Boeing Company",
+  "ceo": "Kelly Ortberg",
+  "ceoSince": "2024",
+  "sector": "Industrials",
+  "mcapB": 171.9,
+  "note": "Turnaround hire (ex-Rockwell Collins), CEO since August 2024; 737 MAX output cap lifted to 42/month with 52/month targeted by end of 2026",
+  "sourceUrl": "https://boeing.mediaroom.com/2026-05-13-Boeing-CEO-Kelly-Ortberg-to-Speak-at-Bernstein-Strategic-Decisions-Conference-May-27"
+ },
+ "UNP": {
+  "name": "Union Pacific Corporation",
+  "ceo": "Jim Vena",
+  "ceoSince": "2023",
+  "sector": "Industrials",
+  "mcapB": 171.2,
+  "note": "CEO since August 2023; leading the pending ~$72B Norfolk Southern merger now under STB review",
+  "sourceUrl": "https://www.cnbc.com/video/2026/06/04/union-pacific-ceo-jim-vena-on-proposed-merger-with-norfolk-southern-tariffs-impact-on-supply-chain.html"
+ },
+ "DIS": {
+  "name": "The Walt Disney Company",
+  "ceo": "Josh D'Amaro",
+  "ceoSince": "2026",
+  "sector": "Communication Services",
+  "mcapB": 168.7,
+  "note": "Brand-new succession: former Disney Experiences (parks) chief became CEO March 18, 2026, ending Bob Iger's tenure; Iger stays as senior adviser through 2026",
+  "sourceUrl": "https://www.cnbc.com/2026/02/03/disney-ceo-josh-damaro-successor-bob-iger.html"
+ },
+ "TJX": {
+  "name": "The TJX Companies, Inc.",
+  "ceo": "Ernie Herrman",
+  "ceoSince": "2016",
+  "sector": "Consumer Discretionary",
+  "mcapB": 166.8,
+  "note": "CEO since January 2016; long-tenured off-price veteran, annual sales passed $60B in FY2026",
+  "sourceUrl": "https://wbjournal.com/honoree/2026-power-100-ernie-herrman/"
+ },
+ "IBKR": {
+  "name": "Interactive Brokers Group, Inc.",
+  "ceo": "Milan Galik",
+  "ceoSince": "2019",
+  "sector": "Financials",
+  "mcapB": 43.4,
+  "note": "30+ year insider, CEO since Q3 2019; founder Thomas Peterffy remains chairman and controlling holder \u2014 the ~$43B market cap is the public Class A float only, whole-company value is far larger",
+  "sourceUrl": "https://fintool.com/app/research/companies/IBKR/people/milan-galik"
+ },
+ "WELL": {
+  "name": "Welltower Inc.",
+  "ceo": "Shankh Mitra",
+  "ceoSince": "2020",
+  "sector": "Real Estate",
+  "mcapB": 164.7,
+  "note": "CEO since October 2020; awarded an ~$821M long-term stock package, ranking second among S&P 500 CEOs in 2025 pay behind only Musk",
+  "sourceUrl": "https://theprint.in/feature/shankh-mitra-welltower-ceo-pay-package-indian-american/2968975/"
+ },
+ "GILD": {
+  "name": "Gilead Sciences, Inc.",
+  "ceo": "Daniel O'Day",
+  "ceoSince": "2019",
+  "sector": "Health Care",
+  "mcapB": 163.5,
+  "note": "Chairman & CEO since March 2019, ex-Roche Pharmaceuticals chief; no transition announced",
+  "sourceUrl": "https://www.stocktitan.net/sec-filings/GILD/form-4-gilead-sciences-inc-insider-trading-activity-3c6fed37dec6.html"
+ },
+ "DE": {
+  "name": "Deere & Company",
+  "ceo": "John C. May",
+  "ceoSince": "2019",
+  "sector": "Industrials",
+  "mcapB": 159.1,
+  "note": "Chairman & CEO since November 2019; new CFO appointed May 2026 but no CEO transition announced",
+  "sourceUrl": "https://about.deere.com/en-us/explore-john-deere/leadership/john-may"
+ },
+ "ABT": {
+  "name": "Abbott Laboratories",
+  "ceo": "Robert B. Ford",
+  "ceoSince": "2020",
+  "sector": "Health Care",
+  "mcapB": 155.5,
+  "note": "CEO since March 2020, chairman since December 2021; bought ~$2M of ABT stock personally in 2026 on share weakness",
+  "sourceUrl": "https://www.sec.gov/Archives/edgar/data/1800/000130817926000064/abt-20260311.htm"
+ },
+ "BX": {
+  "name": "Blackstone Inc.",
+  "ceo": "Stephen A. Schwarzman",
+  "ceoSince": "1985",
+  "sector": "Financials",
+  "mcapB": 156.3,
+  "note": "Co-founder-CEO since founding in 1985; president/COO Jon Gray is the designated heir apparent; firm crossed $1.3T AUM in Q1 2026",
+  "sourceUrl": "https://www.blackstone.com/people/stephen-a-schwarzman/",
+  "prior_rationale": "Schwarzman 79 with designated heir apparent"
+ },
+ "APP": {
+  "name": "AppLovin Corporation",
+  "ceo": "Adam Foroughi",
+  "ceoSince": "2011",
+  "sector": "Information Technology",
+  "mcapB": 152.1,
+  "note": "Founder-CEO since the company's 2011-2012 founding; handed off the board chair role in April 2026 but remains CEO",
+  "sourceUrl": "https://www.clay.com/dossier/applovin-ceo"
+ },
+ "SCCO": {
+  "name": "Southern Copper Corporation",
+  "ceo": "Leonardo Contreras Lerdo de Tejada",
+  "ceoSince": "2026",
+  "sector": "Materials",
+  "mcapB": 151.5,
+  "note": "Appointed CEO April 23, 2026 after longtime CEO Oscar Gonzalez Rocha died April 7, 2026; company is Grupo Mexico-controlled (German Larrea chairman)",
+  "sourceUrl": "https://www.stocktitan.net/sec-filings/SCCO/8-k-southern-copper-corp-reports-material-event-5b2613d78a2e.html"
+ },
+ "GLW": {
+  "name": "Corning Incorporated",
+  "ceo": "Wendell P. Weeks",
+  "ceoSince": "2005",
+  "sector": "Information Technology",
+  "mcapB": 150.1,
+  "note": "Chairman/CEO since April 2005, one of the longest-tenured S&P 500 CEOs; stock roughly tripled on AI optical demand incl. $6B Meta partnership",
+  "sourceUrl": "https://www.corning.com/worldwide/en/about-us/company-profile/our-leadership/wendell-p--weeks.html",
+  "prior_rationale": "CEO since 2005"
+ },
+ "T": {
+  "name": "AT&T Inc.",
+  "ceo": "John Stankey",
+  "ceoSince": "2020",
+  "sector": "Communication Services",
+  "mcapB": 148.9,
+  "note": "CEO since July 2020, added chairman Feb 2025; driving fiber expansion incl. Lumen mass-market fiber deal closed Feb 2026",
+  "sourceUrl": "https://about.att.com/story/2026/john-stankey-to-update-shareholders.html"
+ },
+ "UBER": {
+  "name": "Uber Technologies, Inc.",
+  "ceo": "Dara Khosrowshahi",
+  "ceoSince": "2017",
+  "sector": "Industrials",
+  "mcapB": 147.93,
+  "note": "Post-Kalanick turnaround CEO since 2017; stepped off Grab board July 2026, pushing autonomous-vehicle rollout",
+  "sourceUrl": "https://www.pymnts.com/personnel/2026/uber-ceo-dara-khosrowshahi-departs-grab-holdings-board-of-directors/"
+ },
+ "DHR": {
+  "name": "Danaher Corporation",
+  "ceo": "Rainer Blair",
+  "ceoSince": "2020",
+  "sector": "Health Care",
+  "mcapB": 142.11,
+  "note": "Internal promotion (ex-Life Sciences EVP), President & CEO since Sept 2020; Danaher Business System steward",
+  "sourceUrl": "https://www.danaher.com/rainer-m-blair"
+ },
+ "BKNG": {
+  "name": "Booking Holdings Inc.",
+  "ceo": "Glenn Fogel",
+  "ceoSince": "2017",
+  "sector": "Consumer Discretionary",
+  "mcapB": 141.65,
+  "note": "Company veteran (joined 2000), CEO since Jan 2017; share price reflects 25-for-1 stock split effected April 2026",
+  "sourceUrl": "https://washingtonainetwork.com/2026/03/22/booking-holdings-ceo-glenn-fogel-talks-ai-and-the-future-of-travel/"
+ },
+ "PFE": {
+  "name": "Pfizer Inc.",
+  "ceo": "Albert Bourla",
+  "ceoSince": "2019",
+  "sector": "Health Care",
+  "mcapB": 141.46,
+  "note": "Chairman & CEO since 2019; navigating post-Covid patent cliff with obesity/GLP-1 pipeline push",
+  "sourceUrl": "https://www.cnbc.com/video/2026/06/05/pfizer-ceo-albert-bourla-reflects-on-leadership-through-covid-successes-and-post-pandemic-challenges.html"
+ },
+ "ISRG": {
+  "name": "Intuitive Surgical, Inc.",
+  "ceo": "David (Dave) Rosa",
+  "ceoSince": "2025",
+  "sector": "Health Care",
+  "mcapB": 137.76,
+  "note": "Recent succession: 27-year insider succeeded Gary Guthart as CEO July 2025; Guthart now executive chair",
+  "sourceUrl": "https://www.medicaldesignandoutsourcing.com/intuitive-discloses-ceo-pay-executive-compensation/"
+ },
+ "PLD": {
+  "name": "Prologis, Inc.",
+  "ceo": "Dan Letter",
+  "ceoSince": "2026",
+  "sector": "Real Estate",
+  "mcapB": 136.68,
+  "note": "Recent succession: became CEO Jan 1, 2026 after multi-year handover from co-founder Hamid Moghadam, now executive chairman",
+  "sourceUrl": "https://www.semafor.com/article/04/10/2026/inside-the-five-year-succession-plan-at-a-130b-warehouse-giant"
+ },
+ "CRM": {
+  "name": "Salesforce, Inc.",
+  "ceo": "Marc Benioff",
+  "ceoSince": "2001",
+  "sector": "Information Technology",
+  "mcapB": 136.77,
+  "note": "Co-founder, Chair & CEO (prior co-CEO stints with Block and Taylor ended); defending AI strategy and buybacks amid 2026 stock slump",
+  "sourceUrl": "https://www.cnbc.com/2026/05/27/salesforce-ceo-marc-benioff-outlines-his-plan-to-turn-around-his-struggling-stock.html",
+  "prior_rationale": "AI strategy + buyback defense amid 2026 stock slump"
+ },
+ "COP": {
+  "name": "ConocoPhillips",
+  "ceo": "Ryan Lance",
+  "ceoSince": "2012",
+  "sector": "Energy",
+  "mcapB": 135.79,
+  "note": "Chairman & CEO since May 2012; faced 2026 shareholder proposal seeking an independent board chair",
+  "sourceUrl": "https://www.cnbc.com/video/2026/03/24/watch-cnbcs-full-interview-with-conocophillips-ceo-ryan-lance.html"
+ },
+ "CVS": {
+  "name": "CVS Health Corporation",
+  "ceo": "David Joyner",
+  "ceoSince": "2024",
+  "sector": "Health Care",
+  "mcapB": 135.13,
+  "note": "Recent succession: PBM veteran replaced Karen Lynch Oct 2024 amid investor pressure; added board chair Jan 1, 2026",
+  "sourceUrl": "https://www.cvshealth.com/news/company-news/cvs-health-names-david-joyner-chair-of-the-board-of-directors.html"
+ },
+ "SPGI": {
+  "name": "S&P Global Inc.",
+  "ceo": "Martina Cheung",
+  "ceoSince": "2024",
+  "sector": "Financials",
+  "mcapB": 131.56,
+  "note": "Recent succession: ex-Ratings president succeeded Doug Peterson as President & CEO in Nov 2024",
+  "sourceUrl": "https://www.spglobal.com/en/who-we-are/about-sp-global/our-people/martina-cheung"
+ },
+ "COF": {
+  "name": "Capital One Financial Corporation",
+  "ceo": "Richard Fairbank",
+  "ceoSince": "1994",
+  "sector": "Financials",
+  "mcapB": 128.68,
+  "note": "Co-founder-CEO since 1994 IPO (chairman since 1995); integrated Discover onto Capital One's platform by Jan 2026",
+  "sourceUrl": "https://www.sec.gov/Archives/edgar/data/927628/000119312526124131/d701179ddef14a.htm"
+ },
+ "SYK": {
+  "name": "Stryker Corporation",
+  "ceo": "Kevin Lobo",
+  "ceoSince": "2012",
+  "sector": "Health Care",
+  "mcapB": 121.31,
+  "note": "Chair & CEO since Oct 2012 (chair 2014); 60+ acquisitions in tenure; joined GE HealthCare board Mar 2026",
+  "sourceUrl": "https://investor.gehealthcare.com/news-releases/news-release-details/ge-healthcare-appoints-medtech-leader-kevin-lobo-board-directors"
+ },
+ "VRTX": {
+  "name": "Vertex Pharmaceuticals Incorporated",
+  "ceo": "Reshma Kewalramani",
+  "ceoSince": "2020",
+  "sector": "Health Care",
+  "mcapB": 121.09,
+  "note": "President & CEO since April 2020; first female CEO of a large-cap US biotech; TIME 2026 Women of the Year",
+  "sourceUrl": "https://www.bu.edu/articles/2026/vertex-ceo-and-president-reshma-kewalramani/"
+ },
+ "FTNT": {
+  "name": "Fortinet, Inc.",
+  "ceo": "Ken Xie",
+  "ceoSince": "2000",
+  "sector": "Information Technology",
+  "mcapB": 120.53,
+  "note": "Founder-CEO and chairman since co-founding Fortinet in Oct 2000 (with brother Michael Xie)",
+  "sourceUrl": "https://www.fortinet.com/corporate/about-us/executive-management"
+ },
+ "PH": {
+  "name": "Parker-Hannifin Corporation",
+  "ceo": "Jennifer Parmentier",
+  "ceoSince": "2023",
+  "sector": "Industrials",
+  "mcapB": 120.15,
+  "note": "First female CEO of Parker (Jan 2023), added board chair 2024; ex-COO promoted internally; record FY2026 results",
+  "sourceUrl": "https://www.womenspowergap.org/ceo-profile/parker-hannifin-jennifer-parmentier/"
+ },
+ "BMY": {
+  "name": "Bristol-Myers Squibb Company",
+  "ceo": "Christopher Boerner",
+  "ceoSince": "2023",
+  "sector": "Health Care",
+  "mcapB": 119.91,
+  "note": "CEO since Nov 2023, board chair since Apr 2024; managing patent-cliff pivot to Growth Portfolio ($26.4B 2025 sales)",
+  "sourceUrl": "https://endpoints.news/jpm26-qa-with-bristol-myers-squibb-ceo-chris-boerner-on-2026-outlook/"
+ },
+ "SBUX": {
+  "name": "Starbucks Corporation",
+  "ceo": "Brian Niccol",
+  "ceoSince": "2024",
+  "sector": "Consumer Discretionary",
+  "mcapB": 119.79,
+  "note": "Recent succession: poached from Chipotle as chairman & CEO Sept 2024; 'Back to Starbucks' turnaround showing gains in 2026",
+  "sourceUrl": "https://fortune.com/2026/04/29/starbucks-niccol-luxury-turnaround-earnings/"
+ },
+ "PGR": {
+  "name": "The Progressive Corporation",
+  "ceo": "Tricia Griffith",
+  "ceoSince": "2016",
+  "sector": "Financials",
+  "mcapB": 119.31,
+  "note": "President & CEO since July 2016, first woman to lead Progressive; started as claims rep in 1988; CFO transition (Sauerland to Quigg) July 2026",
+  "sourceUrl": "https://www.crainscleveland.com/media-marketing/ccl-progressive-tricia-griffith-fortune-20260528/"
+ },
+ "LMT": {
+  "name": "Lockheed Martin Corporation",
+  "ceo": "James (Jim) Taiclet",
+  "ceoSince": "2020",
+  "sector": "Industrials",
+  "mcapB": 118.62,
+  "note": "Ex-American Tower CEO; President & CEO since June 2020, chairman since Mar 2021; scaling missile output on defense-spending surge",
+  "sourceUrl": "https://news.lockheedmartin.com/2026-02-11-Lockheed-Martin-CEO-and-CFO-to-Speak-at-Citis-2026-Global-Industrial-Tech-and-Mobility-Conference"
+ }
+}

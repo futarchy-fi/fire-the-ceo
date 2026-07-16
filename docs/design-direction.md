@@ -14,11 +14,15 @@ Color (light):
 - `--rule: #D8D4C9` — hairline rules (real table delimiters, never decoration)
 - `--dim: #6E6A5E` — secondary text
 - `--fire: #B3261E` — oxide stamp red (data semantic only, never accent chrome)
-- `--keep: #1D5C3A` — bankers' ledger green (data semantic only)
+- `--keep: #2456A6` — registry blue: the blue ballpoint of board approvals (data semantic only;
+  chosen over ledger green — red/blue passes all six dataviz checks incl. protan CVD, where
+  red/green failed at ΔE 4.5)
 - `--watch: #946B00` — amber ink for WATCH / no-signal / pending states
 
 Dark ("after-hours registry"): paper `#141310`, ink `#EDEAE2`, rules `#2E2C26`,
-fire `#E05646`, keep `#4F9B72`, watch `#C99A2E`. Never acid-green-on-black.
+fire `#DC5245`, keep `#5E8EDC`, watch `#B98A26`. Never acid-green-on-black.
+Both palettes validated with the dataviz `validate_palette.js` (ALL CHECKS PASS, light+dark).
+Verdicts additionally always carry the word (FIRE/KEEP/WATCH) — never color alone.
 
 Type:
 - **Display:** Libre Caslon (Display/Condensed — whichever fontsource ships with needed

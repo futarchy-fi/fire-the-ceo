@@ -16,3 +16,24 @@ export function premiumHistory(history: HistorySnapshot[], row: BoardRow): { t: 
     return snapshot.t >= cutoff && value !== null ? [{ t: snapshot.t, value }] : []
   })
 }
+
+export type MarketHistoryPoint = {
+  t: number
+  eOut: number
+  eStay: number
+  pExit: number
+}
+
+export function marketHistory(history: HistorySnapshot[], row: BoardRow): MarketHistoryPoint[] {
+  const floor = row.chain.floorCents / 100
+  const band = (row.chain.capCents - row.chain.floorCents) / 100
+  return history.flatMap((snapshot) => {
+    const values = snapshot.rows[row.ticker]
+    if (!values) return []
+    const eOut = floor + values[0] * band
+    const eStay = floor + values[1] * band
+    const pExit = Math.max(0, Math.min(1, values[2]))
+    if (![snapshot.t, eOut, eStay, pExit].every(Number.isFinite)) return []
+    return [{ t: snapshot.t, eOut, eStay, pExit }]
+  }).sort((a, b) => a.t - b.t)
+}

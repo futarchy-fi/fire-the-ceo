@@ -135,7 +135,15 @@ button:hover { background: var(--ink); color: var(--paper); }
 .premium-chart { position: relative; width: 100%; border-block: 1px solid var(--rule); padding-block: 12px; }
 .premium-chart svg { display: block; width: 100%; height: auto; touch-action: none; }
 .premium-chart text { fill: var(--dim); font: 11px 'IBM Plex Mono', monospace; font-variant-numeric: tabular-nums; }
+.premium-chart .chart-direct-label { fill: var(--ink); font-weight: 500; }
+.chart-legend { display: flex; flex-wrap: wrap; gap: 8px 22px; padding: 0 12px 10px; color: var(--ink); font: 0.64rem 'IBM Plex Mono', monospace; font-variant-numeric: tabular-nums; }
+.chart-legend span { display: inline-flex; align-items: center; gap: 7px; }
+.chart-key { display: inline-block; width: 18px; height: 0; border-top: 2px solid var(--ink); }
+.chart-key--fire { border-color: var(--fire); }
+.chart-key--keep { border-color: var(--keep); }
+.chart-key--spot { border-top: 1px dashed var(--rule); }
 .chart-tooltip { position: absolute; z-index: 2; min-width: 160px; padding: 8px 10px; border: 1px solid var(--ink); background: var(--paper); color: var(--ink); transform: translate(10px, -105%); pointer-events: none; font-family: 'IBM Plex Mono', monospace; }
+.chart-tooltip--left { transform: translate(calc(-100% - 10px), -105%); }
 .chart-tooltip strong, .chart-tooltip span { display: block; }
 .chart-tooltip span { margin-top: 4px; color: var(--dim); font-size: 0.58rem; }
 .chart-empty { display: flex; gap: 14px; align-items: center; min-height: 150px; padding: 24px; border-block: 1px solid var(--rule); color: var(--dim); font-family: 'IBM Plex Mono', monospace; }
@@ -229,6 +237,8 @@ button:hover { background: var(--ink); color: var(--paper); }
   .market-cards { grid-template-columns: 1fr; }
   .market-card { border-right: 0; border-bottom: 1px solid var(--rule); }
   .market-card:last-child { border-bottom: 0; }
+  .company-chart-section { width: 100%; }
+  .history-chart .chart-tooltip { right: 12px; bottom: 12px; left: 12px !important; top: auto !important; width: auto; min-width: 0; transform: none; }
   .company-workbench { grid-template-columns: 1fr; }
   .position-grid { grid-template-columns: 1fr; }
   .position-grid article { border-right: 0; border-bottom: 1px solid var(--rule); }

@@ -8,6 +8,7 @@ import { COMPANY_METADATA, fireSignal, normalizeCompany, registerTicker, useHist
 import { formatDate, percent, signedPercent, usd } from '../lib/format.ts'
 import { SignalBadge } from '../components/Verdict.tsx'
 import { PremiumChart } from '../components/PremiumChart.tsx'
+import { ConditionalValueChart, DepartureProbabilityChart } from '../components/MarketHistoryCharts.tsx'
 import { TradePanel } from '../components/TradePanel.tsx'
 import { PositionsCard } from '../components/PositionsCard.tsx'
 
@@ -109,6 +110,14 @@ export function CompanyPage() {
       <section className="company-chart-section">
         <div className="section-heading"><p className="eyebrow">EXHIBIT A · TRAILING SEVEN DAYS</p><h2>Fire premium</h2></div>
         <PremiumChart history={history ?? []} row={row} />
+      </section>
+      <section className="company-chart-section">
+        <div className="section-heading"><p className="eyebrow">EXHIBIT B · CONDITIONAL VALUE</p><h2>Expected company value</h2></div>
+        <ConditionalValueChart history={history ?? []} row={row} />
+      </section>
+      <section className="company-chart-section">
+        <div className="section-heading"><p className="eyebrow">EXHIBIT C · DEPARTURE PROBABILITY</p><h2>Departure probability</h2></div>
+        <DepartureProbabilityChart history={history ?? []} row={row} />
       </section>
       <div className="company-workbench">
         <TradePanel row={row} />

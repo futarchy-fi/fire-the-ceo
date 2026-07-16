@@ -66,7 +66,7 @@ export type BoardRow = {
 
 export type HistorySnapshot = {
   t: number
-  rows: Record<string, [number, number, number]>
+  rows: Record<string, [midOut: number, midStay: number, pExit: number, state: number]>
 }
 
 export type Prices = readonly [readonly bigint[], readonly bigint[], readonly bigint[], readonly number[]]
@@ -190,7 +190,7 @@ export function fireSignal(rows: HistorySnapshot[], id: number): 'FIRE' | 'KEEP'
   const premiums = rows
     .filter((snapshot) => snapshot.t >= cutoff)
     .map((snapshot) => snapshot.rows[ticker])
-    .filter((row): row is [number, number, number] => Boolean(row))
+    .filter((row): row is HistorySnapshot['rows'][string] => Boolean(row))
     .map(([midOut, midStay]) => midOut - midStay)
   if (premiums.length < 20) return 'WATCH'
   const positive = premiums.filter((premium) => premium > 0).length / premiums.length

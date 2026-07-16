@@ -1,0 +1,11 @@
+import { chromium } from 'playwright-core';
+const browser = await chromium.launch({ executablePath: process.env.CHROME, args: ['--no-sandbox'] });
+const page = await browser.newPage({ viewport: { width: 1440, height: 1000 } });
+await page.goto('https://ceo.futarchy.fi/', { waitUntil: 'networkidle', timeout: 60000 });
+await page.waitForTimeout(6000);
+const rows = await page.locator('tbody tr').count();
+const nvda = await page.locator('tr:has-text("NVDA")').first().innerText().catch(() => 'NOT FOUND');
+console.log('board rows:', rows);
+console.log('NVDA row:', nvda.replace(/\n/g, ' | ').slice(0, 160));
+await page.screenshot({ path: '/tmp/ceo-live.png' });
+await browser.close();

@@ -7,7 +7,7 @@ const PAD = 3
 export function PremiumSparkline({ history, row }: { history: HistorySnapshot[]; row: BoardRow }) {
   const points = premiumHistory(history, row)
   if (points.length < 2) {
-    return <span className="spark-empty"><span>WATCH</span> no signal — thin market</span>
+    return <span className="spark-empty" title="No history yet — sparkline appears after snapshots accumulate">—</span>
   }
   const values = points.map((point) => point.value)
   const min = Math.min(...values)

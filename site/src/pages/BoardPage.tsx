@@ -61,7 +61,7 @@ function BoardRowView({ row, rank, history }: { row: BoardRow; rank: number; his
       <td>{percent(row.pExit, 1)}</td>
       <td>{usd.format(row.eOut)}</td>
       <td>{usd.format(row.eStay)}</td>
-      <td className={`premium-cell ${row.premium > 0 ? 'is-fire' : 'is-keep'}`}>{signedPercent(row.premium)}</td>
+      <td className={`premium-cell ${row.premium > 0 ? 'is-fire' : row.premium < 0 ? 'is-keep' : 'is-flat'}`}>{signedPercent(row.premium)}</td>
       <td><SignalBadge verdict={verdict} /></td>
       <td><PremiumSparkline history={history ?? []} row={row} /></td>
       <td>{compactBillions(row.mcapB)}</td>
@@ -78,7 +78,7 @@ function BoardCard({ row, rank, history }: { row: BoardRow; rank: number; histor
         <Link to={`/company/${encodeURIComponent(row.ticker)}`}><strong>{row.ticker}</strong> · {row.name}</Link>
         <span>{row.ceo} · since {row.ceoSince}</span>
       </div>
-      <div className={`board-card__premium ${row.premium > 0 ? 'is-fire' : 'is-keep'}`}>{signedPercent(row.premium)}</div>
+      <div className={`board-card__premium ${row.premium > 0 ? 'is-fire' : row.premium < 0 ? 'is-keep' : 'is-flat'}`}>{signedPercent(row.premium)}</div>
       <SignalBadge verdict={verdict} />
       <dl>
         <div><dt>P(exit)</dt><dd>{percent(row.pExit)}</dd></div>

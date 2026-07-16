@@ -93,6 +93,7 @@ button:hover { background: var(--ink); color: var(--paper); }
 .premium-cell { font-size: 1rem; font-weight: 500; }
 .is-fire { color: var(--fire); }
 .is-keep { color: var(--keep); }
+.is-flat { color: var(--dim); }
 .verdict { display: inline-flex; align-items: center; justify-content: center; min-width: 58px; padding: 4px 7px 3px; border: 1.5px solid currentColor; font: 500 0.66rem 'IBM Plex Mono', monospace; letter-spacing: 0.09em; transform: rotate(-1deg); }
 .verdict--fire { color: var(--fire); }
 .verdict--keep { color: var(--keep); transform: rotate(0.7deg); }

@@ -10,7 +10,11 @@ const FIRE_ABI = fireTheCeoAbi as Abi
 const HISTORY_WINDOW_SECONDS = 7 * 24 * 60 * 60
 const tickerById = new Map<number, string>()
 
-type CompanyMetadata = {
+export function registerTicker(id: number, ticker: string): void {
+  tickerById.set(id, ticker)
+}
+
+export type CompanyMetadata = {
   name: string
   ceo: string
   ceoSince: string
@@ -65,13 +69,13 @@ export type HistorySnapshot = {
   rows: Record<string, [number, number, number]>
 }
 
-type Prices = readonly [readonly bigint[], readonly bigint[], readonly bigint[], readonly number[]]
+export type Prices = readonly [readonly bigint[], readonly bigint[], readonly bigint[], readonly number[]]
 
 function toNumber(value: bigint | number): number {
   return typeof value === 'bigint' ? Number(value) : value
 }
 
-function normalizeCompany(value: unknown): ChainCompany | null {
+export function normalizeCompany(value: unknown): ChainCompany | null {
   if (!value || typeof value !== 'object') return null
   const company = value as Record<string, unknown>
   if (typeof company.ticker !== 'string') return null
@@ -121,7 +125,7 @@ export function useBoard(): { rows: BoardRow[] | null; error?: Error; retry: () 
       if (!result || result.status !== 'success') return []
       const chain = normalizeCompany(result.result)
       if (!chain) return []
-      tickerById.set(id, chain.ticker)
+      registerTicker(id, chain.ticker)
       const metadata = COMPANY_METADATA[chain.ticker]
       if (!metadata) return []
       const midOut = Number(priceData[0][id]) / WAD

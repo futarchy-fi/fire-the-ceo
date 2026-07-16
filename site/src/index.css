@@ -111,6 +111,63 @@ button:hover { background: var(--ink); color: var(--paper); }
 @keyframes skeleton { to { background-position: -200% 0; } }
 .empty-state { padding: 40px 0; border-block: 1px solid var(--rule); color: var(--dim); }
 
+.back-link { display: inline-block; margin-bottom: 34px; font: 0.7rem 'IBM Plex Mono', monospace; letter-spacing: 0.06em; text-transform: uppercase; }
+.company-header { display: grid; grid-template-columns: 1fr auto; gap: 36px; align-items: end; padding-bottom: 32px; border-bottom: 1px solid var(--ink); }
+.company-header h1 { margin: 14px 0 6px; }
+.company-subhead { margin: 0; color: var(--dim); font: 0.75rem 'IBM Plex Mono', monospace; }
+.company-verdict { display: grid; justify-items: center; gap: 12px; padding: 20px; }
+.company-verdict > span:last-child { color: var(--dim); font: 0.61rem 'IBM Plex Mono', monospace; text-transform: uppercase; }
+.verdict--large { position: relative; min-width: 145px; padding: 14px 18px 11px; border-width: 3px; box-shadow: inset 0 0 0 2px var(--paper), inset 0 0 0 3px currentColor; font-size: 1.4rem; animation: stamp-press 150ms ease-out both; }
+@keyframes stamp-press { from { transform: rotate(-1deg) scale(1.08); opacity: 0.45; } to { transform: rotate(-1deg) scale(1); opacity: 1; } }
+.company-facts { display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 1px solid var(--rule); }
+.company-facts div { min-height: 95px; padding: 18px 16px; border-right: 1px solid var(--rule); }
+.company-facts div:last-child { border-right: 0; }
+.company-facts span, .market-card > span, .ticket-quote span { display: block; color: var(--dim); font: 0.64rem 'IBM Plex Mono', monospace; letter-spacing: 0.07em; text-transform: uppercase; }
+.company-facts strong { display: block; margin-top: 8px; font: 500 clamp(1.1rem, 2vw, 1.6rem) 'IBM Plex Mono', monospace; font-variant-numeric: tabular-nums; }
+.market-cards { display: grid; grid-template-columns: repeat(3, 1fr); margin: 46px 0; border-block: 1px solid var(--ink); }
+.market-card { padding: 24px; border-right: 1px solid var(--rule); }
+.market-card:last-child { border-right: 0; }
+.market-card h3 { margin: 7px 0 20px; font: 500 0.85rem 'IBM Plex Mono', monospace; letter-spacing: 0.1em; }
+.market-card > strong { display: block; margin-bottom: 8px; font: 400 clamp(2rem, 4.5vw, 4rem) 'Libre Caslon Display', serif; font-variant-numeric: tabular-nums; }
+.company-chart-section { margin: 60px 0; }
+.section-heading h2, .order-ticket h2, .positions-card h2, .filing-copy h2 { margin: 4px 0 22px; font: 400 clamp(1.8rem, 3vw, 2.7rem) 'Libre Caslon Display', serif; }
+.premium-chart { position: relative; width: 100%; border-block: 1px solid var(--rule); padding-block: 12px; }
+.premium-chart svg { display: block; width: 100%; height: auto; touch-action: none; }
+.premium-chart text { fill: var(--dim); font: 11px 'IBM Plex Mono', monospace; font-variant-numeric: tabular-nums; }
+.chart-tooltip { position: absolute; z-index: 2; min-width: 160px; padding: 8px 10px; border: 1px solid var(--ink); background: var(--paper); color: var(--ink); transform: translate(10px, -105%); pointer-events: none; font-family: 'IBM Plex Mono', monospace; }
+.chart-tooltip strong, .chart-tooltip span { display: block; }
+.chart-tooltip span { margin-top: 4px; color: var(--dim); font-size: 0.58rem; }
+.chart-empty { display: flex; gap: 14px; align-items: center; min-height: 150px; padding: 24px; border-block: 1px solid var(--rule); color: var(--dim); font-family: 'IBM Plex Mono', monospace; }
+.chart-empty strong { color: var(--watch); }
+.company-workbench { display: grid; grid-template-columns: minmax(300px, 0.8fr) minmax(420px, 1.2fr); gap: 26px; align-items: start; margin: 70px 0; }
+.order-ticket, .positions-card { position: relative; padding: 24px; border: 1px solid var(--ink); }
+.order-ticket label { display: grid; grid-template-columns: 110px 1fr; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--rule); font: 0.68rem 'IBM Plex Mono', monospace; text-transform: uppercase; }
+.order-ticket select, .order-ticket input { width: 100%; padding: 8px; border: 0; background: transparent; text-align: right; font-family: 'IBM Plex Mono', monospace; border-radius: 0; }
+.segmented { display: grid; grid-template-columns: 1fr 1fr; margin-bottom: 12px; }
+.segmented button { border-right: 0; }
+.segmented button:last-child { border-right: 1px solid var(--ink); }
+.segmented .selected { background: var(--ink); color: var(--paper); }
+.ticket-quote { display: flex; justify-content: space-between; gap: 14px; align-items: baseline; padding: 18px 0; }
+.ticket-quote strong { font: 500 0.9rem 'IBM Plex Mono', monospace; font-variant-numeric: tabular-nums; }
+.primary-action { width: 100%; padding: 13px 15px; background: var(--ink); color: var(--paper); font-size: 0.7rem; line-height: 1.4; }
+.primary-action:hover { background: transparent; color: var(--ink); }
+.primary-action:disabled { cursor: not-allowed; opacity: 0.45; }
+.ticket-hint, .field-error, .ticket-state { margin: 12px 0 0; color: var(--dim); font: 0.65rem/1.5 'IBM Plex Mono', monospace; }
+.field-error { color: var(--fire); }
+.ticket-state { padding: 15px; border: 1px solid var(--watch); color: var(--ink); }
+.ticket-state strong { color: var(--watch); }
+.toast { margin-top: 12px; padding: 10px; border: 1px solid var(--rule); background: var(--paper); font: 0.63rem/1.4 'IBM Plex Mono', monospace; }
+.position-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-block: 1px solid var(--rule); margin-bottom: 18px; }
+.position-grid article { padding: 14px; border-right: 1px solid var(--rule); }
+.position-grid article:last-child { border-right: 0; }
+.position-grid h3 { font: 500 0.75rem 'IBM Plex Mono', monospace; letter-spacing: 0.08em; }
+.position-grid dl { margin: 0; }
+.position-grid dl div { margin-top: 10px; }
+.position-grid dd { margin: 2px 0 0; font: 0.68rem 'IBM Plex Mono', monospace; overflow-wrap: anywhere; }
+.filing-copy { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 7vw, 110px); padding-top: 50px; border-top: 1px solid var(--ink); }
+.filing-copy p { max-width: 700px; line-height: 1.6; }
+.filing-copy h3 { margin-top: 30px; font-family: 'Libre Caslon Display', serif; font-size: 1.5rem; font-weight: 400; }
+
 @media (max-width: 720px) {
   .site-nav { grid-template-columns: 1fr auto; gap: 12px; }
   .site-nav nav { order: 3; grid-column: 1 / -1; justify-content: space-between; border-top: 1px solid var(--rule); padding-top: 10px; }
@@ -133,6 +190,19 @@ button:hover { background: var(--ink); color: var(--paper); }
   .board-card dl div { border-top: 1px solid var(--rule); padding-top: 7px; }
   .board-card dd { margin: 3px 0 0; font: 0.75rem 'IBM Plex Mono', monospace; }
   .board-card > .sparkline, .board-card > .spark-empty { grid-column: 2 / -1; width: 100%; }
+  .company-header { grid-template-columns: 1fr; }
+  .company-verdict { justify-self: start; justify-items: start; padding: 0; }
+  .company-facts { grid-template-columns: 1fr 1fr; }
+  .company-facts div:nth-child(2) { border-right: 0; }
+  .company-facts div:nth-child(-n + 2) { border-bottom: 1px solid var(--rule); }
+  .market-cards { grid-template-columns: 1fr; }
+  .market-card { border-right: 0; border-bottom: 1px solid var(--rule); }
+  .market-card:last-child { border-bottom: 0; }
+  .company-workbench { grid-template-columns: 1fr; }
+  .position-grid { grid-template-columns: 1fr; }
+  .position-grid article { border-right: 0; border-bottom: 1px solid var(--rule); }
+  .position-grid article:last-child { border-bottom: 0; }
+  .filing-copy { grid-template-columns: 1fr; }
 }
 
 @media (prefers-reduced-motion: reduce) {

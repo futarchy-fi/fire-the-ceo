@@ -46,11 +46,11 @@ for (let i = 0; i < count; i++) rows[tickers[i]] = [f(midOut[i]), f(midStay[i]),
 mkdirSync(OUT_DIR, { recursive: true });
 appendFileSync(join(OUT_DIR, 'archive.jsonl'), JSON.stringify({ t, rows }) + '\n');
 
-// history: trailing 7 days, downsampled to hourly buckets (last snapshot per bucket)
+// history: trailing 7 days, 30-min buckets (matches timer cadence; ~336 pts)
 const lines = readFileSync(join(OUT_DIR, 'archive.jsonl'), 'utf8').trim().split('\n').map(JSON.parse);
 const cutoff = t - 7 * 86400;
 const byHour = new Map();
-for (const s of lines) if (s.t >= cutoff) byHour.set(Math.floor(s.t / 3600), s);
+for (const s of lines) if (s.t >= cutoff) byHour.set(Math.floor(s.t / 1800), s);
 const snapshots = [...byHour.values()].sort((a, b) => a.t - b.t);
 writeFileSync(join(OUT_DIR, 'history.json'), JSON.stringify({ snapshots }));
 console.log(`snapshot ok: ${count} companies, ${snapshots.length} history points`);

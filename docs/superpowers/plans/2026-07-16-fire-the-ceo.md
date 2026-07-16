@@ -46,11 +46,11 @@ contract PlayUSD is ERC20 ("Play USD", "pUSD", 18), Ownable {
 ```
 Use solady ERC20 + Ownable. Constructor sets owner = msg.sender.
 
-- [ ] **Step 1:** Write `contracts/test/PlayUSD.t.sol`: tests `test_FaucetMints10k`, `test_FaucetRevertsWithin24h`, `test_FaucetAgainAfter24h` (use `vm.warp`), `test_OwnerMint`, `test_MintNotOwnerReverts`.
-- [ ] **Step 2:** `forge test` → fails (no contract).
-- [ ] **Step 3:** Implement `PlayUSD.sol`.
-- [ ] **Step 4:** `forge test` → all pass. `forge fmt`.
-- [ ] **Step 5:** Commit `feat(contracts): PlayUSD faucet collateral`.
+- [x] **Step 1:** Write `contracts/test/PlayUSD.t.sol`: tests `test_FaucetMints10k`, `test_FaucetRevertsWithin24h`, `test_FaucetAgainAfter24h` (use `vm.warp`), `test_OwnerMint`, `test_MintNotOwnerReverts`.
+- [x] **Step 2:** `forge test` → fails (no contract).
+- [x] **Step 3:** Implement `PlayUSD.sol`.
+- [x] **Step 4:** `forge test` → all pass. `forge fmt`.
+- [x] **Step 5:** Commit `feat(contracts): PlayUSD faucet collateral`.
 
 ### Task A2: LMSR library
 

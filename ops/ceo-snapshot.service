@@ -1,0 +1,6 @@
+[Unit]
+Description=FireTheCEO board snapshot
+[Service]
+Type=oneshot
+WorkingDirectory=/home/kelvin/repos/futarchy-fi/fire-the-ceo/ops
+ExecStart=/home/kelvin/.local/bin/node snapshot.mjs

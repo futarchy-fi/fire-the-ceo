@@ -1,0 +1,8 @@
+[Unit]
+Description=FireTheCEO board snapshot every 30 min
+[Timer]
+OnCalendar=*:0/30
+Persistent=true
+RandomizedDelaySec=60
+[Install]
+WantedBy=timers.target

@@ -4,718 +4,699 @@
   "name": "NVIDIA Corporation",
   "ceo": "Jensen Huang",
   "spotCents": 21250,
-  "initExitProbWad": "20000000000000000"
+  "initExitProbWad": 20000000000000000
  },
  {
   "ticker": "AAPL",
   "name": "Apple Inc.",
   "ceo": "Tim Cook",
   "spotCents": 32750,
-  "initExitProbWad": "950000000000000000",
-  "prior_rationale": "Ternus transition announced Apr 2026, effective Sep 1 2026 (before horizon)"
+  "initExitProbWad": 950000000000000000
  },
  {
   "ticker": "GOOGL",
   "name": "Alphabet Inc.",
   "ceo": "Sundar Pichai",
   "spotCents": 37092,
-  "initExitProbWad": "40000000000000000"
+  "initExitProbWad": 40000000000000000
  },
  {
   "ticker": "MSFT",
   "name": "Microsoft Corporation",
   "ceo": "Satya Nadella",
   "spotCents": 39563,
-  "initExitProbWad": "40000000000000000"
+  "initExitProbWad": 40000000000000000
  },
  {
   "ticker": "AMZN",
   "name": "Amazon.com, Inc.",
   "ceo": "Andy Jassy",
   "spotCents": 25496,
-  "initExitProbWad": "40000000000000000"
+  "initExitProbWad": 40000000000000000
  },
  {
   "ticker": "AVGO",
   "name": "Broadcom Inc.",
   "ceo": "Hock Tan",
   "spotCents": 39428,
-  "initExitProbWad": "40000000000000000"
+  "initExitProbWad": 40000000000000000
  },
  {
   "ticker": "SPCX",
   "name": "Space Exploration Technologies Corp.",
   "ceo": "Elon Musk",
   "spotCents": 13527,
-  "initExitProbWad": "30000000000000000"
+  "initExitProbWad": 30000000000000000
  },
  {
   "ticker": "META",
   "name": "Meta Platforms, Inc.",
   "ceo": "Mark Zuckerberg",
   "spotCents": 68131,
-  "initExitProbWad": "20000000000000000"
+  "initExitProbWad": 20000000000000000
  },
  {
   "ticker": "TSLA",
   "name": "Tesla, Inc.",
   "ceo": "Elon Musk",
   "spotCents": 39446,
-  "initExitProbWad": "50000000000000000",
-  "prior_rationale": "dual-CEO attention split post-SpaceX IPO"
+  "initExitProbWad": 50000000000000000
  },
  {
   "ticker": "BRK.B",
   "name": "Berkshire Hathaway Inc.",
   "ceo": "Greg Abel",
   "spotCents": 48835,
-  "initExitProbWad": "20000000000000000"
+  "initExitProbWad": 20000000000000000
  },
  {
   "ticker": "LLY",
   "name": "Eli Lilly and Company",
   "ceo": "David A. Ricks",
   "spotCents": 115663,
-  "initExitProbWad": "40000000000000000"
+  "initExitProbWad": 40000000000000000
  },
  {
   "ticker": "MU",
   "name": "Micron Technology, Inc.",
   "ceo": "Sanjay Mehrotra",
   "spotCents": 90428,
-  "initExitProbWad": "40000000000000000"
+  "initExitProbWad": 40000000000000000
  },
  {
   "ticker": "JPM",
   "name": "JPMorgan Chase & Co.",
   "ceo": "Jamie Dimon",
   "spotCents": 34691,
-  "initExitProbWad": "60000000000000000",
-  "prior_rationale": "succession race narrowed June 2026; Dimon signals ~3 more years"
+  "initExitProbWad": 60000000000000000
  },
  {
   "ticker": "WMT",
   "name": "Walmart Inc.",
   "ceo": "John Furner",
   "spotCents": 11253,
-  "initExitProbWad": "20000000000000000"
+  "initExitProbWad": 20000000000000000
  },
  {
   "ticker": "AMD",
   "name": "Advanced Micro Devices, Inc.",
   "ceo": "Lisa Su",
   "spotCents": 52914,
-  "initExitProbWad": "40000000000000000"
+  "initExitProbWad": 40000000000000000
  },
  {
   "ticker": "V",
   "name": "Visa Inc.",
   "ceo": "Ryan McInerney",
   "spotCents": 35514,
-  "initExitProbWad": "40000000000000000"
+  "initExitProbWad": 40000000000000000
  },
  {
   "ticker": "XOM",
   "name": "Exxon Mobil Corporation",
   "ceo": "Darren Woods",
   "spotCents": 14451,
-  "initExitProbWad": "40000000000000000"
+  "initExitProbWad": 40000000000000000
  },
  {
   "ticker": "JNJ",
   "name": "Johnson & Johnson",
   "ceo": "Joaquin Duato",
   "spotCents": 24702,
-  "initExitProbWad": "40000000000000000"
+  "initExitProbWad": 40000000000000000
  },
  {
   "ticker": "INTC",
   "name": "Intel Corporation",
   "ceo": "Lip-Bu Tan",
   "spotCents": 10299,
-  "initExitProbWad": "40000000000000000"
+  "initExitProbWad": 40000000000000000
  },
  {
   "ticker": "MA",
   "name": "Mastercard Incorporated",
   "ceo": "Michael Miebach",
   "spotCents": 53521,
-  "initExitProbWad": "40000000000000000"
+  "initExitProbWad": 40000000000000000
  },
  {
   "ticker": "AMAT",
   "name": "Applied Materials, Inc.",
   "ceo": "Gary E. Dickerson",
   "spotCents": 57943,
-  "initExitProbWad": "50000000000000000",
-  "prior_rationale": "CEO since 2013, no succession plan announced"
+  "initExitProbWad": 50000000000000000
  },
  {
   "ticker": "CSCO",
   "name": "Cisco Systems, Inc.",
   "ceo": "Chuck Robbins",
   "spotCents": 11177,
-  "initExitProbWad": "40000000000000000"
+  "initExitProbWad": 40000000000000000
  },
  {
   "ticker": "BAC",
   "name": "Bank of America Corporation",
   "ceo": "Brian Moynihan",
   "spotCents": 6159,
-  "initExitProbWad": "60000000000000000",
-  "prior_rationale": "Feb 2026 co-president reshuffle set up succession race"
+  "initExitProbWad": 60000000000000000
  },
  {
   "ticker": "ABBV",
   "name": "AbbVie Inc.",
   "ceo": "Robert A. Michael",
   "spotCents": 24411,
-  "initExitProbWad": "40000000000000000"
+  "initExitProbWad": 40000000000000000
  },
  {
   "ticker": "CAT",
   "name": "Caterpillar Inc.",
   "ceo": "Joseph E. Creed",
   "spotCents": 91430,
-  "initExitProbWad": "40000000000000000"
+  "initExitProbWad": 40000000000000000
  },
  {
   "ticker": "LRCX",
   "name": "Lam Research Corporation",
   "ceo": "Timothy M. Archer",
   "spotCents": 33543,
-  "initExitProbWad": "40000000000000000"
+  "initExitProbWad": 40000000000000000
  },
  {
   "ticker": "COST",
   "name": "Costco Wholesale Corporation",
   "ceo": "Ron Vachris",
   "spotCents": 91654,
-  "initExitProbWad": "40000000000000000"
+  "initExitProbWad": 40000000000000000
  },
  {
   "ticker": "ORCL",
   "name": "Oracle Corporation",
   "ceo": "Clay Magouyrk and Mike Sicilia (co-CEOs)",
   "spotCents": 13249,
-  "initExitProbWad": "70000000000000008",
-  "prior_rationale": "new co-CEO structure (either departing counts)",
-  "condition_note": "departure condition met if EITHER named co-CEO ceases to hold the office"
+  "initExitProbWad": 70000000000000008
  },
  {
   "ticker": "UNH",
   "name": "UnitedHealth Group Incorporated",
   "ceo": "Stephen J. Hemsley",
   "spotCents": 41852,
-  "initExitProbWad": "80000000000000000",
-  "prior_rationale": "boomerang CEO age 73+, interim flavor"
+  "initExitProbWad": 80000000000000000
  },
  {
   "ticker": "GE",
   "name": "GE Aerospace",
   "ceo": "H. Lawrence (Larry) Culp, Jr.",
   "spotCents": 36035,
-  "initExitProbWad": "40000000000000000"
+  "initExitProbWad": 40000000000000000
  },
  {
   "ticker": "CVX",
   "name": "Chevron Corporation",
   "ceo": "Michael K. (Mike) Wirth",
   "spotCents": 18160,
-  "initExitProbWad": "80000000000000000",
-  "prior_rationale": "age-65 waiver; succession talks underway"
+  "initExitProbWad": 80000000000000000
  },
  {
   "ticker": "MS",
   "name": "Morgan Stanley",
   "ceo": "Ted Pick",
   "spotCents": 22855,
-  "initExitProbWad": "40000000000000000"
+  "initExitProbWad": 40000000000000000
  },
  {
   "ticker": "KO",
   "name": "The Coca-Cola Company",
   "ceo": "Henrique Braun",
   "spotCents": 8245,
-  "initExitProbWad": "20000000000000000"
+  "initExitProbWad": 20000000000000000
  },
  {
   "ticker": "PG",
   "name": "The Procter & Gamble Company",
   "ceo": "Shailesh Jejurikar",
   "spotCents": 14805,
-  "initExitProbWad": "20000000000000000"
+  "initExitProbWad": 20000000000000000
  },
  {
   "ticker": "HD",
   "name": "The Home Depot, Inc.",
   "ceo": "Ted Decker",
   "spotCents": 34144,
-  "initExitProbWad": "40000000000000000"
+  "initExitProbWad": 40000000000000000
  },
  {
   "ticker": "GS",
   "name": "The Goldman Sachs Group, Inc.",
   "ceo": "David M. Solomon",
   "spotCents": 115207,
-  "initExitProbWad": "40000000000000000"
+  "initExitProbWad": 40000000000000000
  },
  {
   "ticker": "PLTR",
   "name": "Palantir Technologies Inc.",
   "ceo": "Alexander C. (Alex) Karp",
   "spotCents": 13376,
-  "initExitProbWad": "30000000000000000"
+  "initExitProbWad": 30000000000000000
  },
  {
   "ticker": "NFLX",
   "name": "Netflix, Inc.",
   "ceo": "Ted Sarandos and Greg Peters (co-CEOs)",
   "spotCents": 7368,
-  "initExitProbWad": "50000000000000000",
-  "prior_rationale": "co-CEO structure (either departing counts)",
-  "condition_note": "departure condition met if EITHER named co-CEO ceases to hold the office"
+  "initExitProbWad": 50000000000000000
  },
  {
   "ticker": "MRK",
   "name": "Merck & Co., Inc.",
   "ceo": "Robert M. Davis",
   "spotCents": 12361,
-  "initExitProbWad": "40000000000000000"
+  "initExitProbWad": 40000000000000000
  },
  {
   "ticker": "KLAC",
   "name": "KLA Corporation",
   "ceo": "Richard P. (Rick) Wallace",
   "spotCents": 22450,
-  "initExitProbWad": "50000000000000000",
-  "prior_rationale": "CEO since 2006"
+  "initExitProbWad": 50000000000000000
  },
  {
   "ticker": "PANW",
   "name": "Palo Alto Networks, Inc.",
   "ceo": "Nikesh Arora",
   "spotCents": 35402,
-  "initExitProbWad": "40000000000000000"
+  "initExitProbWad": 40000000000000000
  },
  {
   "ticker": "GEV",
   "name": "GE Vernova Inc.",
   "ceo": "Scott Strazik",
   "spotCents": 105528,
-  "initExitProbWad": "40000000000000000"
+  "initExitProbWad": 40000000000000000
  },
  {
   "ticker": "PM",
   "name": "Philip Morris International Inc.",
   "ceo": "Jacek Olczak",
   "spotCents": 18088,
-  "initExitProbWad": "40000000000000000"
+  "initExitProbWad": 40000000000000000
  },
  {
   "ticker": "TXN",
   "name": "Texas Instruments Incorporated",
   "ceo": "Haviv Ilan",
   "spotCents": 30119,
-  "initExitProbWad": "40000000000000000"
+  "initExitProbWad": 40000000000000000
  },
  {
   "ticker": "DELL",
   "name": "Dell Technologies Inc.",
   "ceo": "Michael Dell",
   "spotCents": 41268,
-  "initExitProbWad": "20000000000000000"
+  "initExitProbWad": 20000000000000000
  },
  {
   "ticker": "WFC",
   "name": "Wells Fargo & Company",
   "ceo": "Charlie Scharf",
   "spotCents": 8751,
-  "initExitProbWad": "40000000000000000"
+  "initExitProbWad": 40000000000000000
  },
  {
   "ticker": "RTX",
   "name": "RTX Corporation",
   "ceo": "Christopher T. Calio",
   "spotCents": 19589,
-  "initExitProbWad": "40000000000000000"
+  "initExitProbWad": 40000000000000000
  },
  {
   "ticker": "AXP",
   "name": "American Express Company",
   "ceo": "Stephen Squeri",
   "spotCents": 35844,
-  "initExitProbWad": "50000000000000000",
-  "prior_rationale": "CEO age 67, no successor named"
+  "initExitProbWad": 50000000000000000
  },
  {
   "ticker": "SNDK",
   "name": "Sandisk Corporation",
   "ceo": "David Goeckeler",
   "spotCents": 161500,
-  "initExitProbWad": "30000000000000000"
+  "initExitProbWad": 30000000000000000
  },
  {
   "ticker": "C",
   "name": "Citigroup Inc.",
   "ceo": "Jane Fraser",
   "spotCents": 13489,
-  "initExitProbWad": "40000000000000000"
+  "initExitProbWad": 40000000000000000
  },
  {
   "ticker": "ANET",
   "name": "Arista Networks, Inc.",
   "ceo": "Jayshree Ullal",
   "spotCents": 17192,
-  "initExitProbWad": "30000000000000000"
+  "initExitProbWad": 30000000000000000
  },
  {
   "ticker": "CRWD",
   "name": "CrowdStrike Holdings, Inc.",
   "ceo": "George Kurtz",
   "spotCents": 20677,
-  "initExitProbWad": "20000000000000000"
+  "initExitProbWad": 20000000000000000
  },
  {
   "ticker": "TMUS",
   "name": "T-Mobile US, Inc.",
   "ceo": "Srini Gopalan",
   "spotCents": 18762,
-  "initExitProbWad": "30000000000000000"
+  "initExitProbWad": 30000000000000000
  },
  {
   "ticker": "TMO",
   "name": "Thermo Fisher Scientific Inc.",
   "ceo": "Marc N. Casper",
   "spotCents": 53529,
-  "initExitProbWad": "70000000000000008",
-  "prior_rationale": "ceded President title early 2026 \u2014 classic succession precursor"
+  "initExitProbWad": 70000000000000008
  },
  {
   "ticker": "IBM",
   "name": "International Business Machines Corporation",
   "ceo": "Arvind Krishna",
   "spotCents": 21120,
-  "initExitProbWad": "40000000000000000"
+  "initExitProbWad": 40000000000000000
  },
  {
   "ticker": "AMGN",
   "name": "Amgen Inc.",
   "ceo": "Robert A. Bradway",
   "spotCents": 35832,
-  "initExitProbWad": "40000000000000000"
+  "initExitProbWad": 40000000000000000
  },
  {
   "ticker": "APH",
   "name": "Amphenol Corporation",
   "ceo": "R. Adam Norwitt",
   "spotCents": 15704,
-  "initExitProbWad": "40000000000000000"
+  "initExitProbWad": 40000000000000000
  },
  {
   "ticker": "ADI",
   "name": "Analog Devices, Inc.",
   "ceo": "Vincent Roche",
   "spotCents": 39096,
-  "initExitProbWad": "40000000000000000"
+  "initExitProbWad": 40000000000000000
  },
  {
   "ticker": "MCD",
   "name": "McDonald's Corporation",
   "ceo": "Chris Kempczinski",
   "spotCents": 26495,
-  "initExitProbWad": "40000000000000000"
+  "initExitProbWad": 40000000000000000
  },
  {
   "ticker": "QCOM",
   "name": "QUALCOMM Incorporated",
   "ceo": "Cristiano Amon",
   "spotCents": 17798,
-  "initExitProbWad": "40000000000000000"
+  "initExitProbWad": 40000000000000000
  },
  {
   "ticker": "NEE",
   "name": "NextEra Energy, Inc.",
   "ceo": "John W. Ketchum",
   "spotCents": 8910,
-  "initExitProbWad": "40000000000000000"
+  "initExitProbWad": 40000000000000000
  },
  {
   "ticker": "MRVL",
   "name": "Marvell Technology, Inc.",
   "ceo": "Matt Murphy",
   "spotCents": 20626,
-  "initExitProbWad": "40000000000000000"
+  "initExitProbWad": 40000000000000000
  },
  {
   "ticker": "PEP",
   "name": "PepsiCo, Inc.",
   "ceo": "Ramon Laguarta",
   "spotCents": 13540,
-  "initExitProbWad": "80000000000000000",
-  "prior_rationale": "Elliott activist stake since 2025"
+  "initExitProbWad": 80000000000000000
  },
  {
   "ticker": "VZ",
   "name": "Verizon Communications Inc.",
   "ceo": "Dan Schulman",
   "spotCents": 4283,
-  "initExitProbWad": "30000000000000000"
+  "initExitProbWad": 30000000000000000
  },
  {
   "ticker": "SCHW",
   "name": "The Charles Schwab Corporation",
   "ceo": "Rick Wurster",
   "spotCents": 10279,
-  "initExitProbWad": "30000000000000000"
+  "initExitProbWad": 30000000000000000
  },
  {
   "ticker": "BLK",
   "name": "BlackRock, Inc.",
   "ceo": "Larry Fink",
   "spotCents": 109340,
-  "initExitProbWad": "50000000000000000",
-  "prior_rationale": "succession bench thinned"
+  "initExitProbWad": 50000000000000000
  },
  {
   "ticker": "WDC",
   "name": "Western Digital Corporation",
   "ceo": "Irving Tan",
   "spotCents": 51384,
-  "initExitProbWad": "30000000000000000"
+  "initExitProbWad": 30000000000000000
  },
  {
   "ticker": "BA",
   "name": "The Boeing Company",
   "ceo": "Kelly Ortberg",
   "spotCents": 21812,
-  "initExitProbWad": "30000000000000000"
+  "initExitProbWad": 30000000000000000
  },
  {
   "ticker": "UNP",
   "name": "Union Pacific Corporation",
   "ceo": "Jim Vena",
   "spotCents": 28836,
-  "initExitProbWad": "40000000000000000"
+  "initExitProbWad": 40000000000000000
  },
  {
   "ticker": "DIS",
   "name": "The Walt Disney Company",
   "ceo": "Josh D'Amaro",
   "spotCents": 9715,
-  "initExitProbWad": "20000000000000000"
+  "initExitProbWad": 20000000000000000
  },
  {
   "ticker": "TJX",
   "name": "The TJX Companies, Inc.",
   "ceo": "Ernie Herrman",
   "spotCents": 15097,
-  "initExitProbWad": "40000000000000000"
+  "initExitProbWad": 40000000000000000
  },
  {
   "ticker": "IBKR",
   "name": "Interactive Brokers Group, Inc.",
   "ceo": "Milan Galik",
   "spotCents": 9741,
-  "initExitProbWad": "40000000000000000"
+  "initExitProbWad": 40000000000000000
  },
  {
   "ticker": "WELL",
   "name": "Welltower Inc.",
   "ceo": "Shankh Mitra",
   "spotCents": 23329,
-  "initExitProbWad": "40000000000000000"
+  "initExitProbWad": 40000000000000000
  },
  {
   "ticker": "GILD",
   "name": "Gilead Sciences, Inc.",
   "ceo": "Daniel O'Day",
   "spotCents": 13170,
-  "initExitProbWad": "40000000000000000"
+  "initExitProbWad": 40000000000000000
  },
  {
   "ticker": "DE",
   "name": "Deere & Company",
   "ceo": "John C. May",
   "spotCents": 58948,
-  "initExitProbWad": "40000000000000000"
+  "initExitProbWad": 40000000000000000
  },
  {
   "ticker": "ABT",
   "name": "Abbott Laboratories",
   "ceo": "Robert B. Ford",
   "spotCents": 8927,
-  "initExitProbWad": "40000000000000000"
+  "initExitProbWad": 40000000000000000
  },
  {
   "ticker": "BX",
   "name": "Blackstone Inc.",
   "ceo": "Stephen A. Schwarzman",
   "spotCents": 12705,
-  "initExitProbWad": "70000000000000008",
-  "prior_rationale": "Schwarzman 79 with designated heir apparent"
+  "initExitProbWad": 70000000000000008
  },
  {
   "ticker": "APP",
   "name": "AppLovin Corporation",
   "ceo": "Adam Foroughi",
   "spotCents": 45273,
-  "initExitProbWad": "20000000000000000"
+  "initExitProbWad": 20000000000000000
  },
  {
   "ticker": "SCCO",
   "name": "Southern Copper Corporation",
   "ceo": "Leonardo Contreras Lerdo de Tejada",
   "spotCents": 18154,
-  "initExitProbWad": "20000000000000000"
+  "initExitProbWad": 20000000000000000
  },
  {
   "ticker": "GLW",
   "name": "Corning Incorporated",
   "ceo": "Wendell P. Weeks",
   "spotCents": 17441,
-  "initExitProbWad": "50000000000000000",
-  "prior_rationale": "CEO since 2005"
+  "initExitProbWad": 50000000000000000
  },
  {
   "ticker": "T",
   "name": "AT&T Inc.",
   "ceo": "John Stankey",
   "spotCents": 2143,
-  "initExitProbWad": "40000000000000000"
+  "initExitProbWad": 40000000000000000
  },
  {
   "ticker": "UBER",
   "name": "Uber Technologies, Inc.",
   "ceo": "Dara Khosrowshahi",
   "spotCents": 7267,
-  "initExitProbWad": "40000000000000000"
+  "initExitProbWad": 40000000000000000
  },
  {
   "ticker": "DHR",
   "name": "Danaher Corporation",
   "ceo": "Rainer Blair",
   "spotCents": 20079,
-  "initExitProbWad": "40000000000000000"
+  "initExitProbWad": 40000000000000000
  },
  {
   "ticker": "BKNG",
   "name": "Booking Holdings Inc.",
   "ceo": "Glenn Fogel",
   "spotCents": 18280,
-  "initExitProbWad": "40000000000000000"
+  "initExitProbWad": 40000000000000000
  },
  {
   "ticker": "PFE",
   "name": "Pfizer Inc.",
   "ceo": "Albert Bourla",
   "spotCents": 2482,
-  "initExitProbWad": "40000000000000000"
+  "initExitProbWad": 40000000000000000
  },
  {
   "ticker": "ISRG",
   "name": "Intuitive Surgical, Inc.",
   "ceo": "David (Dave) Rosa",
   "spotCents": 38897,
-  "initExitProbWad": "30000000000000000"
+  "initExitProbWad": 30000000000000000
  },
  {
   "ticker": "PLD",
   "name": "Prologis, Inc.",
   "ceo": "Dan Letter",
   "spotCents": 14342,
-  "initExitProbWad": "20000000000000000"
+  "initExitProbWad": 20000000000000000
  },
  {
   "ticker": "CRM",
   "name": "Salesforce, Inc.",
   "ceo": "Marc Benioff",
   "spotCents": 16700,
-  "initExitProbWad": "60000000000000000",
-  "prior_rationale": "AI strategy + buyback defense amid 2026 stock slump"
+  "initExitProbWad": 60000000000000000
  },
  {
   "ticker": "COP",
   "name": "ConocoPhillips",
   "ceo": "Ryan Lance",
   "spotCents": 11146,
-  "initExitProbWad": "40000000000000000"
+  "initExitProbWad": 40000000000000000
  },
  {
   "ticker": "CVS",
   "name": "CVS Health Corporation",
   "ceo": "David Joyner",
   "spotCents": 10591,
-  "initExitProbWad": "40000000000000000"
+  "initExitProbWad": 40000000000000000
  },
  {
   "ticker": "SPGI",
   "name": "S&P Global Inc.",
   "ceo": "Martina Cheung",
   "spotCents": 44448,
-  "initExitProbWad": "40000000000000000"
+  "initExitProbWad": 40000000000000000
  },
  {
   "ticker": "COF",
   "name": "Capital One Financial Corporation",
   "ceo": "Richard Fairbank",
   "spotCents": 20889,
-  "initExitProbWad": "20000000000000000"
+  "initExitProbWad": 20000000000000000
  },
  {
   "ticker": "SYK",
   "name": "Stryker Corporation",
   "ceo": "Kevin Lobo",
   "spotCents": 31644,
-  "initExitProbWad": "40000000000000000"
+  "initExitProbWad": 40000000000000000
  },
  {
   "ticker": "VRTX",
   "name": "Vertex Pharmaceuticals Incorporated",
   "ceo": "Reshma Kewalramani",
   "spotCents": 47708,
-  "initExitProbWad": "40000000000000000"
+  "initExitProbWad": 40000000000000000
  },
  {
   "ticker": "FTNT",
   "name": "Fortinet, Inc.",
   "ceo": "Ken Xie",
   "spotCents": 16451,
-  "initExitProbWad": "20000000000000000"
+  "initExitProbWad": 20000000000000000
  },
  {
   "ticker": "PH",
   "name": "Parker-Hannifin Corporation",
   "ceo": "Jennifer Parmentier",
   "spotCents": 95295,
-  "initExitProbWad": "40000000000000000"
+  "initExitProbWad": 40000000000000000
  },
  {
   "ticker": "BMY",
   "name": "Bristol-Myers Squibb Company",
   "ceo": "Christopher Boerner",
   "spotCents": 5872,
-  "initExitProbWad": "40000000000000000"
+  "initExitProbWad": 40000000000000000
  },
  {
   "ticker": "SBUX",
   "name": "Starbucks Corporation",
   "ceo": "Brian Niccol",
   "spotCents": 10511,
-  "initExitProbWad": "40000000000000000"
+  "initExitProbWad": 40000000000000000
  },
  {
   "ticker": "PGR",
   "name": "The Progressive Corporation",
   "ceo": "Tricia Griffith",
   "spotCents": 20522,
-  "initExitProbWad": "40000000000000000"
+  "initExitProbWad": 40000000000000000
  },
  {
   "ticker": "LMT",
   "name": "Lockheed Martin Corporation",
   "ceo": "James (Jim) Taiclet",
   "spotCents": 51446,
-  "initExitProbWad": "40000000000000000"
+  "initExitProbWad": 40000000000000000
  }
 ]

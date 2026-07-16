@@ -1,0 +1,55 @@
+{
+ "AAPL": {
+  "prior_rationale": "Ternus transition announced Apr 2026, effective Sep 1 2026 (before horizon)"
+ },
+ "TSLA": {
+  "prior_rationale": "dual-CEO attention split post-SpaceX IPO"
+ },
+ "JPM": {
+  "prior_rationale": "succession race narrowed June 2026; Dimon signals ~3 more years"
+ },
+ "AMAT": {
+  "prior_rationale": "CEO since 2013, no succession plan announced"
+ },
+ "BAC": {
+  "prior_rationale": "Feb 2026 co-president reshuffle set up succession race"
+ },
+ "ORCL": {
+  "prior_rationale": "new co-CEO structure (either departing counts)",
+  "condition_note": "departure condition met if EITHER named co-CEO ceases to hold the office"
+ },
+ "UNH": {
+  "prior_rationale": "boomerang CEO age 73+, interim flavor"
+ },
+ "CVX": {
+  "prior_rationale": "age-65 waiver; succession talks underway"
+ },
+ "NFLX": {
+  "prior_rationale": "co-CEO structure (either departing counts)",
+  "condition_note": "departure condition met if EITHER named co-CEO ceases to hold the office"
+ },
+ "KLAC": {
+  "prior_rationale": "CEO since 2006"
+ },
+ "AXP": {
+  "prior_rationale": "CEO age 67, no successor named"
+ },
+ "TMO": {
+  "prior_rationale": "ceded President title early 2026 \u2014 classic succession precursor"
+ },
+ "PEP": {
+  "prior_rationale": "Elliott activist stake since 2025"
+ },
+ "BLK": {
+  "prior_rationale": "succession bench thinned"
+ },
+ "BX": {
+  "prior_rationale": "Schwarzman 79 with designated heir apparent"
+ },
+ "GLW": {
+  "prior_rationale": "CEO since 2005"
+ },
+ "CRM": {
+  "prior_rationale": "AI strategy + buyback defense amid 2026 stock slump"
+ }
+}

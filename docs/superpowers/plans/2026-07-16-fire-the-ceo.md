@@ -174,8 +174,8 @@ function claim(uint256 companyId) external returns (uint256 amount);  // now > r
 // claim sums 3 markets, zeroes Pos, single transfer.
 ```
 
-- [ ] **Step 1:** Tests: `test_ResolveOnlyOracle`, `test_ResolveBeforeSettleReverts`, `test_ReResolveWithinWindow` (flip fired, second resolve wins), `test_ReResolveAfterWindowReverts`, `test_ClaimBeforeWindowEndsReverts`, `test_ClaimFiredPath` (buyer of OUT-LONG gets w-share; STAY buyer refunded paidIn exactly), `test_ClaimRetainedPath` (mirror), `test_ClaimExitBinaryPayout`, `test_SellerEscrowPaidOnValid_CancelledOnVoid` (void: seller gets paidIn back, escrow zeroed), `test_ClaimTwiceZero`, `test_SettlementClampsBelowFloorAboveCap`.
-- [ ] **Steps 2-5:** fail → implement → pass → commit `feat(contracts): resolution + dispute window + claims`.
+- [x] **Step 1:** Tests: `test_ResolveOnlyOracle`, `test_ResolveBeforeSettleReverts`, `test_ReResolveWithinWindow` (flip fired, second resolve wins), `test_ReResolveAfterWindowReverts`, `test_ClaimBeforeWindowEndsReverts`, `test_ClaimFiredPath` (buyer of OUT-LONG gets w-share; STAY buyer refunded paidIn exactly), `test_ClaimRetainedPath` (mirror), `test_ClaimExitBinaryPayout`, `test_SellerEscrowPaidOnValid_CancelledOnVoid` (void: seller gets paidIn back, escrow zeroed), `test_ClaimTwiceZero`, `test_SettlementClampsBelowFloorAboveCap`.
+- [x] **Steps 2-5:** fail → implement → pass → commit `feat(contracts): resolution + dispute window + claims`.
 
 ### Task A6: Solvency invariant + fuzz suite
 

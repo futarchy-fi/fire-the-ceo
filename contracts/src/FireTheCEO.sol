@@ -53,6 +53,11 @@ contract FireTheCEO is Ownable {
     error InsufficientShares();
     error ShareCapExceeded();
     error PositionOverflow();
+    error OracleOnly();
+    error BeforeSettlement();
+    error DisputeWindowClosed();
+    error NotResolved();
+    error NotClaimable();
 
     IERC20 public immutable pusd;
     address public oracle;
@@ -252,6 +257,58 @@ contract FireTheCEO is Ownable {
         emit Trade(companyId, uint8(kind), msg.sender, false, longSide, shares, proceeds);
     }
 
+    function resolveCompany(uint256 companyId, bool fired, uint32 priceCents, string calldata sourceURI) external {
+        _requireCompany(companyId);
+        if (msg.sender != oracle) revert OracleOnly();
+        Company storage company = companies[companyId];
+        if (block.timestamp < company.settleTime) revert BeforeSettlement();
+        if (company.resolved && block.timestamp > uint256(company.resolvedAt) + DISPUTE_WINDOW) {
+            revert DisputeWindowClosed();
+        }
+
+        if (!company.resolved) {
+            company.resolved = true;
+            company.resolvedAt = uint64(block.timestamp);
+        }
+        company.fired = fired;
+        company.settledPriceCents = priceCents;
+        company.resolutionURI = sourceURI;
+
+        emit Resolved(companyId, fired, priceCents, sourceURI);
+    }
+
+    function claim(uint256 companyId) external returns (uint256 amount) {
+        _requireCompany(companyId);
+        Company storage company = companies[companyId];
+        if (!company.resolved) revert NotResolved();
+        if (block.timestamp <= uint256(company.resolvedAt) + DISPUTE_WINDOW) revert NotClaimable();
+
+        for (uint8 kind; kind < 3; ++kind) {
+            Pos storage position = positions[companyId][kind][msg.sender];
+            amount += _entitlement(company, kind, position);
+            delete positions[companyId][kind][msg.sender];
+        }
+        if (amount != 0) SafeTransferLib.safeTransfer(address(pusd), msg.sender, amount);
+
+        emit Claimed(companyId, msg.sender, amount);
+    }
+
+    function claimableAmount(uint256 companyId, address trader) external view returns (uint256 amount) {
+        _requireCompany(companyId);
+        Company storage company = companies[companyId];
+        if (!company.resolved) revert NotResolved();
+        for (uint8 kind; kind < 3; ++kind) {
+            amount += _entitlement(company, kind, positions[companyId][kind][trader]);
+        }
+    }
+
+    function getPositions(address trader, uint256 companyId) external view returns (Pos[3] memory result) {
+        _requireCompany(companyId);
+        for (uint8 kind; kind < 3; ++kind) {
+            result[kind] = positions[companyId][kind][trader];
+        }
+    }
+
     function _market(uint256 companyId, MarketKind kind) internal view returns (Market storage market) {
         _requireCompany(companyId);
         market = markets_[companyId][uint8(kind)];
@@ -285,6 +342,23 @@ contract FireTheCEO is Ownable {
     function _checkedQ(Market storage market, bool longSide, int256 delta) internal view returns (int256 newQ) {
         newQ = (longSide ? int256(market.qL) : int256(market.qS)) + delta;
         if (newQ < -MAX_SHARES || newQ > MAX_SHARES) revert ShareCapExceeded();
+    }
+
+    function _entitlement(Company storage company, uint8 kind, Pos storage position) internal view returns (uint256) {
+        bool valid = kind == uint8(MarketKind.Exit) || (kind == uint8(MarketKind.Out) && company.fired)
+            || (kind == uint8(MarketKind.Stay) && !company.fired);
+        if (!valid) return position.paidIn;
+
+        uint256 weight = kind == uint8(MarketKind.Exit) ? (company.fired ? uint256(WAD) : 0) : _weight(company);
+        return uint256(position.escrow) + (uint256(position.sharesL) * weight) / uint256(WAD)
+            + (uint256(position.sharesS) * (uint256(WAD) - weight)) / uint256(WAD);
+    }
+
+    function _weight(Company storage company) internal view returns (uint256) {
+        if (company.settledPriceCents <= company.floorCents) return 0;
+        if (company.settledPriceCents >= company.capCents) return uint256(WAD);
+        return (uint256(company.settledPriceCents - company.floorCents) * uint256(WAD))
+            / uint256(company.capCents - company.floorCents);
     }
 
     function _requireCompany(uint256 companyId) internal view {

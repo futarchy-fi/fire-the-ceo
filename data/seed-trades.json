@@ -1,128 +1,110 @@
 [
  {
-  "ticker": "NVDA",
-  "kind": "OUT",
+  "kind": 0,
   "longSide": false,
-  "shares": "1614000000000000000000",
-  "rationale": "Jensen Huang widely viewed as irreplaceable founder-operator; NVDA-without-Jensen discount"
+  "shares": 1614000000000000000000,
+  "ticker": "NVDA"
  },
  {
-  "ticker": "SPCX",
-  "kind": "OUT",
+  "kind": 0,
   "longSide": false,
-  "shares": "1341000000000000000000",
-  "rationale": "SpaceX is Musk-defined; 82% voting control makes involuntary exit impossible, voluntary exit = value shock"
+  "shares": 1341000000000000000000,
+  "ticker": "SPCX"
  },
  {
-  "ticker": "TSLA",
-  "kind": "OUT",
+  "kind": 0,
   "longSide": false,
-  "shares": "1071000000000000000000",
-  "rationale": "Musk key-man premium: market has historically priced TSLA-without-Musk lower"
+  "shares": 1071000000000000000000,
+  "ticker": "TSLA"
  },
  {
-  "ticker": "JPM",
-  "kind": "OUT",
+  "kind": 0,
   "longSide": false,
-  "shares": "802000000000000000000",
-  "rationale": "The canonical Dimon premium; no named successor yet"
+  "shares": 802000000000000000000,
+  "ticker": "JPM"
  },
  {
-  "ticker": "INTC",
-  "kind": "OUT",
+  "kind": 0,
   "longSide": false,
-  "shares": "802000000000000000000",
-  "rationale": "Street credited Lip-Bu Tan turnaround; losing him mid-turnaround = setback"
+  "shares": 802000000000000000000,
+  "ticker": "INTC"
  },
  {
-  "ticker": "BA",
-  "kind": "OUT",
+  "kind": 0,
   "longSide": false,
-  "shares": "668000000000000000000",
-  "rationale": "Ortberg turnaround on track (MAX output cap lifted)"
+  "shares": 668000000000000000000,
+  "ticker": "BA"
  },
  {
-  "ticker": "BRK.B",
-  "kind": "OUT",
+  "kind": 0,
   "longSide": false,
-  "shares": "534000000000000000000",
-  "rationale": "Abel six months in after 60-year Buffett era; a second succession would be destabilizing"
+  "shares": 534000000000000000000,
+  "ticker": "BRK.B"
  },
  {
-  "ticker": "SBUX",
-  "kind": "OUT",
+  "kind": 0,
   "longSide": false,
-  "shares": "534000000000000000000",
-  "rationale": "Niccol Back-to-Starbucks turnaround showing gains in 2026"
+  "shares": 534000000000000000000,
+  "ticker": "SBUX"
  },
  {
-  "ticker": "BLK",
-  "kind": "OUT",
+  "kind": 0,
   "longSide": false,
-  "shares": "400000000000000000000",
-  "rationale": "Fink exit with thinned bench (Wiedman, Ramji gone) = negative"
+  "shares": 400000000000000000000,
+  "ticker": "BLK"
  },
  {
-  "ticker": "MU",
-  "kind": "OUT",
+  "kind": 0,
   "longSide": false,
-  "shares": "400000000000000000000",
-  "rationale": "Mehrotra executing historic HBM supercycle"
+  "shares": 400000000000000000000,
+  "ticker": "MU"
  },
  {
-  "ticker": "META",
-  "kind": "OUT",
+  "kind": 0,
   "longSide": false,
-  "shares": "267000000000000000000",
-  "rationale": "Founder control; Superintelligence Labs bet is Zuckerberg-specific"
+  "shares": 267000000000000000000,
+  "ticker": "META"
  },
  {
-  "ticker": "CRM",
-  "kind": "OUT",
+  "kind": 0,
   "longSide": true,
-  "shares": "668000000000000000000",
-  "rationale": "Benioff under pressure amid 2026 slump; street periodically prices succession upside"
+  "shares": 668000000000000000000,
+  "ticker": "CRM"
  },
  {
-  "ticker": "PEP",
-  "kind": "OUT",
+  "kind": 0,
   "longSide": true,
-  "shares": "534000000000000000000",
-  "rationale": "Elliott activist thesis implies change creates value"
+  "shares": 534000000000000000000,
+  "ticker": "PEP"
  },
  {
-  "ticker": "UNH",
-  "kind": "OUT",
+  "kind": 0,
   "longSide": true,
-  "shares": "400000000000000000000",
-  "rationale": "Boomerang-CEO stopgap; fresh permanent leadership seen as upside"
+  "shares": 400000000000000000000,
+  "ticker": "UNH"
  },
  {
-  "ticker": "GS",
-  "kind": "OUT",
+  "kind": 0,
   "longSide": true,
-  "shares": "267000000000000000000",
-  "rationale": "Residual governance discount from 2023-24 activist noise"
+  "shares": 267000000000000000000,
+  "ticker": "GS"
  },
  {
-  "ticker": "COP",
-  "kind": "OUT",
+  "kind": 0,
   "longSide": true,
-  "shares": "267000000000000000000",
-  "rationale": "2026 shareholder proposal for independent chair signals governance pressure"
+  "shares": 267000000000000000000,
+  "ticker": "COP"
  },
  {
-  "ticker": "JPM",
-  "kind": "EXIT",
+  "kind": 2,
   "longSide": true,
-  "shares": "618000000000000000000",
-  "rationale": "Succession race heating up"
+  "shares": 618000000000000000000,
+  "ticker": "JPM"
  },
  {
-  "ticker": "TMO",
-  "kind": "EXIT",
+  "kind": 2,
   "longSide": true,
-  "shares": "546000000000000000000",
-  "rationale": "President title ceded \u2014 precursor signal"
+  "shares": 546000000000000000000,
+  "ticker": "TMO"
  }
 ]

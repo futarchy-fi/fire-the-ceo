@@ -137,8 +137,8 @@ contract FireTheCEO is Ownable {
 }
 ```
 
-- [ ] **Step 1:** Tests: `test_ListStoresCompanyAndBands` (spot 40000¢ → floor 10000, cap 70000), `test_ListPullsExactSubsidy` (even priors: `2*(bScalar*ln2)+bExit*ln2` ±(3*DUST+tol) — assert via `pusd.balanceOf`), `test_ListSkewedPriorSubsidyHigher` (initExitProb=0.05 → subsidy component ≈ bExit*2.9957), `test_ExitOpensAtPrior` (`getAllPrices()[2][id]` ≈ 5e16), `test_ScalarsOpenAtHalf`, `test_ListNotOwnerReverts`, `test_QuoteBuyMatchesLMSR`.
-- [ ] **Step 2:** fails → **Step 3:** implement → **Step 4:** pass, `forge fmt` → **Step 5:** commit `feat(contracts): FireTheCEO listing + board views`.
+- [x] **Step 1:** Tests: `test_ListStoresCompanyAndBands` (spot 40000¢ → floor 10000, cap 70000), `test_ListPullsExactSubsidy` (even priors: `2*(bScalar*ln2)+bExit*ln2` ±(3*DUST+tol) — assert via `pusd.balanceOf`), `test_ListSkewedPriorSubsidyHigher` (initExitProb=0.05 → subsidy component ≈ bExit*2.9957), `test_ExitOpensAtPrior` (`getAllPrices()[2][id]` ≈ 5e16), `test_ScalarsOpenAtHalf`, `test_ListNotOwnerReverts`, `test_QuoteBuyMatchesLMSR`.
+- [x] **Step 2:** fails → **Step 3:** implement → **Step 4:** pass, `forge fmt` → **Step 5:** commit `feat(contracts): FireTheCEO listing + board views`.
 
 ### Task A4: Trading (buy/sell with escrow)
 

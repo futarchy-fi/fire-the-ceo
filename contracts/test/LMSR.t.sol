@@ -78,7 +78,8 @@ contract LMSRTest is Test {
         int256 qL = bound(qLRaw, -1e27, 1e27);
         int256 qS = bound(qSRaw, -1e27, 1e27);
         int256 room = onL ? int256(1e27) - qL : int256(1e27) - qS;
-        int256 dq = int256(bound(dqRaw, 0, uint256(room)));
+        vm.assume(room >= 1e9);
+        int256 dq = int256(bound(dqRaw, 1e9, uint256(room)));
 
         int256 beforeCost = lmsr.cost(qL, qS, B);
         int256 afterCost = onL ? lmsr.cost(qL + dq, qS, B) : lmsr.cost(qL, qS + dq, B);

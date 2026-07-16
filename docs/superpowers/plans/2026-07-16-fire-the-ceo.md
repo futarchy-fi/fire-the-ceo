@@ -80,11 +80,11 @@ function cost(int256 qL, int256 qS, int256 b) internal pure returns (int256) {
 }
 ```
 
-- [ ] **Step 1:** Tests with reference values (compute expected with Python `mpmath`, tolerance 1e-9 relative): `test_CostSymmetricZero` (`cost(0,0,b) == b*ln2 ±tol`), `test_PriceHalfAtZero`, `test_PriceMatchesSigmoid` (q=(2000e18,-1000e18), b=5000e18 → pL=sigmoid(3000/5000)=0.645656…), `test_BuyCostPositive_SellNegative`, `test_InitialQGivesP0` (p0=0.05 → priceL(initialQ(b,0.05),0,b)≈0.05), `test_WorstCaseLoss_EvenPrior` (=b*ln2), `test_WorstCaseLoss_SkewedPrior` (p0=0.05 → ≈ b*ln(1/0.05) on the improbable side: worstCaseLoss(initialQ(b,5e16),0,b) ≈ b*2.9957…), fuzz `testFuzz_CostMonotoneInQ`, fuzz `testFuzz_DomainNoRevert` (|q|≤1e27, 1e18≤b≤1e24).
-- [ ] **Step 2:** `forge test --match-contract LMSR` fails.
-- [ ] **Step 3:** Implement.
-- [ ] **Step 4:** Tests pass.
-- [ ] **Step 5:** Commit `feat(contracts): LMSR fixed-point library`.
+- [x] **Step 1:** Tests with reference values (compute expected with Python `mpmath`, tolerance 1e-9 relative): `test_CostSymmetricZero` (`cost(0,0,b) == b*ln2 ±tol`), `test_PriceHalfAtZero`, `test_PriceMatchesSigmoid` (q=(2000e18,-1000e18), b=5000e18 → pL=sigmoid(3000/5000)=0.645656…), `test_BuyCostPositive_SellNegative`, `test_InitialQGivesP0` (p0=0.05 → priceL(initialQ(b,0.05),0,b)≈0.05), `test_WorstCaseLoss_EvenPrior` (=b*ln2), `test_WorstCaseLoss_SkewedPrior` (p0=0.05 → ≈ b*ln(1/0.05) on the improbable side: worstCaseLoss(initialQ(b,5e16),0,b) ≈ b*2.9957…), fuzz `testFuzz_CostMonotoneInQ`, fuzz `testFuzz_DomainNoRevert` (|q|≤1e27, 1e18≤b≤1e24).
+- [x] **Step 2:** `forge test --match-contract LMSR` fails.
+- [x] **Step 3:** Implement.
+- [x] **Step 4:** Tests pass.
+- [x] **Step 5:** Commit `feat(contracts): LMSR fixed-point library`.
 
 ### Task A3: FireTheCEO storage + listing + views
 

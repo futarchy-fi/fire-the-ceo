@@ -182,9 +182,9 @@ function claim(uint256 companyId) external returns (uint256 amount);  // now > r
 **Files:**
 - Create: `contracts/test/FireTheCEO.invariants.t.sol`
 
-- [ ] **Step 1:** Foundry invariant test: handler with 6 actors doing random faucet/buy/sell across 3 companies (one skewed EXIT prior 0.05, one 0.95, one 0.04); invariant: for every scenario in {fired, !fired} × priceCents in {0, floor, spot, cap, 2*cap}: `Σ_traders Σ_markets entitlement(scenario) ≤ pusd.balanceOf(contract)` (expose an external simulation helper or compute in the test via getters). Second invariant: `paidIn_total − escrow_total ≥ 0` per market.
-- [ ] **Step 2:** `forge test --match-contract Invariant -vv` with `[invariant] runs=64, depth=128` in foundry.toml → must pass.
-- [ ] **Step 3:** Commit `test(contracts): solvency invariants under random trading`.
+- [x] **Step 1:** Foundry invariant test: handler with 6 actors doing random faucet/buy/sell across 3 companies (one skewed EXIT prior 0.05, one 0.95, one 0.04); invariant: for every scenario in {fired, !fired} × priceCents in {0, floor, spot, cap, 2*cap}: `Σ_traders Σ_markets entitlement(scenario) ≤ pusd.balanceOf(contract)` (expose an external simulation helper or compute in the test via getters). Second invariant: `paidIn_total − escrow_total ≥ 0` per market.
+- [x] **Step 2:** `forge test --match-contract Invariant -vv` with `[invariant] runs=64, depth=128` in foundry.toml → must pass.
+- [x] **Step 3:** Commit `test(contracts): solvency invariants under random trading`.
 
 ### Task A7: Deploy + listing + seed scripts
 

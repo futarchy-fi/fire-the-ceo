@@ -2,6 +2,8 @@ import { Link, Route, Routes } from 'react-router-dom'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { BoardPage } from './pages/BoardPage.tsx'
 import { CompanyPage } from './pages/CompanyPage.tsx'
+import { AboutPage } from './pages/AboutPage.tsx'
+import { FaucetBanner } from './components/FaucetBanner.tsx'
 
 function Placeholder({ title }: { title: string }) {
   return (
@@ -24,10 +26,11 @@ export default function App() {
         </nav>
         <ConnectButton accountStatus="address" chainStatus="icon" showBalance={false} />
       </header>
+      <FaucetBanner />
       <Routes>
         <Route path="/" element={<BoardPage />} />
         <Route path="/company/:ticker" element={<CompanyPage />} />
-        <Route path="/about" element={<Placeholder title="About the proceeding" />} />
+        <Route path="/about" element={<AboutPage />} />
         <Route path="*" element={<Placeholder title="Filing not found" />} />
       </Routes>
     </>

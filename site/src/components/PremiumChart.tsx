@@ -1,6 +1,6 @@
 import { useId, useMemo, useRef, useState } from 'react'
 import type { BoardRow, HistorySnapshot } from '../lib/board.ts'
-import { premiumHistory } from './PremiumSparkline.tsx'
+import { premiumHistory } from '../lib/history.ts'
 import { signedPercent } from '../lib/format.ts'
 
 const WIDTH = 760

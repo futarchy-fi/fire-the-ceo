@@ -1,12 +1,10 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import { useReadContract, useReadContracts } from 'wagmi'
 import companiesJson from '../../../data/companies.json'
-import fireTheCeoAbi from './abi/FireTheCEO.json'
 import { ADDR } from './config.ts'
-import type { Abi } from 'viem'
+import { coreAbi } from './v2Abi.ts'
 
 const WAD = 1e18
-const FIRE_ABI = fireTheCeoAbi as Abi
 const HISTORY_WINDOW_SECONDS = 7 * 24 * 60 * 60
 const tickerById = new Map<number, string>()
 
@@ -98,8 +96,8 @@ export function normalizeCompany(value: unknown): ChainCompany | null {
 
 export function useBoard(): { rows: BoardRow[] | null; error?: Error; retry: () => void } {
   const prices = useReadContract({
-    address: ADDR.fireTheCeo,
-    abi: FIRE_ABI,
+    address: ADDR.core,
+    abi: coreAbi,
     functionName: 'getAllPrices',
     query: { refetchInterval: 30_000 },
   })
@@ -110,8 +108,8 @@ export function useBoard(): { rows: BoardRow[] | null; error?: Error; retry: () 
   )
   const companies = useReadContracts({
     contracts: ids.map((id) => ({
-      address: ADDR.fireTheCeo,
-      abi: FIRE_ABI,
+      address: ADDR.core,
+      abi: coreAbi,
       functionName: 'getCompany',
       args: [BigInt(id)],
     })),
@@ -164,23 +162,6 @@ export function useBoard(): { rows: BoardRow[] | null; error?: Error; retry: () 
     error,
     retry: () => { void prices.refetch(); void companies.refetch() },
   }
-}
-
-export function useHistory(): HistorySnapshot[] | null {
-  const [state, setState] = useState<HistorySnapshot[] | null>(null)
-  useEffect(() => {
-    let cancelled = false
-    fetch('/data/history.json')
-      .then((response) => {
-        if (response.status === 404) return { snapshots: [] }
-        if (!response.ok) throw new Error(`History request failed (${response.status})`)
-        return response.json() as Promise<{ snapshots?: HistorySnapshot[] }>
-      })
-      .then((payload) => { if (!cancelled) setState(payload.snapshots ?? []) })
-      .catch(() => { if (!cancelled) setState([]) })
-    return () => { cancelled = true }
-  }, [setState])
-  return state
 }
 
 export function fireSignal(rows: HistorySnapshot[], id: number): 'FIRE' | 'KEEP' | 'WATCH' {

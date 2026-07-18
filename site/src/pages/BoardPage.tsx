@@ -2,8 +2,9 @@ import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { PremiumSparkline } from '../components/PremiumSparkline.tsx'
 import { SignalBadge, type Verdict } from '../components/Verdict.tsx'
-import { fireSignal, useBoard, useHistory, type BoardRow } from '../lib/board.ts'
+import { fireSignal, useBoard, type BoardRow, type HistorySnapshot } from '../lib/board.ts'
 import { compactBillions, formatDate, percent, signedPercent, usd } from '../lib/format.ts'
+import { useObservationHistory } from '../lib/observations.ts'
 
 type SortKey = 'rank' | 'company' | 'ceo' | 'pExit' | 'eOut' | 'eStay' | 'premium' | 'signal' | 'spark' | 'mcap'
 type Direction = 'asc' | 'desc'
@@ -11,20 +12,20 @@ type Direction = 'asc' | 'desc'
 const sortLabels: { key: SortKey; label: string }[] = [
   { key: 'rank', label: 'Rank' },
   { key: 'company', label: 'Company + CEO' },
-  { key: 'pExit', label: 'P(exit)' },
-  { key: 'eOut', label: 'E[P|OUT]' },
-  { key: 'eStay', label: 'E[P|STAY]' },
+  { key: 'pExit', label: 'Chance CEO leaves' },
+  { key: 'eOut', label: 'If CEO leaves' },
+  { key: 'eStay', label: 'If CEO stays' },
   { key: 'premium', label: 'Fire premium' },
   { key: 'signal', label: 'Signal' },
   { key: 'spark', label: '7d premium' },
   { key: 'mcap', label: 'Market cap' },
 ]
 
-function verdictFor(row: BoardRow, history: ReturnType<typeof useHistory>): Verdict {
+function verdictFor(row: BoardRow, history: HistorySnapshot[] | null): Verdict {
   return history ? fireSignal(history, row.id) : 'WATCH'
 }
 
-function compareRows(a: BoardRow, b: BoardRow, key: SortKey, history: ReturnType<typeof useHistory>): number {
+function compareRows(a: BoardRow, b: BoardRow, key: SortKey, history: HistorySnapshot[] | null): number {
   if (key === 'rank') return b.premium - a.premium
   if (key === 'company') return a.name.localeCompare(b.name)
   if (key === 'ceo') return a.ceo.localeCompare(b.ceo)
@@ -49,7 +50,7 @@ function SortButton({ entry, active, direction, onSort }: {
   )
 }
 
-function BoardRowView({ row, rank, history }: { row: BoardRow; rank: number; history: ReturnType<typeof useHistory> }) {
+function BoardRowView({ row, rank, history }: { row: BoardRow; rank: number; history: HistorySnapshot[] | null }) {
   const verdict = verdictFor(row, history)
   return (
     <tr>
@@ -57,6 +58,7 @@ function BoardRowView({ row, rank, history }: { row: BoardRow; rank: number; his
       <td className="company-cell">
         <Link to={`/company/${encodeURIComponent(row.ticker)}`}><strong>{row.ticker}</strong> · {row.name}</Link>
         <span>{row.ceo} · since {row.ceoSince}</span>
+        <span>If {row.ceo} leaves, where does {row.ticker} settle?</span>
       </td>
       <td>{percent(row.pExit, 1)}</td>
       <td>{usd.format(row.eOut)}</td>
@@ -69,7 +71,7 @@ function BoardRowView({ row, rank, history }: { row: BoardRow; rank: number; his
   )
 }
 
-function BoardCard({ row, rank, history }: { row: BoardRow; rank: number; history: ReturnType<typeof useHistory> }) {
+function BoardCard({ row, rank, history }: { row: BoardRow; rank: number; history: HistorySnapshot[] | null }) {
   const verdict = verdictFor(row, history)
   return (
     <article className="board-card">
@@ -77,13 +79,14 @@ function BoardCard({ row, rank, history }: { row: BoardRow; rank: number; histor
       <div className="board-card__company">
         <Link to={`/company/${encodeURIComponent(row.ticker)}`}><strong>{row.ticker}</strong> · {row.name}</Link>
         <span>{row.ceo} · since {row.ceoSince}</span>
+        <span>If {row.ceo} leaves, where does {row.ticker} settle?</span>
       </div>
       <div className={`board-card__premium ${row.premium > 0 ? 'is-fire' : row.premium < 0 ? 'is-keep' : 'is-flat'}`}>{signedPercent(row.premium)}</div>
       <SignalBadge verdict={verdict} />
       <dl>
-        <div><dt>P(exit)</dt><dd>{percent(row.pExit)}</dd></div>
-        <div><dt>E[P|OUT]</dt><dd>{usd.format(row.eOut)}</dd></div>
-        <div><dt>E[P|STAY]</dt><dd>{usd.format(row.eStay)}</dd></div>
+        <div><dt>CEO leaves?</dt><dd>{percent(row.pExit)}</dd></div>
+        <div><dt>If CEO leaves</dt><dd>{usd.format(row.eOut)}</dd></div>
+        <div><dt>If CEO stays</dt><dd>{usd.format(row.eStay)}</dd></div>
         <div><dt>Market cap</dt><dd>{compactBillions(row.mcapB)}</dd></div>
       </dl>
       <PremiumSparkline history={history ?? []} row={row} />
@@ -97,7 +100,7 @@ function Skeleton() {
 
 export function BoardPage() {
   const { rows, error, retry } = useBoard()
-  const history = useHistory()
+  const { history, error: historyError } = useObservationHistory(rows)
   const [query, setQuery] = useState('')
   const [sortKey, setSortKey] = useState<SortKey>('premium')
   const [direction, setDirection] = useState<Direction>('desc')
@@ -137,6 +140,7 @@ export function BoardPage() {
           <button type="button" onClick={retry}>Retry RPC read</button>
         </section>
       ) : null}
+      {historyError ? <p className="data-note">Live prices loaded; the observation buffer is temporarily unavailable, so seven-day marks are withheld.</p> : null}
       {!shown ? <Skeleton /> : shown.length === 0 ? (
         <p className="empty-state">No company matches this filing search.</p>
       ) : (

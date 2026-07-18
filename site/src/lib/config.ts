@@ -1,7 +1,27 @@
 import { getDefaultConfig } from '@rainbow-me/rainbowkit'
 import { fallback, http, type Address } from 'viem'
 import { sepolia } from 'wagmi/chains'
-import deploymentJson from '../../../data/deployment.json'
+
+type Deployment = {
+  chainId: number
+  pusd: string
+  core?: string
+  exchange?: string
+  fireTheCeo?: string
+  deployBlock: number
+}
+
+const deploymentModules = import.meta.glob('../../../data/deployment*.json', {
+  eager: true,
+  import: 'default',
+}) as Record<string, Deployment>
+const v2Deployment = deploymentModules['../../../data/deployment-v2.json']
+const fallbackDeployment = deploymentModules['../../../data/deployment.json']
+const deployment = v2Deployment ?? fallbackDeployment
+
+if (!deployment) throw new Error('No FireTheCEO deployment file was found.')
+const core = deployment.core ?? deployment.fireTheCeo
+if (!core) throw new Error('Deployment is missing its core contract address.')
 
 export const CHAIN = sepolia
 export const RPCS = [
@@ -10,11 +30,17 @@ export const RPCS = [
 ] as const
 
 export const ADDR = {
-  chainId: deploymentJson.chainId,
-  pusd: deploymentJson.pusd as Address,
-  fireTheCeo: deploymentJson.fireTheCeo as Address,
-  deployBlock: deploymentJson.deployBlock,
+  chainId: deployment.chainId,
+  pusd: deployment.pusd as Address,
+  core: core as Address,
+  fireTheCeo: core as Address,
+  exchange: (deployment.exchange ?? core) as Address,
+  deployBlock: deployment.deployBlock,
+  isV2: Boolean(deployment.core && deployment.exchange),
 } as const
+
+export const RELAY_URL = (import.meta.env.VITE_RELAY_URL as string | undefined)?.replace(/\/$/, '')
+  ?? 'https://ceo.futarchy.fi/relay'
 
 export const wagmiConfig = getDefaultConfig({
   appName: 'Fire the CEO',

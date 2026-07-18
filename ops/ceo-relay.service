@@ -1,0 +1,19 @@
+# Deployed copy — installed at ~/.config/systemd/user/ceo-relay.service on farol.
+# Serves the CLOB order relay for ceo.futarchy.fi behind Caddy /relay -> 127.0.0.1:3219.
+[Unit]
+Description=FireTheCEO order relay
+After=network.target
+[Service]
+Type=simple
+WorkingDirectory=/home/kelvin/repos/futarchy-fi/fire-the-ceo/relay
+Environment=RPC_URL=https://ethereum-sepolia-rpc.publicnode.com
+Environment=EXCHANGE_ADDR=0x366A8fF9788aaBF279dFf0b7f3196dFc6592b6f6
+Environment=CHAIN_ID=11155111
+Environment=PORT=3219
+Environment=EXCHANGE_KIND=ceo
+Environment=SNAPSHOT_PATH=/home/kelvin/fleet/apps/ceo/relay-data/orders.json
+ExecStart=/home/kelvin/.bun/bin/bun run src/relay.ts
+Restart=on-failure
+RestartSec=5
+[Install]
+WantedBy=default.target

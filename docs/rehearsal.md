@@ -14,3 +14,15 @@ exit prior 0.50). Contract 0x267b838f5786b609b55481695d7d58220a8c2bb1, operator 
 | claim during dispute window | reverts NotClaimable ✓ |
 
 Claim after the 48h window stays open (TEST left unclaimed as a live example).
+
+## V2 signed-order (CLOB) rehearsal — 2026-07-17 (Sepolia)
+
+Contracts: core 0x6D7852DDB9019fcFD961A4cDfB854edc3563ee7F, exchange
+0x366A8fF9788aaBF279dFf0b7f3196dFc6592b6f6 (both verified). 100 companies listed on V2.
+
+- EIP-712 order hash agreement: relay TypeScript `hashOrder` == on-chain `hashOrder`
+  byte-for-byte (0xa5861b…1138). Relay, contract, site share one order identity.
+- Full fill: maker signed a SELL of 5 STAY-LONG shares (company 0) off-chain; a distinct
+  taker key called `fillOrder` on-chain → tx 0x9c5d0028…f9a6f status success; shares moved
+  maker→taker (taker now holds 5e18), order marked filledOrCancelled=true, remaining=0.
+  Permissionless: taker ≠ operator, no operator gate. Called-off-bet settlement intact.

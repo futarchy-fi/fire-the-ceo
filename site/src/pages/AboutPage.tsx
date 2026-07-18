@@ -47,8 +47,8 @@ export function AboutPage() {
           <p className="eyebrow">CALLED-OFF BETS</p>
           <h2>The losing condition is void, not wrong.</h2>
           <div className="mechanism-steps">
-            <div><strong>OUT</strong><p>Traders price the company’s post-horizon share value if the named CEO departs.</p></div>
-            <div><strong>STAY</strong><p>Traders price the same settlement if the named CEO remains.</p></div>
+            <div><strong>CEO LEAVES</strong><p>Traders price the company’s post-horizon share value if the named CEO departs.</p></div>
+            <div><strong>CEO STAYS</strong><p>Traders price the same settlement if the named CEO remains.</p></div>
             <div><strong>CALL OFF</strong><p>Only the condition that happens settles. The other market returns each trader’s paid-in cash exactly; escrowed sale proceeds cancel.</p></div>
           </div>
           <p>Cash never leaves the contract between trade and resolution. Buys add paid-in collateral; sells create an internal escrow claim. That invariant makes “null and void” literal rather than rhetorical. Every market is continuously quoted by an explicitly subsidized LMSR.</p>
@@ -88,7 +88,7 @@ export function AboutPage() {
               <tbody>{seedTrades.map((trade, index) => {
                 const disclosure = seedDisclosure[index]
                 return <tr key={`${trade.ticker}-${trade.kind}-${index}`}>
-                  <td>{trade.ticker}</td><td>{['OUT', 'STAY', 'EXIT'][trade.kind] ?? trade.kind}</td><td>{trade.longSide ? 'LONG' : 'SHORT'}</td>
+                  <td>{trade.ticker}</td><td>{['CEO leaves', 'CEO stays', 'Departure chance'][trade.kind] ?? trade.kind}</td><td>{trade.longSide ? 'Higher' : 'Lower'}</td>
                   <td>{Number(formatUnits(BigInt(disclosure?.shares ?? trade.shares), 18)).toLocaleString('en-US', { maximumFractionDigits: 0 })}</td><td>{disclosure?.rationale ?? 'Operator seed position; rationale not recorded.'}</td>
                 </tr>
               })}</tbody>

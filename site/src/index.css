@@ -257,3 +257,135 @@ button:hover { background: var(--ink); color: var(--paper); }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
 }
+
+/* V2 · scenario-first trading exhibit */
+.data-note { margin: 14px 0; padding: 10px 12px; border-left: 2px solid var(--watch); color: var(--dim); font: 0.65rem/1.5 'IBM Plex Mono', monospace; }
+.hero-finding { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--ink); }
+.hero-finding > div { min-height: 160px; padding: clamp(22px, 3vw, 38px); border-right: 1px solid var(--rule); }
+.hero-finding > div:nth-child(2) { border-right: 0; }
+.hero-finding span, .scenario-estimate span, .boost-allocation span { display: block; color: var(--dim); font: 0.65rem 'IBM Plex Mono', monospace; letter-spacing: 0.08em; text-transform: uppercase; }
+.hero-finding strong { display: block; margin-top: 10px; font: 400 clamp(2.8rem, 6vw, 5.8rem)/0.95 'Libre Caslon Display', serif; font-variant-numeric: tabular-nums; }
+.hero-finding .hero-premium { grid-column: 1 / -1; min-height: auto; border-top: 1px solid var(--rule); border-right: 0; }
+.hero-finding .hero-premium strong { font-size: clamp(1.8rem, 4vw, 3.4rem); }
+.hero-finding > p { grid-column: 1 / -1; margin: 0; padding: 18px clamp(22px, 3vw, 38px); border-top: 1px solid var(--rule); font-size: 1.02rem; line-height: 1.5; }
+.hero-finding > p b { font-family: 'IBM Plex Mono', monospace; letter-spacing: 0.08em; }
+
+.price-band { margin: 30px 0 44px; padding-bottom: 45px; font-family: 'IBM Plex Mono', monospace; font-variant-numeric: tabular-nums; }
+.price-band--compact { margin: 0; padding: 30px clamp(24px, 4vw, 56px) 72px; border-bottom: 1px solid var(--rule); }
+.price-band__labels { display: flex; justify-content: space-between; margin-bottom: 12px; color: var(--dim); font-size: 0.58rem; letter-spacing: 0.06em; text-transform: uppercase; }
+.price-band__track { position: relative; height: 5px; background: linear-gradient(90deg, color-mix(in srgb, var(--keep) 16%, var(--paper)), var(--rule), color-mix(in srgb, var(--fire) 16%, var(--paper))); border: 1px solid var(--rule); }
+.price-pin { position: absolute; top: 12px; width: max-content; max-width: 150px; color: var(--ink); font-size: 0.58rem; line-height: 1.35; transform: translateX(-50%); text-align: center; }
+.price-pin i { position: absolute; left: 50%; bottom: calc(100% + 7px); width: 1px; height: 17px; background: currentColor; }
+.price-pin i::before { content: ''; position: absolute; left: -3px; top: -3px; width: 7px; height: 7px; background: currentColor; border-radius: 50%; }
+.price-pin--fire { color: var(--fire); z-index: 2; }
+.price-pin--keep { color: var(--keep); top: 42px; }
+.price-pin--keep i { height: 47px; }
+.price-pin--resolved { top: -42px; color: var(--ink); font-weight: 500; }
+.price-pin--resolved i { bottom: auto; top: calc(100% + 6px); height: 23px; }
+
+.scenario-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; margin: 70px 0; }
+.scenario-card { min-width: 0; padding: clamp(22px, 3vw, 34px); border: 1px solid var(--ink); }
+.scenario-card--leaves { box-shadow: inset 0 4px 0 var(--fire); }
+.scenario-card--stays { box-shadow: inset 0 4px 0 var(--keep); }
+.scenario-card__head { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 22px; align-items: start; }
+.scenario-card h2, .departure-card h2, .resolution-card h2, .boost-form h2, .guide-page h2 { margin: 8px 0 0; font: 400 clamp(1.45rem, 2.6vw, 2.35rem)/1.12 'Libre Caslon Display', serif; }
+.scenario-estimate { text-align: right; }
+.scenario-estimate strong { display: block; margin-top: 5px; font: 400 clamp(2rem, 4vw, 3.6rem) 'Libre Caslon Display', serif; font-variant-numeric: tabular-nums; }
+.refund-rule { margin: 22px 0 0; padding: 13px 15px; border-block: 1px solid var(--watch); background: color-mix(in srgb, var(--watch) 5%, var(--paper)); font-size: 0.9rem; line-height: 1.45; }
+.resolution-chip { display: inline-block; margin-top: 18px; padding: 5px 8px; border: 1px solid currentColor; font: 0.62rem 'IBM Plex Mono', monospace; text-transform: uppercase; }
+.resolution-chip--resolved { color: var(--keep); }
+.resolution-chip--void { color: var(--dim); }
+
+.estimate-control { position: relative; margin-top: 28px; padding-top: 18px; border-top: 1px solid var(--rule); }
+.estimate-readout { display: grid; grid-template-columns: 1fr auto; align-items: end; }
+.estimate-readout span, .estimate-readout small, .budget-field { color: var(--dim); font: 0.62rem 'IBM Plex Mono', monospace; text-transform: uppercase; }
+.estimate-readout strong { font: 400 2.2rem 'Libre Caslon Display', serif; font-variant-numeric: tabular-nums; }
+.estimate-readout small { grid-column: 1 / -1; margin-top: 6px; color: var(--ink); }
+.estimate-slider { width: 100%; margin: 28px 0 0; padding: 0; accent-color: var(--ink); }
+.estimate-market-pin { position: absolute; top: 102px; color: var(--dim); font: 0.54rem 'IBM Plex Mono', monospace; transform: translateX(-50%); white-space: nowrap; }
+.estimate-market-pin i { display: block; width: 1px; height: 9px; margin: 0 auto 2px; background: currentColor; }
+.budget-field { display: flex; justify-content: space-between; align-items: center; margin-top: 35px; padding: 8px 0; border-block: 1px solid var(--rule); }
+.budget-field input { width: 76px; padding: 5px; border: 0; background: transparent; text-align: right; font-family: inherit; }
+.plain-receipt { min-height: 63px; margin: 14px 0; color: var(--dim); font-size: 0.78rem; line-height: 1.5; }
+
+.departure-card { display: grid; grid-template-columns: 0.7fr 1.3fr; gap: clamp(24px, 5vw, 70px); align-items: center; margin: 70px 0; padding: clamp(24px, 4vw, 46px); border: 1px solid var(--ink); }
+.departure-card h2 strong { color: var(--watch); font-family: 'IBM Plex Mono', monospace; }
+.departure-card > .order-book { grid-column: 1 / -1; }
+.advanced-ticket { margin: 70px 0 26px; border-block: 1px solid var(--ink); }
+.advanced-ticket > summary, .order-book > summary { padding: 14px 0; cursor: pointer; font: 0.66rem 'IBM Plex Mono', monospace; letter-spacing: 0.08em; text-transform: uppercase; }
+.advanced-ticket .order-ticket { margin: 0 0 24px; }
+
+.order-book { margin-top: 24px; border-top: 1px solid var(--rule); }
+.book-head { display: flex; justify-content: space-between; gap: 20px; align-items: center; margin: 12px 0; }
+.book-head > div:first-child span { display: block; color: var(--dim); font: 0.56rem 'IBM Plex Mono', monospace; text-transform: uppercase; }
+.book-head > div:first-child strong { font: 0.68rem 'IBM Plex Mono', monospace; }
+.book-grid { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--rule); }
+.book-grid > div { min-height: 100px; padding: 12px; }
+.book-grid > div:first-child { border-right: 1px solid var(--rule); }
+.book-grid p:not(.eyebrow) { display: flex; justify-content: space-between; margin: 5px 0; font: 0.62rem 'IBM Plex Mono', monospace; }
+.book-grid small { color: var(--dim); font: 0.6rem 'IBM Plex Mono', monospace; }
+.limit-ticket { display: grid; grid-template-columns: 1fr 1fr; gap: 0 12px; margin-top: 12px; }
+.limit-ticket .segmented, .limit-ticket .primary-action, .limit-ticket .ticket-hint { grid-column: 1 / -1; }
+.limit-ticket label { display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: center; padding: 9px 0; border-bottom: 1px solid var(--rule); color: var(--dim); font: 0.58rem 'IBM Plex Mono', monospace; text-transform: uppercase; }
+.limit-ticket input { width: 80px; border: 0; background: transparent; text-align: right; font-family: inherit; }
+.limit-ticket .primary-action { margin-top: 12px; }
+.my-orders { margin-top: 18px; }
+.my-orders > div { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 8px 0; border-top: 1px solid var(--rule); font: 0.58rem 'IBM Plex Mono', monospace; }
+.my-orders button { padding: 5px 7px; font-size: 0.55rem; }
+
+.resolution-card { margin: 70px 0 0; padding: clamp(28px, 5vw, 56px); border: 2px solid var(--ink); }
+.resolution-grid { display: grid; grid-template-columns: 1fr 1fr; margin: 32px 0; border-top: 1px solid var(--ink); }
+.resolution-grid article { padding: 24px; border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+.resolution-grid article:nth-child(2n) { border-right: 0; }
+.resolution-grid h3 { margin: 0 0 12px; font: 500 0.72rem 'IBM Plex Mono', monospace; letter-spacing: 0.08em; text-transform: uppercase; }
+.resolution-grid p { margin: 0; line-height: 1.55; }
+.mono-address { font: 0.65rem 'IBM Plex Mono', monospace; overflow-wrap: anywhere; }
+
+.onboarding-backdrop { position: fixed; inset: 0; z-index: 1000; display: grid; place-items: center; padding: 20px; background: color-mix(in srgb, var(--ink) 62%, transparent); }
+.onboarding-modal { width: min(620px, 100%); padding: clamp(28px, 6vw, 56px); border: 2px solid var(--ink); background: var(--paper); box-shadow: 12px 12px 0 color-mix(in srgb, var(--ink) 25%, transparent); }
+.onboarding-modal h2 { margin: 12px 0 20px; font: 400 clamp(2.2rem, 6vw, 4rem)/1 'Libre Caslon Display', serif; }
+.onboarding-modal > p:not(.eyebrow) { min-height: 88px; font-size: 1.08rem; line-height: 1.55; }
+.onboarding-progress { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 30px 0; }
+.onboarding-progress i { height: 3px; background: var(--rule); }
+.onboarding-progress i.active { background: var(--ink); }
+.onboarding-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+.liquidity-layout { display: grid; grid-template-columns: minmax(240px, 0.55fr) minmax(400px, 1.45fr); gap: clamp(28px, 6vw, 90px); border-top: 1px solid var(--ink); }
+.liquidity-layout aside { padding-top: 30px; }
+.liquidity-layout aside label { display: block; margin-bottom: 7px; color: var(--dim); font: 0.62rem 'IBM Plex Mono', monospace; text-transform: uppercase; }
+.liquidity-layout aside select { width: 100%; padding: 12px; border: 1px solid var(--ink); background: var(--paper); }
+.liquidity-layout aside p { color: var(--dim); line-height: 1.55; }
+.boost-form { padding: 30px 0; }
+.boost-form > label { display: flex; justify-content: space-between; padding: 15px 0; border-block: 1px solid var(--rule); font: 0.68rem 'IBM Plex Mono', monospace; text-transform: uppercase; }
+.boost-form input { width: 100px; border: 0; background: transparent; text-align: right; font-family: inherit; }
+.boost-allocation { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--rule); }
+.boost-allocation > div { padding: 18px; border-right: 1px solid var(--rule); }
+.boost-allocation > div:last-child { border-right: 0; }
+.boost-allocation strong { display: block; margin-top: 7px; font: 500 1rem 'IBM Plex Mono', monospace; }
+.boost-form table { margin: 24px 0; }
+.boost-form th:first-child, .boost-form td:first-child { text-align: left; }
+.reward-rule { padding: 18px; border: 1px solid var(--watch); line-height: 1.55; }
+.guide-page h1 { font-size: clamp(3rem, 7vw, 5.7rem); }
+.guide-page p { font-size: 1.03rem; line-height: 1.7; }
+
+@media (max-width: 900px) {
+  .scenario-grid { grid-template-columns: 1fr; }
+  .departure-card { grid-template-columns: 1fr; }
+  .liquidity-layout { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 720px) {
+  .site-nav nav { overflow-x: auto; }
+  .hero-finding { grid-template-columns: 1fr; }
+  .hero-finding > div { min-height: 125px; border-right: 0; border-bottom: 1px solid var(--rule); }
+  .hero-finding .hero-premium, .hero-finding > p { grid-column: 1; }
+  .scenario-card__head { grid-template-columns: 1fr; }
+  .scenario-estimate { text-align: left; }
+  .price-pin { max-width: 105px; font-size: 0.51rem; }
+  .resolution-grid { grid-template-columns: 1fr; }
+  .resolution-grid article { border-right: 0; }
+  .book-head { align-items: stretch; flex-direction: column; }
+  .limit-ticket { grid-template-columns: 1fr; }
+  .limit-ticket label, .limit-ticket .segmented, .limit-ticket .primary-action { grid-column: 1; }
+  .onboarding-actions { grid-template-columns: 0.55fr 1.45fr; }
+}

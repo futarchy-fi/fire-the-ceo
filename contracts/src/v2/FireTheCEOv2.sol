@@ -440,8 +440,12 @@ contract FireTheCEOv2 is Ownable {
     }
 
     function _creditShares(uint256 companyId, uint8 kind, address trader, bool longSide, uint256 shares) internal {
-        if (shares == 0 || shares > type(uint128).max) revert InvalidAmount(); Pos storage p = positions[companyId][kind][trader];
-        uint256 next = uint256(longSide ? p.sharesL : p.sharesS) + shares; if (next > type(uint128).max) revert PositionOverflow();
+        if (shares == 0) revert InvalidAmount();
+        if (shares > uint256(MAX_SHARES) * 2) revert ShareCapExceeded();
+        Pos storage p = positions[companyId][kind][trader];
+        uint256 next = uint256(longSide ? p.sharesL : p.sharesS) + shares;
+        if (next > uint256(MAX_SHARES) * 2) revert ShareCapExceeded();
+        if (next > type(uint128).max) revert PositionOverflow();
         if (longSide) p.sharesL = uint128(next); else p.sharesS = uint128(next);
     }
 
@@ -612,7 +616,7 @@ contract FireTheCEOExchangeV2 is Ownable {
         if (order.expiration != 0 && order.expiration < block.timestamp) revert OrderExpired();
         if (order.nonce != nonces[order.maker]) revert InvalidNonce(); if (order.feeRateBps > MAX_FEE_RATE_BPS) revert FeeTooHigh();
         if (orderStatus[h].isFilledOrCancelled) revert OrderFilledOrCancelled();
-        if (order.taker != address(0) && ((direct && order.taker != caller) || (!direct && order.taker != caller && order.taker != address(this)))) revert NotTaker();
+        if (caller != address(0) && order.taker != address(0) && ((direct && order.taker != caller) || (!direct && order.taker != caller && order.taker != address(this)))) revert NotTaker();
         if (!core.isTokenOpen(order.tokenId)) revert FireTheCEOv2.TradingClosed();
         uint256 price = order.side == Side.BUY ? FixedPointMathLib.fullMulDiv(order.makerAmount, 1e18, order.takerAmount) : FixedPointMathLib.fullMulDiv(order.takerAmount, 1e18, order.makerAmount);
         if (price > 1e18) revert InvalidOrder(); _validateSignature(h, order);

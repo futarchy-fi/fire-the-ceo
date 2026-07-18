@@ -111,7 +111,16 @@ class Matcher {
     this.processing = true;
     try {
       while (!this.stopped) {
-        const cross = findBestCross([...this.entries.values()], this.pending);
+        const authorizedTakers = new Set([
+          this.account.address.toLowerCase(),
+          this.config.exchange.toLowerCase(),
+        ]);
+        const cross = findBestCross(
+          [...this.entries.values()],
+          this.pending,
+          authorizedTakers,
+          this.config.exchangeKind === "ceo",
+        );
         if (cross) {
           await this.submitBookCross(cross.taker, cross.maker, cross.takerFillAmount, cross.makerFillAmount);
           continue;
@@ -161,7 +170,9 @@ class Matcher {
       .filter(
         (entry) =>
           !this.pending.has(entry.hash) &&
-          entry.order.taker === "0x0000000000000000000000000000000000000000",
+          (entry.order.taker === "0x0000000000000000000000000000000000000000" ||
+            entry.order.taker === this.account.address ||
+            entry.order.taker === this.config.exchange),
       )
       .sort((a, b) => a.sequence - b.sequence);
     for (const entry of publicOrders) {

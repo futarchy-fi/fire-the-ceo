@@ -131,9 +131,49 @@ try {
   assert.equal(cross.shares, 1_000_000_000_000_000_000n);
   assert.equal(cross.makerFillAmount, 350_000_000_000_000_000n);
 
+  const mintLongUnsigned = {
+    ...unsigned,
+    salt: 44n,
+    tokenId: 16n,
+    makerAmount: 600_000_000_000_000_000n,
+  };
+  const mintShortUnsigned = {
+    ...unsignedSell,
+    salt: 45n,
+    tokenId: 17n,
+    makerAmount: 400_000_000_000_000_000n,
+    takerAmount: 1_000_000_000_000_000_000n,
+    side: 0,
+  };
+  const mintLong: SignedOrder = {
+    ...mintLongUnsigned,
+    signature: await maker.signTypedData({
+      domain,
+      types: orderTypes,
+      primaryType: "Order",
+      message: mintLongUnsigned,
+    }),
+  };
+  const mintShort: SignedOrder = {
+    ...mintShortUnsigned,
+    signature: await seller.signTypedData({
+      domain,
+      types: orderTypes,
+      primaryType: "Order",
+      message: mintShortUnsigned,
+    }),
+  };
+  const mintBook = new OrderBook();
+  mintBook.add(hashOrder(mintLong, domain), mintLong);
+  mintBook.add(hashOrder(mintShort, domain), mintShort);
+  const mintCross = findBestCross(mintBook.all(), new Set(), new Set(), true);
+  assert(mintCross, "matcher did not find complementary BUY/BUY mint cross");
+  assert.equal(mintCross.takerFillAmount, 400_000_000_000_000_000n);
+  assert.equal(mintCross.makerFillAmount, 600_000_000_000_000_000n);
+
   console.log(`PASS EIP-712 hash: ${localHash}`);
   console.log("PASS EOA signature recovery and mutation rejection");
-  console.log("PASS relay book storage and signed BUY/SELL cross matching");
+  console.log("PASS relay book storage and signed COMPLEMENTARY/MINT cross matching");
   console.log(`PASS Solidity reference on Anvil chain ${CHAIN_ID}`);
 } finally {
   if (anvil && anvil.exitCode === null) anvil.kill("SIGTERM");

@@ -1,4 +1,3 @@
-import type { Address } from "viem";
 import { priceFraction, type StoredOrder } from "./book.js";
 import { Side } from "./order.js";
 
@@ -12,7 +11,12 @@ export type Cross = {
   makerFillAmount: bigint;
 };
 
-export function findBestCross(entries: StoredOrder[], pending = new Set<string>()): Cross | undefined {
+export function findBestCross(
+  entries: StoredOrder[],
+  pending = new Set<string>(),
+  authorizedTakers = new Set<string>(),
+  includeComplementPairs = false,
+): Cross | undefined {
   const buys = entries
     .filter((entry) => entry.order.side === Side.BUY && !pending.has(entry.hash))
     .sort((a, b) => comparePrice(a, b, true));
@@ -23,7 +27,7 @@ export function findBestCross(entries: StoredOrder[], pending = new Set<string>(
   for (const buy of buys) {
     for (const sell of sells) {
       if (buy.order.tokenId !== sell.order.tokenId || buy.order.maker === sell.order.maker) continue;
-      if (!counterpartyAllowed(buy, sell.order.maker) || !counterpartyAllowed(sell, buy.order.maker)) {
+      if (!counterpartyAllowed(buy, authorizedTakers) || !counterpartyAllowed(sell, authorizedTakers)) {
         continue;
       }
       if (!pricesCross(buy, sell)) break;
@@ -32,24 +36,34 @@ export function findBestCross(entries: StoredOrder[], pending = new Set<string>(
       if (shares === 0n) continue;
 
       if (buy.sequence > sell.sequence) {
+        const takerFill = (shares * buy.order.makerAmount) / buy.order.takerAmount;
+        const makerCost = mulDivUp(shares, sell.order.takerAmount, sell.order.makerAmount);
+        if (takerFill === 0n || makerCost > takerFill) continue;
         return {
           taker: buy,
           maker: sell,
           shares,
-          takerFillAmount: mulDivUp(shares, sell.order.takerAmount, sell.order.makerAmount),
+          takerFillAmount: takerFill,
           makerFillAmount: shares,
         };
       }
+      const makerFill = (shares * buy.order.makerAmount) / buy.order.takerAmount;
+      if (makerFill === 0n) continue;
+      const actualShares = mulDivUp(makerFill, buy.order.takerAmount, buy.order.makerAmount);
+      const sellerTarget = mulDivUp(actualShares, sell.order.takerAmount, sell.order.makerAmount);
+      if (actualShares > sell.remaining || makerFill < sellerTarget) continue;
       return {
         taker: sell,
         maker: buy,
-        shares,
-        takerFillAmount: shares,
-        makerFillAmount: mulDivUp(shares, buy.order.makerAmount, buy.order.takerAmount),
+        shares: actualShares,
+        takerFillAmount: actualShares,
+        makerFillAmount: makerFill,
       };
     }
   }
-  return undefined;
+  return includeComplementPairs
+    ? findComplementPairCross(entries, pending, authorizedTakers)
+    : undefined;
 }
 
 export function ammSharesToLimit(
@@ -85,7 +99,7 @@ export function ammSharesToLimit(
 
 export function ammTakerFillAmount(entry: StoredOrder, shares: bigint): bigint {
   return entry.order.side === Side.BUY
-    ? mulDivUp(shares, entry.order.makerAmount, entry.order.takerAmount)
+    ? (shares * entry.order.makerAmount) / entry.order.takerAmount
     : shares;
 }
 
@@ -96,8 +110,70 @@ function pricesCross(buy: StoredOrder, sell: StoredOrder): boolean {
   );
 }
 
-function counterpartyAllowed(entry: StoredOrder, counterparty: Address): boolean {
-  return entry.order.taker.toLowerCase() === ZERO_ADDRESS || entry.order.taker === counterparty;
+function counterpartyAllowed(entry: StoredOrder, authorizedTakers: Set<string>): boolean {
+  const taker = entry.order.taker.toLowerCase();
+  return taker === ZERO_ADDRESS || authorizedTakers.has(taker);
+}
+
+function findComplementPairCross(
+  entries: StoredOrder[],
+  pending: Set<string>,
+  authorizedTakers: Set<string>,
+): Cross | undefined {
+  const available = entries
+    .filter((entry) => !pending.has(entry.hash) && counterpartyAllowed(entry, authorizedTakers))
+    .sort((a, b) => a.sequence - b.sequence);
+  for (let leftIndex = 0; leftIndex < available.length; leftIndex += 1) {
+    for (let rightIndex = leftIndex + 1; rightIndex < available.length; rightIndex += 1) {
+      const left = available[leftIndex];
+      const right = available[rightIndex];
+      if (
+        left.order.maker === right.order.maker ||
+        left.order.side !== right.order.side ||
+        (left.order.tokenId ^ 1n) !== right.order.tokenId ||
+        !complementPricesCross(left, right)
+      ) {
+        continue;
+      }
+      const maker = left;
+      const taker = right;
+      if (taker.order.side === Side.BUY) {
+        const makerShareCapacity =
+          (maker.remaining * maker.order.takerAmount) / maker.order.makerAmount;
+        const takerShareCapacity =
+          (taker.remaining * taker.order.takerAmount) / taker.order.makerAmount;
+        const targetShares = min(makerShareCapacity, takerShareCapacity);
+        const makerFill =
+          (targetShares * maker.order.makerAmount) / maker.order.takerAmount;
+        if (makerFill === 0n) continue;
+        const shares = mulDivUp(makerFill, maker.order.takerAmount, maker.order.makerAmount);
+        const takerFill = shares - makerFill;
+        if (
+          takerFill === 0n ||
+          takerFill > taker.remaining ||
+          mulDivUp(takerFill, taker.order.takerAmount, taker.order.makerAmount) > shares
+        ) {
+          continue;
+        }
+        return { taker, maker, shares, takerFillAmount: takerFill, makerFillAmount: makerFill };
+      }
+
+      const shares = min(maker.remaining, taker.remaining);
+      const makerTaking = mulDivUp(shares, maker.order.takerAmount, maker.order.makerAmount);
+      const takerTarget = mulDivUp(shares, taker.order.takerAmount, taker.order.makerAmount);
+      if (makerTaking > shares || shares - makerTaking < takerTarget) continue;
+      return { taker, maker, shares, takerFillAmount: shares, makerFillAmount: shares };
+    }
+  }
+  return undefined;
+}
+
+function complementPricesCross(a: StoredOrder, b: StoredOrder): boolean {
+  const [aN, aD] = priceFraction(a.order);
+  const [bN, bD] = priceFraction(b.order);
+  const sumNumerator = aN * bD + bN * aD;
+  const denominator = aD * bD;
+  return a.order.side === Side.BUY ? sumNumerator >= denominator : sumNumerator <= denominator;
 }
 
 function comparePrice(a: StoredOrder, b: StoredOrder, descending: boolean): number {

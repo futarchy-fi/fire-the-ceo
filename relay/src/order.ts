@@ -115,6 +115,7 @@ export async function verifySignature(
   if (getAddress(order.maker) !== getAddress(order.signer)) return false;
 
   if (order.signatureType === SignatureType.EOA) {
+    if (order.signature.length !== 132) return false;
     try {
       const recovered = await recoverTypedDataAddress({
         domain,

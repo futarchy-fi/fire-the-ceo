@@ -156,7 +156,12 @@ class RelayService {
           let reason: string | undefined;
           if (state.filledOrCancelled) reason = "filled_or_cancelled";
           else if (state.nonce !== entry.order.nonce) reason = "nonce_cancelled";
-          else if (state.blockTimestamp >= entry.order.expiration) reason = "expired";
+          else if (
+            entry.order.expiration !== 0n &&
+            state.blockTimestamp > entry.order.expiration
+          ) {
+            reason = "expired";
+          }
           if (reason) {
             const removed = this.book.remove(entry.hash);
             if (removed) this.broadcastDelta("remove", removed, reason);

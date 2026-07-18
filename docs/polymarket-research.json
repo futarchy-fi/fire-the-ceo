@@ -1,0 +1,260 @@
+{
+ "question": "Polymarket's hybrid CLOB architecture in full implementation depth, for the purpose of replicating it on top of an internal-balance LMSR prediction market (FireTheCEO on Sepolia). Cover: (1) the CTF Exchange settlement contract (github.com/Polymarket/ctf-exchange) \u2014 Order struct fields and EIP-712 domain/typehash, signature types (EOA/poly-proxy/Gnosis safe), matchOrders/fillOrder entrypoints, the three crossing paths (COMPLEMENTARY, MINT, MERGE) and their collateral flows, fee formula and symmetry rationale, nonce/cancellation and onchain cancel, partial-fill accounting, operator/admin roles and what the operator can and cannot do, pausing, audits and known vulnerabilities/incidents; (2) the off-chain CLOB operator: order lifecycle (create/sign/post/cancel), REST+WS API surface, matching semantics (price-time priority? crossing rules), who submits settlement txs and who pays gas, rate limits, how they prevent operator abuse, downtime history; (3) supporting infra: proxy wallet/relayer system, allowances, neg-risk adapter (if relevant), the resolution path (UMA OO) only briefly; (4) what is open source vs proprietary, what exists as reusable code or third-party reimplementations (clob-client, py-clob-client, community relays/matchers); (5) adaptation analysis: which pieces change when outcome positions are internal contract balances (not ERC-1155/CTF tokens) with called-off-bet escrow semantics and a standing subsidized LMSR AMM that should be routable in the same fill \u2014 i.e. what our settlement contract must verify, how mint/merge map to internal balances, and any impedance mismatches the Polymarket design has with an AMM-in-the-loop. Audience: the engineering team about to build this; prioritize primary sources (contracts source, official docs, audits) over commentary.",
+ "summary": "Polymarket's CLOB is a hybrid-decentralized exchange: an off-chain operator performs matching/ordering while settlement executes on-chain, non-custodially, from EIP-712 signed orders against the CTF Exchange contract, which atomically swaps ERC-1155 outcome tokens for ERC-20 collateral. Settlement flows through operator-gated fillOrder/matchOrders entrypoints using three crossing paths \u2014 COMPLEMENTARY (direct swap), MINT (two buys split collateral into a complete outcome set), MERGE (two sells merge tokens back to collateral) \u2014 built on the invariant A + A' = C, with a symmetric fee formula (baseRate * min(p, 1-p) * size) forced by free mint/merge arbitrage. The trust model is explicit: the operator can censor and reorder but cannot fill an order worse than its signed terms; users retain permissionless on-chain cancel in V1, while V2 (live 2026) removes nonces/expiration/per-order cancel (griefing vector), makes matchOrders the sole entrypoint with operator-supplied fee amounts, and batches CTF calls for ~50% gas savings. For FireTheCEO, the key adaptation is that the CTF Exchange assumes token-standard transferability \u2014 an internal-balance LMSR must replace ERC-20/1155 transfers with contract-internal balance verification and map MINT/MERGE onto called-off-bet escrow operations, while the audits (ChainSecurity 2022: 2 critical, 1 high, 3 medium, all fixed; Quantstamp V2: POL-EX-1 medium, fixed) supply a checklist of signature-binding, typehash, fee-hashing, and operator-input-validation bugs to avoid.",
+ "findings": [
+  {
+   "claim": "Architecture: Polymarket is explicitly a hybrid-decentralized exchange \u2014 an off-chain operator provides matching/ordering/execution while settlement happens on-chain and non-custodially via EIP-712 signed order messages; the CTF Exchange settles trades as atomic swaps between binary outcome tokens (ERC-1155) and ERC-20 collateral, using ERC-20 transferFrom and ERC-1155 safeTransferFrom exclusively (allowance/approval gated).",
+   "confidence": "high",
+   "sources": [
+    "https://github.com/Polymarket/ctf-exchange/blob/main/docs/Overview.md",
+    "https://github.com/Polymarket/ctf-exchange (src/exchange/mixins/AssetOperations.sol, TransferHelper)"
+   ],
+   "evidence": "Overview.md verbatim: 'a hybrid-decentralized exchange model wherein there is an operator that provides matching/ordering/execution services while settlement happens on-chain, non-custodially according to instructions in the form of signed order messages' and 'facilitates atomic swaps between binary outcome tokens (ERC1155) and the collateral asset (ERC20)'. AssetOperations.sol moves assets solely via ERC20 transferFrom / ERC1155 safeTransferFrom plus CTF splitPosition/mergePositions.",
+   "vote": "3-0 (both merged claims)"
+  },
+  {
+   "claim": "Order struct and signing (V1): the EIP-712 ORDER_TYPEHASH commits to exactly twelve fields \u2014 salt, maker, signer, taker, tokenId, makerAmount, takerAmount, expiration, nonce, feeRateBps, side (uint8), signatureType (uint8) \u2014 with the signature bytes carried in the struct but excluded from the typehash. Current main defines four signature types: EOA (0, ECDSA), POLY_PROXY (1, proxy-wallet owner), POLY_GNOSIS_SAFE (2, Safe owner), POLY_1271 (3, EIP-1271 contract signatures; added 2025-10-17, after the originally deployed/audited three-type set).",
+   "confidence": "high",
+   "sources": [
+    "https://github.com/Polymarket/ctf-exchange/blob/main/src/exchange/libraries/OrderStructs.sol",
+    "https://github.com/Polymarket/ctf-exchange/blob/main/src/exchange/mixins/Hashing.sol",
+    "https://github.com/Polymarket/ctf-exchange/blob/main/src/exchange/mixins/Signatures.sol"
+   ],
+   "evidence": "OrderStructs.sol lines 4-6 contain the exact typehash string; lines 39-48 the four-member SignatureType enum. Hashing.hashOrder abi.encodes the twelve fields and omits order.signature. Signatures.sol dispatches all four types; git history (commit 2915eae, 'feat: add 1271 sig validation') shows POLY_1271 was added post-V1. Merged from three separately verified claims, each 3-0.",
+   "vote": "3-0"
+  },
+  {
+   "claim": "Crossing paths: a MatchType enum {COMPLEMENTARY, MINT, MERGE} derived purely from order sides \u2014 BUY+BUY\u2192MINT, SELL+SELL\u2192MERGE, else COMPLEMENTARY. COMPLEMENTARY settles buy-vs-sell on the same tokenId with direct peer-to-peer transfers (no split/merge CTF call, though the token leg still moves via ERC-1155 safeTransferFrom); MINT pools the two buyers' collateral in the exchange and calls splitPosition to mint a complete outcome set; MERGE collects complementary tokens from two sellers and calls mergePositions back to collateral. All rely on the invariant that one outcome token plus its complement equals one collateral unit (A + A' = C), with complementarity enforced on-chain via Registry.validateComplement.",
+   "confidence": "high",
+   "sources": [
+    "https://github.com/Polymarket/ctf-exchange/blob/main/src/exchange/libraries/OrderStructs.sol",
+    "https://github.com/Polymarket/ctf-exchange/blob/main/src/exchange/mixins/Trading.sol",
+    "https://github.com/Polymarket/ctf-exchange/blob/main/docs/Overview.md",
+    "https://certificate.quantstamp.com/full/polymarket-ctf-exchange-v-2/a1376c48-8551-4568-a1ed-d5e499061477/index.html"
+   ],
+   "evidence": "Trading.sol:275-278 (_deriveMatchType) and 293-315 (_executeMatchCall: MINT \u2192 _mint(getConditionId(takerAssetId), takingAmount); MERGE \u2192 _merge(...)); AssetOperations.sol maps _mint/_merge to CTF splitPosition/mergePositions with partition [1,2]; Overview.md:146 states the A + A' = C invariant; Trading.sol:327-332 validates same-token (COMPLEMENTARY) or complement (MINT/MERGE). Merged from four claims, each 3-0. Note: docs call the direct path NORMAL; code calls it COMPLEMENTARY.",
+   "vote": "3-0"
+  },
+  {
+   "claim": "Fees: feeQuote = baseRate * min(price, 1-price) * size, levied in collateral on sells and in outcome tokens (baseRate * min(price, 1-price) * size/price) on buys; symmetry across complementary outcomes is required because anyone can mint/merge a complete set for collateral at any time, so asymmetric fees would be arbitrageable. Matching is 1-taker-vs-1-or-many-makers ('one to one or many to one') and any price improvement is captured by the taker; orders are never filled worse than their signed price. Operationally Polymarket has run feeRateBps=0, but the mechanism is in the contract.",
+   "confidence": "high",
+   "sources": [
+    "https://github.com/Polymarket/ctf-exchange/blob/main/docs/Overview.md",
+    "https://github.com/Polymarket/ctf-exchange/blob/main/src/exchange/libraries/CalculatorHelper.sol"
+   ],
+   "evidence": "Overview.md L154/L158 give both formulas verbatim; CalculatorHelper.sol L37-45 implements them exactly. Overview.md L146 gives the mint/merge symmetry rationale; L5: 'The relationship is always either one to one or many to one (maker to taker) and any price improvement is captured by the taking agent.' Audit section 2.2.3 independently confirms taker-captures-surplus and no-worse-than-signed-price semantics.",
+   "vote": "3-0"
+  },
+  {
+   "claim": "Access control and trust model (V1): fillOrder/fillOrders/matchOrders are external nonReentrant onlyOperator notPaused, so only operator-role holders can settle; admins separately hold pauseTrading/unpauseTrading, registerToken, setProxyFactory/setSafeFactory. Users keep permissionless cancelOrder/cancelOrders guarded by 'if (order.maker != msg.sender) revert NotOwner()', plus incrementNonce for global cancel. The ChainSecurity audit's trust model: operators must be fully trusted for ordering and censorship (can match in any order or discard orders), admins are the only token registrars and can pause all operator processing \u2014 but cryptographically signed orders can only be filled as the user specified, minimizing trust in the centralized component.",
+   "confidence": "high",
+   "sources": [
+    "https://github.com/Polymarket/ctf-exchange (src/exchange/CTFExchange.sol, src/exchange/mixins/Trading.sol, NonceManager.sol)",
+    "https://github.com/Polymarket/ctf-exchange/blob/main/audit/ChainSecurity_Polymarket_Exchange_audit.pdf"
+   ],
+   "evidence": "CTFExchange.sol L61-87 (fill/match onlyOperator notPaused), L45/50/97/103/111 (admin functions); Trading.sol L37-55 (cancel with maker==msg.sender check). Audit section 2.2.4 quoted verbatim on operator trust; 2.2.2/2.2.3 on signed-order limits. Merged from two claims, each 3-0.",
+   "vote": "3-0"
+  },
+  {
+   "claim": "FeeModule: production settlement runs through a separate FeeModule contract that proxies CTFExchange.matchOrders and refunds fee overcharges \u2014 the user-signed feeRateBps acts as a maximum, and the module refunds the difference down to the fee the operator actually intends to charge, enabling dynamic fees without re-signing orders. Both matchOrders and withdrawFees on the module are onlyAdmin (Auth mixin), so the operator submits matches via this admin-gated wrapper (which itself holds operator rights on the Exchange) and fee proceeds are withdrawable only by admins. Note: a claim asserting the module's exact matchOrders signature was refuted \u2014 the real function has an additional parameter beyond the README's listing.",
+   "confidence": "high",
+   "sources": [
+    "https://github.com/Polymarket/exchange-fee-module (src/FeeModule.sol, src/libraries/CalculatorHelper.sol)"
+   ],
+   "evidence": "FeeModule.sol: 'Proxies the CTFExchange contract and refunds orders'; matchOrders calls exchange.matchOrders then _refundTakerFees/_refundMakerFees, both entrypoints onlyAdmin. CalculatorHelper: refund = signed-fee amount minus operator fee, capped at the fee implied by signed feeRateBps. Repo description: 'Enables dynamic fees on Exchange'. Two claims 3-0; the signature-shape claim was 0-3 and is excluded.",
+   "vote": "3-0 (signature-detail sub-claim refuted 0-3)"
+  },
+  {
+   "claim": "ChainSecurity audit (03 Nov 2022, four code versions Aug 15 \u2013 Oct 28 2022): 2 critical, 1 high, 3 medium, 13 low findings; all critical/high/medium code-corrected pre-deployment, 3 low left open (acknowledged/risk-accepted/partially corrected). Critical #1: EOA-type signatures were valid for any maker \u2014 isValidSignature only bound maker to signer for POLY_PROXY/POLY_GNOSIS_SAFE, so anyone could craft an executable order naming an arbitrary approved maker; fixed by verifyEOASignature enforcing Order.maker == Order.signer. Critical #2: ORDER_TYPEHASH did not match the data actually encoded in Hashing.hashOrder, breaking signature recovery. High: feeRateBps was omitted from the order hash, letting operators unilaterally charge MAX_FEE_RATE_BIPS; fixed by hashing it. Medium ('Unintended Order Types'): redundant side/makerAssetId/takerAssetId allowed 8 combinations of which 2 were legitimate; fixed by collapsing to the single tokenId field \u2014 which explains the final Order struct shape.",
+   "confidence": "high",
+   "sources": [
+    "https://github.com/Polymarket/ctf-exchange/blob/main/audit/ChainSecurity_Polymarket_Exchange_audit.pdf",
+    "https://reports.chainsecurity.com/Polymarket/ChainSecurity_Polymarket_Exchange_Audit.pdf",
+    "https://github.com/Polymarket/ctf-exchange/blob/main/src/exchange/mixins/Signatures.sol"
+   ],
+   "evidence": "PDF text extracted and matched verbatim for the severity table, finding 6.1 (Signatures Are Valid for Any Address), 6.2 (ORDER_TYPEHASH Is Incorrect), 6.3 (Fee Rate Not Hashed), and Unintended Order Types (medium). Fixes confirmed present in current source (Signatures.sol verifyEOASignature L67-72; single tokenId in OrderStructs.sol L20). Merged from four claims, each 3-0.",
+   "vote": "3-0"
+  },
+  {
+   "claim": "CTF Exchange V2 (github.com/Polymarket/ctf-exchange-v2; live on Polygon at 0xE111180000d2663C0091e4f400237545B87B996B, April 2026): matchOrders(conditionId, takerOrder, makerOrders, takerFillAmount, makerFillAmounts, takerFeeAmount, makerFeeAmounts) is the single settlement entrypoint \u2014 fillOrder/fillOrders and the NonceManager are removed. The Order struct drops taker, expiration, nonce, and feeRateBps and adds timestamp (ms creation time, source of uniqueness), metadata (bytes32), and builder (bytes32); ORDER_TYPEHASH = 0xbb86318a...8589 (independently recomputed). Order state is tracked by hash in OrderStatus {bool filled; uint248 remaining} packed into one slot. MINT/MERGE CTF operations are batched \u2014 totals accumulated across all makers into a single splitPosition/mergePositions call \u2014 cutting gas up to 51% (Mint/20 makers: 2,330,028 \u2192 1,138,156, matching V1 Foundry snapshots). Nonces were removed because incrementing one was a global-cancel griefing vector against orders mid-matching; consequently V2 has no on-chain per-order cancel or auto-expiration \u2014 cancellation is off-chain plus a delayed pauseUser() (default 100 blocks). Fees are now operator-supplied amounts bounded only by admin-set maxFeeRateBps (default 500 bps; validation skipped entirely if set to 0), making V2 even more operator-trusting than V1.",
+   "confidence": "high",
+   "sources": [
+    "https://github.com/Polymarket/ctf-exchange-v2 (README, src/exchange/libraries/Structs.sol, src/exchange/mixins/Trading.sol, UserPausable.sol, Fees.sol)",
+    "https://docs.polymarket.com (v2-migration)",
+    "local V1 repo snapshots/GasSnapshots_Test.json"
+   ],
+   "evidence": "V2 README removal notes quoted verbatim; typehash recomputed with cast keccak and matches; Structs.sol Order struct fetched and field-diffed against V1; Trading.sol shows totalMintAmount/totalMergeAmount accumulation then single _mint/_merge; V1 gas snapshot file contains mint_20makers: 2330028; Quantstamp audit text confirms the nonce-griefing rationale and pauseUser() reliance. Merged from four claims plus the operator-trust claim, each 3-0.",
+   "vote": "3-0"
+  },
+  {
+   "claim": "Quantstamp V2 audit (March 2026): frames the exchange as operator-centric \u2014 correct execution is 'a high-trust operational assumption, not a low-trust on-chain guarantee' since operators control all matchOrders inputs and preapproval/invalidation flows; admin separately controls pause, feeReceiver, maxFeeRateBps. Its single medium finding, POL-EX-1 (fixed in commit 1af9851, 'fix: complementary taker fill validation'), was that in the COMPLEMENTARY path takerFillAmount only decremented taker order-status capacity while actual transfers were driven by operator-supplied makerFillAmounts, letting a buggy/malicious operator overspend a taker beyond their signed makerAmount repeatedly until balance/approval exhaustion, or consume an order while underpaying \u2014 the minimum-output check (_updateTakingWithSurplus) existed only in the MINT/MERGE path. The fix adds ComplementaryFillExceedsTakerFill and TooLittleTokensReceived guards. This is a direct checklist item for any replica: validate aggregate maker-side execution against the taker's signed constraints in every path.",
+   "confidence": "high",
+   "sources": [
+    "https://certificate.quantstamp.com/full/polymarket-ctf-exchange-v-2/a1376c48-8551-4568-a1ed-d5e499061477/index.html",
+    "https://github.com/Polymarket/ctf-exchange-v2 (commit 1af9851, audits/CTF Exchange V2 - Quantstamp - March 2026.pdf)"
+   ],
+   "evidence": "Commit 1af9851 is titled 'fix: complementary taker fill validation [POL-EX-1] (#59)'; pre-fix Trading.sol confirmed the missing aggregate check and the MINT/MERGE-only surplus check; the fix diff adds exactly the two claimed guards. Audit PoC (test_ZeroFillBuyOrder_FeeBypassDrainsCollateral) corroborates repeatable drain. Two claims, each 3-0.",
+   "vote": "3-0"
+  },
+  {
+   "claim": "Adaptation to FireTheCEO (internal-balance LMSR): the CTF Exchange's settlement layer assumes token-standard transferability \u2014 every asset movement is an allowance-gated ERC-20 transferFrom or approval-gated ERC-1155 safeTransferFrom, and MINT/MERGE are CTF splitPosition/mergePositions calls. A replica over contract-internal outcome balances must (a) replace both transfer surfaces with internal debit/credit plus balance verification at fill time (no allowance concept), (b) map MINT to 'escrow collateral from both buyers and credit complementary internal positions' and MERGE to the inverse \u2014 which is exactly the called-off-bet escrow primitive, so the A + A' = C invariant carries over natively, and (c) preserve the order-hash/OrderStatus partial-fill accounting, signature binding (maker==signer for EOAs), fee-in-hash, and per-path taker-constraint validation lessons from both audits. The verified corpus contains no evidence on AMM-in-the-loop routing \u2014 Polymarket's matchOrders only matches signed orders against signed orders, so routing a standing LMSR AMM into the same fill (AMM as synthetic maker) is a genuine extension with no upstream precedent in these sources.",
+   "confidence": "medium",
+   "sources": [
+    "https://github.com/Polymarket/ctf-exchange/blob/main/docs/Overview.md",
+    "https://github.com/Polymarket/ctf-exchange (src/exchange/mixins/AssetOperations.sol)"
+   ],
+   "evidence": "The transferability-assumption premise was verified 3-0 (claim [4], including its adaptation clause). The specific mint/merge-to-escrow mapping and the AMM-gap observation are synthesis from the verified mechanics rather than independently verified claims, hence medium confidence for the derived design guidance despite high confidence in the underlying facts.",
+   "vote": "3-0 on premise; derived guidance unvoted"
+  }
+ ],
+ "caveats": "Coverage gap: the verification pass produced surviving claims only for parts (1), partial (3)/(4), and the contract-side of (5) of the research question. Nothing survived on the off-chain CLOB operator's REST/WS API surface, matching semantics (price-time priority), rate limits, gas payment, or downtime history; nor on the proxy-wallet/relayer factories, neg-risk adapter, UMA resolution path, or the open-source client ecosystem (clob-client, py-clob-client, community matchers) \u2014 treat those sections as unresearched, not as absent from Polymarket. Version scoping matters throughout: V1 (audited 2022, has fillOrder + nonce cancel + signed feeRateBps, originally three signature types) vs current main (adds POLY_1271) vs V2 (live April 2026, single matchOrders entrypoint, no nonce/expiration/cancel, operator-chosen fees) differ materially; several claims are true only for one version. One claim about the FeeModule's exact matchOrders signature was refuted (0-3) \u2014 the README signature omits a parameter present in the deployed code, so verify function signatures against source, not docs. Fee mechanics are contract-accurate but Polymarket has operationally run zero trading fees. The adaptation finding's design guidance (escrow mapping, AMM-as-maker gap) is synthesis over verified facts, not itself adversarially verified. Time-sensitivity: V2 was pushed as recently as 2026-06-11 and may evolve; deployed V1 bytecode is immutable but the repo's main branch has drifted from the audited/deployed version.",
+ "openQuestions": [
+  "What are the off-chain CLOB's actual matching semantics (price-time priority?, crossing/self-trade rules), API surface, rate limits, and operational history \u2014 none of this survived verification and it directly shapes the FireTheCEO matcher design.",
+  "How does V2's operator preapproveOrder/invalidatePreapprovedOrder flow work in practice, and does it change the replication choice between V1-style user cancel (better trust properties for a small operator) and V2-style off-chain cancel + pauseUser (better gas/griefing properties)?",
+  "How should a subsidized LMSR AMM be routed into the same atomic fill \u2014 as a synthetic maker order the settlement contract quotes on-chain at fill time, or as a separate leg \u2014 given Polymarket's matchOrders has no AMM counterparty concept and its taker-surplus/fee-symmetry rules assume static signed prices while LMSR prices move within the fill?",
+  "Does the neg-risk adapter (multi-outcome markets built from binaries) matter for FireTheCEO's 100-company structure, i.e. should the internal-balance design anticipate a negative-risk-style conversion between one-company positions and the complement basket?"
+ ],
+ "refuted": [
+  {
+   "claim": "The FeeModule's matchOrders signature extends the Exchange's matchOrders with explicit per-order fee-intent parameters: matchOrders(Order takerOrder, Order[] makerOrders, uint256 takerFillAmount, uint256[] makerFillAmounts, uint256 takerFeeAmount, uint256[] makerFeeAmounts).",
+   "vote": "0-3",
+   "source": "https://github.com/Polymarket/exchange-fee-module"
+  }
+ ],
+ "unverified": [],
+ "sources": [
+  {
+   "url": "https://github.com/Polymarket/ctf-exchange",
+   "quality": "primary",
+   "angle": "primary-source contract code",
+   "claimCount": 5
+  },
+  {
+   "url": "https://github.com/Polymarket/ctf-exchange/blob/main/docs/Overview.md",
+   "quality": "primary",
+   "angle": "primary-source contract code",
+   "claimCount": 5
+  },
+  {
+   "url": "https://github.com/Polymarket/ctf-exchange/blob/main/src/exchange/libraries/OrderStructs.sol",
+   "quality": "primary",
+   "angle": "primary-source contract code",
+   "claimCount": 5
+  },
+  {
+   "url": "https://github.com/Polymarket/ctf-exchange-v2",
+   "quality": "primary",
+   "angle": "primary-source contract code",
+   "claimCount": 5
+  },
+  {
+   "url": "https://github.com/Polymarket/exchange-fee-module",
+   "quality": "primary",
+   "angle": "primary-source contract code",
+   "claimCount": 5
+  },
+  {
+   "url": "https://github.com/tdergouzi/rs-order-utils",
+   "quality": "secondary",
+   "angle": "primary-source contract code",
+   "claimCount": 5
+  },
+  {
+   "url": "https://github.com/Polymarket/ctf-exchange/blob/main/audit/ChainSecurity_Polymarket_Exchange_audit.pdf",
+   "quality": "primary",
+   "angle": "audits and vulnerabilities",
+   "claimCount": 5
+  },
+  {
+   "url": "https://certificate.quantstamp.com/full/polymarket-ctf-exchange-v-2/a1376c48-8551-4568-a1ed-d5e499061477/index.html",
+   "quality": "primary",
+   "angle": "audits and vulnerabilities",
+   "claimCount": 5
+  },
+  {
+   "url": "https://arxiv.org/html/2606.16852",
+   "quality": "primary",
+   "angle": "audits and vulnerabilities",
+   "claimCount": 5
+  },
+  {
+   "url": "https://reports.chainsecurity.com/Polymarket/ChainSecurity_Polymarket_NegRiskAdapter_Audit.pdf",
+   "quality": "primary",
+   "angle": "audits and vulnerabilities",
+   "claimCount": 5
+  },
+  {
+   "url": "https://www.chainsecurity.com/security-audit/polymarket-exchange-smart-contracts",
+   "quality": "primary",
+   "angle": "audits and vulnerabilities",
+   "claimCount": 5
+  },
+  {
+   "url": "https://docs.polymarket.com/developers/CLOB/introduction",
+   "quality": "primary",
+   "angle": "off-chain CLOB operator API",
+   "claimCount": 5
+  },
+  {
+   "url": "https://docs.polymarket.com/concepts/order-lifecycle",
+   "quality": "primary",
+   "angle": "off-chain CLOB operator API",
+   "claimCount": 5
+  },
+  {
+   "url": "https://github.com/Polymarket/py-clob-client",
+   "quality": "primary",
+   "angle": "off-chain CLOB operator API",
+   "claimCount": 5
+  },
+  {
+   "url": "https://github.com/Polymarket/clob-client",
+   "quality": "primary",
+   "angle": "off-chain CLOB operator API",
+   "claimCount": 5
+  },
+  {
+   "url": "https://docs.polymarket.com/developers/proxy-wallet",
+   "quality": "primary",
+   "angle": "proxy wallets and supporting infra",
+   "claimCount": 4
+  },
+  {
+   "url": "https://github.com/Polymarket/proxy-factories",
+   "quality": "primary",
+   "angle": "proxy wallets and supporting infra",
+   "claimCount": 5
+  },
+  {
+   "url": "https://docs.polymarket.com/market-makers/getting-started",
+   "quality": "primary",
+   "angle": "proxy wallets and supporting infra",
+   "claimCount": 5
+  },
+  {
+   "url": "https://github.com/polymarket/neg-risk-ctf-adapter",
+   "quality": "primary",
+   "angle": "proxy wallets and supporting infra",
+   "claimCount": 5
+  },
+  {
+   "url": "https://reports.chainsecurity.com/Polymarket/ChainSecurity_Polymarket_Exchange_Audit.pdf",
+   "quality": "primary",
+   "angle": "reimplementation and CLOB-vs-AMM adaptation",
+   "claimCount": 5
+  }
+ ],
+ "stats": {
+  "angles": 5,
+  "sourcesFetched": 20,
+  "claimsExtracted": 99,
+  "claimsVerified": 25,
+  "confirmed": 24,
+  "killed": 1,
+  "unverified": 0,
+  "afterSynthesis": 10,
+  "urlDupes": 3,
+  "budgetDropped": 7,
+  "agentCalls": 102
+ }
+}

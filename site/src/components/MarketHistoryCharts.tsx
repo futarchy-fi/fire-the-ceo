@@ -62,8 +62,8 @@ function tooltipClass(x: number): string {
 function ConditionalLegend() {
   return (
     <div className="chart-legend" aria-label="Chart legend">
-      <span><i className="chart-key chart-key--fire" />E[value|OUT]</span>
-      <span><i className="chart-key chart-key--keep" />E[value|STAY]</span>
+      <span><i className="chart-key chart-key--fire" />If CEO leaves</span>
+      <span><i className="chart-key chart-key--keep" />If CEO stays</span>
       <span><i className="chart-key chart-key--spot" />Spot at listing</span>
     </div>
   )
@@ -118,9 +118,9 @@ export function ConditionalValueChart({ history, row }: { history: HistorySnapsh
         <path d={geometry.outLine} fill="none" stroke="var(--fire)" strokeWidth="2" vectorEffect="non-scaling-stroke" />
         <path d={geometry.stayLine} fill="none" stroke="var(--keep)" strokeWidth="2" vectorEffect="non-scaling-stroke" />
         <line x1={plotRight + 7} x2={plotRight + 17} y1={geometry.outLabelY} y2={geometry.outLabelY} stroke="var(--fire)" strokeWidth="2" />
-        <text className="chart-direct-label" x={plotRight + 21} y={geometry.outLabelY + 4}>OUT</text>
+        <text className="chart-direct-label" x={plotRight + 21} y={geometry.outLabelY + 4}>LEAVES</text>
         <line x1={plotRight + 7} x2={plotRight + 17} y1={geometry.stayLabelY} y2={geometry.stayLabelY} stroke="var(--keep)" strokeWidth="2" />
-        <text className="chart-direct-label" x={plotRight + 21} y={geometry.stayLabelY + 4}>STAY</text>
+        <text className="chart-direct-label" x={plotRight + 21} y={geometry.stayLabelY + 4}>STAYS</text>
         <text x={VALUE_MARGIN.left - 8} y={VALUE_MARGIN.top + 4} textAnchor="end">{usd.format(geometry.maxValue)}</text>
         <text x={VALUE_MARGIN.left - 8} y={(VALUE_MARGIN.top + HEIGHT - VALUE_MARGIN.bottom) / 2 + 4} textAnchor="end">{usd.format((geometry.minValue + geometry.maxValue) / 2)}</text>
         <text x={VALUE_MARGIN.left - 8} y={HEIGHT - VALUE_MARGIN.bottom + 4} textAnchor="end">{usd.format(geometry.minValue)}</text>
@@ -135,8 +135,8 @@ export function ConditionalValueChart({ history, row }: { history: HistorySnapsh
       {current ? (
         <div className={tooltipClass(geometry.x(current.t))} style={{ left: `${(geometry.x(current.t) / WIDTH) * 100}%`, top: `${(Math.min(geometry.y(current.eOut), geometry.y(current.eStay)) / HEIGHT) * 100}%` }}>
           <strong>{timestamp(current.t)} UTC</strong>
-          <span>OUT {usd.format(current.eOut)}</span>
-          <span>STAY {usd.format(current.eStay)}</span>
+          <span>If CEO leaves {usd.format(current.eOut)}</span>
+          <span>If CEO stays {usd.format(current.eStay)}</span>
           <span>Premium {signedPercent(row.spot ? (current.eOut - current.eStay) / row.spot : 0)}</span>
         </div>
       ) : null}

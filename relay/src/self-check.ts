@@ -19,6 +19,7 @@ import {
   createOrderDomain,
   hashOrder,
   orderTypes,
+  parseSignedOrder,
   type SignedOrder,
   unsignedOrder,
   verifySignature,
@@ -100,6 +101,11 @@ try {
     await verifySignature({ ...order, makerAmount: order.makerAmount + 1n }, domain, publicClient),
     false,
     "mutated order signature accepted",
+  );
+  assert.throws(
+    () => parseSignedOrder({ ...order, makerAmount: Number.MAX_SAFE_INTEGER + 1 }),
+    /safe integer or decimal string/,
+    "unsafe JSON integer was accepted",
   );
 
   const seller = privateKeyToAccount(SELLER_KEY);

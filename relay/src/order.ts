@@ -208,6 +208,9 @@ function parseUint(value: unknown, field: string): bigint {
   if (typeof value !== "string" && typeof value !== "number" && typeof value !== "bigint") {
     throw new Error(`${field} must be an unsigned integer string`);
   }
+  if (typeof value === "number" && !Number.isSafeInteger(value)) {
+    throw new Error(`${field} must be a safe integer or decimal string`);
+  }
   let parsed: bigint;
   try {
     parsed = BigInt(value);

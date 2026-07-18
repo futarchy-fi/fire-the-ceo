@@ -13,6 +13,8 @@ import {
   type Hex,
 } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
+import { OrderBook } from "./book.js";
+import { findBestCross } from "./matching.js";
 import {
   createOrderDomain,
   hashOrder,
@@ -29,6 +31,7 @@ const DEPLOYER_KEY =
   "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80" as Hex;
 const MAKER_KEY =
   "0x59c6995e998f97a5a0044966f0945389dc9e86dae88c7a8412f4603b6b78690d" as Hex;
+const SELLER_KEY = "0x0000000000000000000000000000000000000000000000000000000000000003" as Hex;
 const EXCHANGE = getAddress("0x1111111111111111111111111111111111111111");
 const EXPECTED_VECTOR = "0x0ab0a3d9151bc4d0c425befbdb626f80270eb574472cb5644f25e8b98d106e2c";
 
@@ -99,8 +102,38 @@ try {
     "mutated order signature accepted",
   );
 
+  const seller = privateKeyToAccount(SELLER_KEY);
+  const unsignedSell = {
+    ...unsigned,
+    salt: 43n,
+    maker: seller.address,
+    signer: seller.address,
+    makerAmount: 1_000_000_000_000_000_000n,
+    takerAmount: 300_000_000_000_000_000n,
+    side: 1,
+  };
+  const sellOrder: SignedOrder = {
+    ...unsignedSell,
+    signature: await seller.signTypedData({
+      domain,
+      types: orderTypes,
+      primaryType: "Order",
+      message: unsignedSell,
+    }),
+  };
+  assert.equal(await verifySignature(sellOrder, domain, publicClient), true);
+  const book = new OrderBook();
+  book.add(localHash, order);
+  book.add(hashOrder(sellOrder, domain), sellOrder);
+  assert.equal(book.size, 2, "relay book did not retain both signed orders");
+  const cross = findBestCross(book.all());
+  assert(cross, "matcher did not find crossing BUY 0.35 / SELL 0.30");
+  assert.equal(cross.shares, 1_000_000_000_000_000_000n);
+  assert.equal(cross.makerFillAmount, 350_000_000_000_000_000n);
+
   console.log(`PASS EIP-712 hash: ${localHash}`);
   console.log("PASS EOA signature recovery and mutation rejection");
+  console.log("PASS relay book storage and signed BUY/SELL cross matching");
   console.log(`PASS Solidity reference on Anvil chain ${CHAIN_ID}`);
 } finally {
   if (anvil && anvil.exitCode === null) anvil.kill("SIGTERM");

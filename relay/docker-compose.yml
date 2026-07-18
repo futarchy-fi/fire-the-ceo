@@ -1,0 +1,39 @@
+services:
+  relay:
+    build: .
+    restart: unless-stopped
+    environment:
+      RPC_URL: ${RPC_URL}
+      EXCHANGE_ADDR: ${EXCHANGE_ADDR}
+      CHAIN_ID: ${CHAIN_ID}
+      PORT: ${PORT:-8080}
+      EXCHANGE_KIND: ${EXCHANGE_KIND:-ceo}
+      EXCHANGE_NAME: ${EXCHANGE_NAME:-FireTheCEO Exchange}
+      SNAPSHOT_PATH: /data/orders.json
+      POLL_INTERVAL_MS: ${POLL_INTERVAL_MS:-4000}
+      SNAPSHOT_INTERVAL_MS: ${SNAPSHOT_INTERVAL_MS:-10000}
+    ports:
+      - "${PORT:-8080}:${PORT:-8080}"
+    volumes:
+      - relay-data:/data
+
+  matcher:
+    build: .
+    command: ["bun", "run", "matcher"]
+    restart: unless-stopped
+    profiles: ["matcher"]
+    depends_on:
+      - relay
+    environment:
+      RPC_URL: ${RPC_URL}
+      EXCHANGE_ADDR: ${EXCHANGE_ADDR}
+      CHAIN_ID: ${CHAIN_ID}
+      EXCHANGE_KIND: ${EXCHANGE_KIND:-ceo}
+      EXCHANGE_HAS_AMM: ${EXCHANGE_HAS_AMM:-false}
+      AMM_MAX_SHARES: ${AMM_MAX_SHARES:-340282366920938463463374607431768211455}
+      MATCHER_PRIVATE_KEY: ${MATCHER_PRIVATE_KEY}
+      MATCHER_RETRY_MS: ${MATCHER_RETRY_MS:-4000}
+      RELAY_WS_URL: ws://relay:${PORT:-8080}/ws
+
+volumes:
+  relay-data:

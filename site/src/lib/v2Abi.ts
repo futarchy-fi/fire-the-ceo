@@ -25,6 +25,8 @@ export const coreAbi = [
   { type: 'function', name: 'claimableAmount', stateMutability: 'view', inputs: [{ name: 'companyId', type: 'uint256' }, { name: 'trader', type: 'address' }], outputs: [{ name: 'amount', type: 'uint256' }] },
   { type: 'function', name: 'claim', stateMutability: 'nonpayable', inputs: [{ name: 'companyId', type: 'uint256' }], outputs: [{ name: 'amount', type: 'uint256' }] },
   { type: 'function', name: 'proposeBoost', stateMutability: 'nonpayable', inputs: [{ name: 'companyId', type: 'uint256' }, { name: 'payment', type: 'uint256' }, { name: 'newBs', type: 'uint128[3]' }], outputs: [{ name: 'proposalId', type: 'uint256' }] },
+  { type: 'function', name: 'timeAvgPremium', stateMutability: 'view', inputs: [{ name: 'companyId', type: 'uint256' }, { name: 'window', type: 'uint32' }], outputs: [{ name: 'premium', type: 'int256' }] },
+  { type: 'function', name: 'settleDocket', stateMutability: 'nonpayable', inputs: [{ name: 'cycleId', type: 'uint256' }], outputs: [{ name: 'paid', type: 'uint256' }] },
   { type: 'function', name: 'getBoostProposal', stateMutability: 'view', inputs: [{ name: 'cycleId', type: 'uint256' }, { name: 'proposalId', type: 'uint256' }], outputs: [{ name: '', type: 'tuple', components: [{ name: 'proposer', type: 'address' }, { name: 'companyId', type: 'uint256' }, { name: 'payment', type: 'uint256' }, { name: 'baselinePremium', type: 'int256' }, { name: 'reward', type: 'uint256' }] }] },
 ] as const
 

@@ -31,6 +31,7 @@ export function OrderBook({ row, kind }: { row: BoardRow; kind: 0 | 1 | 2 }) {
   const { writeContractAsync, isPending: writing } = useWriteContract()
   const receipt = useWaitForTransactionReceipt({ hash: txHash })
   const nonce = useReadContract({ address: ADDR.exchange, abi: exchangeAbi, functionName: 'nonces', args: address ? [address] : undefined, query: { enabled: Boolean(address) } })
+  const domainSeparator = useReadContract({ address: ADDR.exchange, abi: exchangeAbi, functionName: 'domainSeparator', query: { enabled: ADDR.isV2 } })
   const allowance = useReadContract({ address: ADDR.pusd, abi: erc20Abi, functionName: 'allowance', args: address ? [address, ADDR.exchange] : undefined, query: { enabled: Boolean(address) } })
 
   const refresh = useCallback(async () => {
@@ -61,7 +62,7 @@ export function OrderBook({ row, kind }: { row: BoardRow; kind: 0 | 1 | 2 }) {
   const approvalNeeded = side === 0 && (allowance.data ?? 0n) < amount.cash
 
   const place = async () => {
-    if (!address || amount.makerAmount === 0n || amount.takerAmount === 0n || nonce.data === undefined) return
+    if (!address || amount.makerAmount === 0n || amount.takerAmount === 0n || nonce.data === undefined || domainSeparator.data === undefined) return
     try {
       if (approvalNeeded) {
         const hash = await writeContractAsync({ address: ADDR.pusd, abi: erc20Abi, functionName: 'approve', args: [ADDR.exchange, maxUint256] })
@@ -98,6 +99,8 @@ export function OrderBook({ row, kind }: { row: BoardRow; kind: 0 | 1 | 2 }) {
   const asks = book.filter((entry) => entry.order.side === 1)
   const myTokenOrders = mine.filter((entry) => entry.order.tokenId === tokenId)
   const exposure = kind === 2 ? (longSide ? 'CEO leaves' : 'CEO stays') : (longSide ? 'higher settlement' : 'lower settlement')
+
+  if (!ADDR.isV2) return <details className="order-book"><summary>Limit orders · CLOB book</summary><p className="ticket-hint">The fallback deployment has no exchange address. AMM estimates remain available.</p></details>
 
   return (
     <details className="order-book">

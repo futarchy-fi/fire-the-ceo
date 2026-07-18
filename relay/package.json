@@ -1,0 +1,22 @@
+{
+  "name": "@fire-the-ceo/order-relay",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "relay": "bun run src/relay.ts",
+    "matcher": "bun run src/matcher.ts",
+    "self-check": "bun run src/self-check.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "bun run self-check"
+  },
+  "dependencies": {
+    "viem": "^2.38.0",
+    "ws": "^8.18.3"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "@types/ws": "^8.18.1",
+    "typescript": "^5.9.0"
+  }
+}

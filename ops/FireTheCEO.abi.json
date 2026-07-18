@@ -38,6 +38,51 @@
   },
   {
     "type": "function",
+    "name": "OBSERVATION_BUFFER_SIZE",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint16",
+        "internalType": "uint16"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "WAD",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "boostProposalCount",
+    "inputs": [
+      {
+        "name": "cycleId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
     "name": "buy",
     "inputs": [
       {
@@ -48,7 +93,7 @@
       {
         "name": "kind",
         "type": "uint8",
-        "internalType": "enum FireTheCEO.MarketKind"
+        "internalType": "enum FireTheCEOv2.MarketKind"
       },
       {
         "name": "longSide",
@@ -232,6 +277,278 @@
   },
   {
     "type": "function",
+    "name": "cumulativeAtForDocket",
+    "inputs": [
+      {
+        "name": "marketId",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "start",
+        "type": "uint32",
+        "internalType": "uint32"
+      },
+      {
+        "name": "end",
+        "type": "uint32",
+        "internalType": "uint32"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "decodeTokenId",
+    "inputs": [
+      {
+        "name": "tokenId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "companyId",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "kind",
+        "type": "uint8",
+        "internalType": "enum FireTheCEOv2.MarketKind"
+      },
+      {
+        "name": "longSide",
+        "type": "bool",
+        "internalType": "bool"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "docketCycles",
+    "inputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "rewardPool",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "settled",
+        "type": "bool",
+        "internalType": "bool"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "exchange",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "exchangeAmmBuy",
+    "inputs": [
+      {
+        "name": "trader",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "tokenId",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "shares",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "maxCost",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "exchangeAmmSell",
+    "inputs": [
+      {
+        "name": "trader",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "tokenId",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "shares",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "minProceeds",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "exchangeComplementary",
+    "inputs": [
+      {
+        "name": "tokenId",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "buyer",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "seller",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "shares",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "cost",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "exchangeMerge",
+    "inputs": [
+      {
+        "name": "tokenIdA",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "sellerA",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "sellerB",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "shares",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "proceedsA",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "proceedsB",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "exchangeMint",
+    "inputs": [
+      {
+        "name": "tokenIdA",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "buyerA",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "buyerB",
+        "type": "address",
+        "internalType": "address"
+      },
+      {
+        "name": "shares",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "costA",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "costB",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
     "name": "getAllPrices",
     "inputs": [],
     "outputs": [
@@ -260,6 +577,57 @@
   },
   {
     "type": "function",
+    "name": "getBoostProposal",
+    "inputs": [
+      {
+        "name": "cycleId",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "proposalId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "tuple",
+        "internalType": "struct FireTheCEOv2.BoostProposal",
+        "components": [
+          {
+            "name": "proposer",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "companyId",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "payment",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "baselinePremium",
+            "type": "int256",
+            "internalType": "int256"
+          },
+          {
+            "name": "reward",
+            "type": "uint256",
+            "internalType": "uint256"
+          }
+        ]
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
     "name": "getCompany",
     "inputs": [
       {
@@ -272,7 +640,7 @@
       {
         "name": "",
         "type": "tuple",
-        "internalType": "struct FireTheCEO.Company",
+        "internalType": "struct FireTheCEOv2.Company",
         "components": [
           {
             "name": "ticker",
@@ -346,6 +714,47 @@
   },
   {
     "type": "function",
+    "name": "getListingProposal",
+    "inputs": [
+      {
+        "name": "proposalId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "tuple",
+        "internalType": "struct FireTheCEOv2.ListingProposal",
+        "components": [
+          {
+            "name": "proposer",
+            "type": "address",
+            "internalType": "address"
+          },
+          {
+            "name": "ticker",
+            "type": "string",
+            "internalType": "string"
+          },
+          {
+            "name": "payment",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "resolved",
+            "type": "bool",
+            "internalType": "bool"
+          }
+        ]
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
     "name": "getMarkets",
     "inputs": [
       {
@@ -358,7 +767,7 @@
       {
         "name": "",
         "type": "tuple[3]",
-        "internalType": "struct FireTheCEO.Market[3]",
+        "internalType": "struct FireTheCEOv2.Market[3]",
         "components": [
           {
             "name": "qL",
@@ -374,6 +783,42 @@
             "name": "b",
             "type": "uint128",
             "internalType": "uint128"
+          }
+        ]
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "getObservation",
+    "inputs": [
+      {
+        "name": "marketId",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "index",
+        "type": "uint16",
+        "internalType": "uint16"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "tuple",
+        "internalType": "struct FireTheCEOv2.Observation",
+        "components": [
+          {
+            "name": "blockTimestamp",
+            "type": "uint32",
+            "internalType": "uint32"
+          },
+          {
+            "name": "cumulativePriceWad",
+            "type": "uint224",
+            "internalType": "uint224"
           }
         ]
       }
@@ -399,7 +844,7 @@
       {
         "name": "result",
         "type": "tuple[3]",
-        "internalType": "struct FireTheCEO.Pos[3]",
+        "internalType": "struct FireTheCEOv2.Pos[3]",
         "components": [
           {
             "name": "sharesL",
@@ -422,6 +867,25 @@
             "internalType": "uint128"
           }
         ]
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "isTokenOpen",
+    "inputs": [
+      {
+        "name": "tokenId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "bool",
+        "internalType": "bool"
       }
     ],
     "stateMutability": "view"
@@ -487,6 +951,54 @@
   },
   {
     "type": "function",
+    "name": "observationStates",
+    "inputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "index",
+        "type": "uint16",
+        "internalType": "uint16"
+      },
+      {
+        "name": "cardinality",
+        "type": "uint16",
+        "internalType": "uint16"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "observe",
+    "inputs": [
+      {
+        "name": "marketId",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "secondsAgos",
+        "type": "uint32[]",
+        "internalType": "uint32[]"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "cumulativePrices",
+        "type": "uint256[]",
+        "internalType": "uint256[]"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
     "name": "oracle",
     "inputs": [],
     "outputs": [
@@ -524,6 +1036,19 @@
     "outputs": [
       {
         "name": "result",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "pendingDocketRollover",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
         "type": "uint256",
         "internalType": "uint256"
       }
@@ -576,13 +1101,66 @@
   },
   {
     "type": "function",
+    "name": "proposeBoost",
+    "inputs": [
+      {
+        "name": "companyId",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "payment",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "newBs",
+        "type": "uint128[3]",
+        "internalType": "uint128[3]"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "proposalId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "proposeListing",
+    "inputs": [
+      {
+        "name": "ticker",
+        "type": "string",
+        "internalType": "string"
+      },
+      {
+        "name": "payment",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "proposalId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
     "name": "pusd",
     "inputs": [],
     "outputs": [
       {
         "name": "",
         "type": "address",
-        "internalType": "contract IERC20"
+        "internalType": "contract IERC20V2"
       }
     ],
     "stateMutability": "view"
@@ -599,7 +1177,7 @@
       {
         "name": "kind",
         "type": "uint8",
-        "internalType": "enum FireTheCEO.MarketKind"
+        "internalType": "enum FireTheCEOv2.MarketKind"
       },
       {
         "name": "longSide",
@@ -633,7 +1211,7 @@
       {
         "name": "kind",
         "type": "uint8",
-        "internalType": "enum FireTheCEO.MarketKind"
+        "internalType": "enum FireTheCEOv2.MarketKind"
       },
       {
         "name": "longSide",
@@ -699,6 +1277,24 @@
   },
   {
     "type": "function",
+    "name": "resolveListingProposal",
+    "inputs": [
+      {
+        "name": "proposalId",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "refund",
+        "type": "bool",
+        "internalType": "bool"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
     "name": "sell",
     "inputs": [
       {
@@ -709,7 +1305,7 @@
       {
         "name": "kind",
         "type": "uint8",
-        "internalType": "enum FireTheCEO.MarketKind"
+        "internalType": "enum FireTheCEOv2.MarketKind"
       },
       {
         "name": "longSide",
@@ -738,6 +1334,19 @@
   },
   {
     "type": "function",
+    "name": "setExchange",
+    "inputs": [
+      {
+        "name": "exchange_",
+        "type": "address",
+        "internalType": "address"
+      }
+    ],
+    "outputs": [],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
     "name": "setOracle",
     "inputs": [
       {
@@ -751,6 +1360,49 @@
   },
   {
     "type": "function",
+    "name": "settleDocket",
+    "inputs": [
+      {
+        "name": "cycleId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "paid",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "type": "function",
+    "name": "timeAvgPremium",
+    "inputs": [
+      {
+        "name": "companyId",
+        "type": "uint256",
+        "internalType": "uint256"
+      },
+      {
+        "name": "window",
+        "type": "uint32",
+        "internalType": "uint32"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "premium",
+        "type": "int256",
+        "internalType": "int256"
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
     "name": "transferOwnership",
     "inputs": [
       {
@@ -761,6 +1413,55 @@
     ],
     "outputs": [],
     "stateMutability": "payable"
+  },
+  {
+    "type": "event",
+    "name": "BoostProposed",
+    "inputs": [
+      {
+        "name": "cycleId",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      },
+      {
+        "name": "companyId",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      },
+      {
+        "name": "proposer",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "payment",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "consumed",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "baselinePremium",
+        "type": "int256",
+        "indexed": false,
+        "internalType": "int256"
+      },
+      {
+        "name": "newBs",
+        "type": "uint128[3]",
+        "indexed": false,
+        "internalType": "uint128[3]"
+      }
+    ],
+    "anonymous": false
   },
   {
     "type": "event",
@@ -820,6 +1521,69 @@
   },
   {
     "type": "event",
+    "name": "DocketSettled",
+    "inputs": [
+      {
+        "name": "cycleId",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      },
+      {
+        "name": "rewardPool",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "paid",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "rollover",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "ExchangeAuthorized",
+    "inputs": [
+      {
+        "name": "exchange",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "ListingProposalResolved",
+    "inputs": [
+      {
+        "name": "proposalId",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      },
+      {
+        "name": "refunded",
+        "type": "bool",
+        "indexed": false,
+        "internalType": "bool"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
     "name": "OwnershipHandoverCanceled",
     "inputs": [
       {
@@ -859,6 +1623,25 @@
         "type": "address",
         "indexed": true,
         "internalType": "address"
+      }
+    ],
+    "anonymous": false
+  },
+  {
+    "type": "event",
+    "name": "ProposedListing",
+    "inputs": [
+      {
+        "name": "ticker",
+        "type": "string",
+        "indexed": false,
+        "internalType": "string"
+      },
+      {
+        "name": "payment",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
       }
     ],
     "anonymous": false
@@ -950,12 +1733,32 @@
   },
   {
     "type": "error",
+    "name": "AlreadySettled",
+    "inputs": []
+  },
+  {
+    "type": "error",
     "name": "BeforeSettlement",
     "inputs": []
   },
   {
     "type": "error",
+    "name": "CycleNotReady",
+    "inputs": []
+  },
+  {
+    "type": "error",
     "name": "DisputeWindowClosed",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "ExchangeAlreadySet",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "ExchangeOnly",
     "inputs": []
   },
   {
@@ -970,12 +1773,27 @@
   },
   {
     "type": "error",
+    "name": "InvalidBoost",
+    "inputs": []
+  },
+  {
+    "type": "error",
     "name": "InvalidCompany",
     "inputs": []
   },
   {
     "type": "error",
     "name": "InvalidMarketParameters",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "InvalidProposal",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "InvalidTokenId",
     "inputs": []
   },
   {
@@ -996,6 +1814,11 @@
   {
     "type": "error",
     "name": "NotResolved",
+    "inputs": []
+  },
+  {
+    "type": "error",
+    "name": "ObservationTooOld",
     "inputs": []
   },
   {

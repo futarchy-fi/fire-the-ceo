@@ -7,7 +7,12 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
-const DEPLOY = JSON.parse(readFileSync(join(HERE, '../data/deployment.json'), 'utf8'));
+// ponytail: charts now read the on-chain observation buffer directly; this snapshot is an
+// optional cache only. Prefer V2 core, fall back to V1.
+let DEPLOY;
+try { DEPLOY = JSON.parse(readFileSync(join(HERE, '../data/deployment-v2.json'), 'utf8')); }
+catch { DEPLOY = JSON.parse(readFileSync(join(HERE, '../data/deployment.json'), 'utf8')); }
+DEPLOY.fireTheCeo = DEPLOY.core ?? DEPLOY.fireTheCeo;
 const OUT_DIR = process.env.CEO_DATA_DIR || '/home/kelvin/fleet/apps/ceo/data';
 const ABI = JSON.parse(readFileSync(join(HERE, 'FireTheCEO.abi.json'), 'utf8'));
 

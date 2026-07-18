@@ -3,7 +3,7 @@ import { useState } from 'react'
 const STORAGE_KEY = 'fire-the-ceo-v2-onboarding'
 const steps = [
   { eyebrow: '01 · WHAT THIS IS', title: 'A live fire-the-CEO decision market.', body: 'Traders estimate a company’s stock price in two futures: one where its CEO leaves, and one where the CEO stays. The visible gap is the market’s fire premium.' },
-  { eyebrow: '02 · TIMELINE', title: 'Predict first. Settle later.', body: 'Trading runs until the departure horizon. The surviving scenario settles from the official closing price on the settlement date, one month later.' },
+  { eyebrow: '02 · TIMELINE', title: 'Predict first. Settle later.', body: 'Trade until Sep 30. The surviving scenario settles from the official Oct 30 closing price at 21:00 UTC.' },
   { eyebrow: '03 · CALLED-OFF RULE', title: 'The impossible branch is refunded exactly.', body: 'If the CEO stays, every trade premised on departure is called off. If the CEO leaves, every trade premised on retention is called off. Paid-in cash on that branch comes back exactly.' },
   { eyebrow: '04 · PROFIT AND LOSS', title: 'Direction beats mere accuracy.', body: '✓ You profit if your prediction moves the market price closer to the final value. ✕ You lose if it moves it away—even when your number looked close, if the market was closer already.' },
 ]

@@ -1,0 +1,7 @@
+{
+ "chainId": 11155111,
+ "pusd": "0x4b08e2713f6711ca41a889b29a2f98a0c72ff874",
+ "core": "0x6d7852ddb9019fcfd961a4cdfb854edc3563ee7f",
+ "exchange": "0x366a8ff9788aabf279dff0b7f3196dfc6592b6f6",
+ "deployBlock": 11295918
+}

@@ -12,6 +12,9 @@ Environment=CHAIN_ID=11155111
 Environment=PORT=3219
 Environment=EXCHANGE_KIND=ceo
 Environment=SNAPSHOT_PATH=/home/kelvin/fleet/apps/ceo/relay-data/orders.json
+CacheDirectory=ceo-relay/tmp ceo-relay/bun
+Environment=TMPDIR=%C/ceo-relay/tmp
+Environment=BUN_INSTALL_CACHE_DIR=%C/ceo-relay/bun
 ExecStart=/home/kelvin/.bun/bin/bun run src/relay.ts
 Restart=on-failure
 RestartSec=5
